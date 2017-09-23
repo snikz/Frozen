@@ -1,4 +1,4 @@
-﻿using System.Drawing;
+using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
 
@@ -12,7 +12,7 @@ namespace Frozen.Rotation
         {
             Log.Write("Welcome to Rogue-Subtlety", Color.Green);
             Log.Write("Suggested build: http://www.wowhead.com/talent-calc/rogue/subtlety/cTIz");
-            WoW.Speak("Welcome to Frozen Subtlety");
+            
         }
 
         public override void Stop()
