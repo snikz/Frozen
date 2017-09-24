@@ -42,11 +42,12 @@ namespace Frozen.Rotation
             WoW.CastSpell("Wake of Ashes", WoW.UnitPower == 0);
             WoW.CastSpell("Crusade", WoW.UnitPower >= 5 && WoW.TargetHasDebuff("Judgment"));
             WoW.CastSpell("Execution Sentence", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && !WoW.TargetHasDebuff("Execution Sentence"));
-            WoW.CastSpell("Divine Storm", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && WoW.CountEnemyNPCsInRange > 1);
+            WoW.CastSpell("Divine Storm", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && (WoW.CountEnemyNPCsInRange > 1 || combatRoutine.Type == RotationType.AOE));
             WoW.CastSpell("Templars Verdict", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && WoW.CountEnemyNPCsInRange <= 1);
             WoW.CastSpell("Blade of Justice", WoW.UnitPower <= 3); // Higher Priority because it can generate 2 holy power in 1 go
             WoW.CastSpell("Crusader Strike", WoW.UnitPower < 5 && WoW.PlayerSpellCharges("Crusader Strike") >= 0);
             WoW.CastSpell("Blade of Justice", true);
+            //WoW.CastSpell("Judgment", true);
         }
 
         public override void MountedPulse()

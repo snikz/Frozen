@@ -24,6 +24,9 @@ namespace Frozen.Rotation
             if (WoW.IsInCombat && Control.IsKeyLocked(Keys.Scroll) && !WoW.TargetIsPlayer && !WoW.IsMounted)
                 SelectRotation(4, 9999, 1);
 
+            WoW.CastSpell("Soul Harvest", WoW.HasPet && UseCooldowns && WoW.CurrentSoulShards >= 1);
+            WoW.CastSpell("Summon Doomguard", WoW.HasPet && UseCooldowns && WoW.CurrentSoulShards >= 1);
+
             if (combatRoutine.Type == RotationType.SingleTarget) // Do Single Target Stuff here
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsInCombat && !WoW.PlayerIsCasting && !WoW.IsMounted)
                 {
@@ -47,15 +50,15 @@ namespace Frozen.Rotation
                     }
 
                     if ((WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction2")
-                         || WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction3")
-                         || WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction4")
-                         || WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction5")
-                         || WoW.TargetHasDebuff("Unstable Affliction2") && WoW.TargetHasDebuff("Unstable Affliction3")
-                         || WoW.TargetHasDebuff("Unstable Affliction2") && WoW.TargetHasDebuff("Unstable Affliction4")
-                         || WoW.TargetHasDebuff("Unstable Affliction2") && WoW.TargetHasDebuff("Unstable Affliction5")
-                         || WoW.TargetHasDebuff("Unstable Affliction3") && WoW.TargetHasDebuff("Unstable Affliction4")
-                         || WoW.TargetHasDebuff("Unstable Affliction3") && WoW.TargetHasDebuff("Unstable Affliction5")
-                         || WoW.TargetHasDebuff("Unstable Affliction4") && WoW.TargetHasDebuff("Unstable Affliction5")
+                      || WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction3")
+                      || WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction4")
+                      || WoW.TargetHasDebuff("Unstable Affliction1") && WoW.TargetHasDebuff("Unstable Affliction5")
+                      || WoW.TargetHasDebuff("Unstable Affliction2") && WoW.TargetHasDebuff("Unstable Affliction3")
+                      || WoW.TargetHasDebuff("Unstable Affliction2") && WoW.TargetHasDebuff("Unstable Affliction4")
+                      || WoW.TargetHasDebuff("Unstable Affliction2") && WoW.TargetHasDebuff("Unstable Affliction5")
+                      || WoW.TargetHasDebuff("Unstable Affliction3") && WoW.TargetHasDebuff("Unstable Affliction4")
+                      || WoW.TargetHasDebuff("Unstable Affliction3") && WoW.TargetHasDebuff("Unstable Affliction5")
+                      || WoW.TargetHasDebuff("Unstable Affliction4") && WoW.TargetHasDebuff("Unstable Affliction5")
                          )
                         && !WoW.PlayerIsCasting
                         && WoW.CanCast("Reap Souls")
@@ -92,7 +95,7 @@ namespace Frozen.Rotation
                     }
 
                     if (WoW.CanCast("Felhunter") && WoW.Talent(6) == 2 && !WoW.IsSpellOnCooldown("Felhunter") && WoW.IsSpellInRange("Agony") &&
-                        !WoW.PlayerIsChanneling && !WoW.PlayerIsCasting)
+                        !WoW.PlayerIsChanneling && !WoW.PlayerIsCasting && WoW.CurrentSoulShards >= 1)
                     {
                         WoW.CastSpell("Felhunter");
                         return;
@@ -190,16 +193,18 @@ AddonAuthor=Sorcerer
 AddonName=Frozen
 WoWVersion=Legion - 70300
 [SpellBook.db]
-Spell,980,Agony,NumPad1
-Spell,63106,Siphon Life,NumPad2
-Spell,172,Corruption,NumPad3
-Spell,30108,Unstable Affliction,NumPad4
-Spell,216698,Reap Souls,NumPad5
-Spell,1454,Life Tap,NumPad7
-Spell,48181,Haunt,NumPad8
-Spell,198590,Drain Soul,Add
-Spell,27243,Seed of Corruption,NumPad0
-Spell,111897,Felhunter,NumPad9
+Spell,980,Agony,None
+Spell,63106,Siphon Life,None
+Spell,172,Corruption,None
+Spell,30108,Unstable Affliction,None
+Spell,216698,Reap Souls,None
+Spell,1454,Life Tap,None
+Spell,48181,Haunt,None
+Spell,198590,Drain Soul,None
+Spell,27243,Seed of Corruption,None
+Spell,111897,Felhunter,None
+Spell,196098,Soul Harvest,None
+Spell,18540,Summon Doomguard,None
 Aura,980,Agony
 Aura,27243,Seed of Corruption
 Aura,146739,Corruption

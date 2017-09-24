@@ -7,15 +7,6 @@ namespace Frozen.Rotation
 {
     public class WarriorFuryTazd3v : CombatRoutine
     {
-        public override string Name
-        {
-            get { return "Fury Warrior"; }
-        }
-
-        public override string Class
-        {
-            get { return "Warrrior"; }
-        }
 
         public override Form SettingsForm { get; set; }
 
