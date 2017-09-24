@@ -23,119 +23,120 @@ namespace Frozen.Rotation
         {
         }
 
+        public override void OutOfCombatPulse()
+        {
+            WoW.CastSpell("Summon Water Elemental", !WoW.PlayerIsCasting && !WoW.PlayerIsChanneling && !WoW.HasPet);
+            WoW.CastSpell("Ice Barrier", WoW.PlayerBuffTimeRemaining("Ice Barrier") <= 200);
+        }
+
         public override void Pulse()
         {
-            if (combatRoutine.Type == RotationType.SingleTarget) // Do Single Target Stuff here
-            {
-                if (WoW.CanCast("Summon Water Elemental") && !WoW.PlayerIsCasting && !WoW.PlayerIsChanneling && !WoW.HasPet)
-                {
-                    WoW.CastSpell("Summon Water Elemental");
-                    return;
-                }
+            if (WoW.PlayerHasBuff("Invisibility") || WoW.PlayerHasBuff("Ice Block")) return;
+            WoW.CastSpell("Ice Floes", WoW.IsMoving && !WoW.PlayerHasBuff("Ice Floes"), false);
+            WoW.CastSpell("Summon Water Elemental", !WoW.PlayerIsCasting && !WoW.PlayerIsChanneling && !WoW.HasPet);
+            WoW.CastSpell("Ice Barrier", WoW.PlayerBuffTimeRemaining("Ice Barrier") <= 200);
 
-                if (WoW.HasTarget && WoW.IsInCombat && WoW.TargetIsEnemy && !WoW.PlayerIsCasting && !WoW.PlayerIsChanneling &&
-                    !WoW.PlayerHasBuff("Invisibility"))
 
-                {
-                    //Movement Control
-                    if (WoW.CanCast("Ice Floes") && WoW.IsMoving && !WoW.PlayerHasBuff("Ice Floes"))
-                        WoW.CastSpell("Ice Floes");
-                    //Insta-Cast Flurry on Proc and ice lance for shatter. 
-                    if (WoW.CanCast("Flurry") && WoW.PlayerHasBuff("Brain Freeze"))
-                        WoW.CastSpell("Flurry");
-                    if (WoW.CanCast("Ice Lance") && WoW.WasLastCasted("Flurry") && WoW.PlayerHasBuff("Icy Veins"))
-                        WoW.CastSpell("Ice Lance");
-                    //RoP Control
-                    if (WoW.CanCast("Rune of Power") && !WoW.PlayerHasBuff("Rune of Power") && WoW.SpellCooldownTimeRemaining("Icy Veins") >= 120)
-                    {
-                        WoW.CastSpell("Rune of Power");
-                        return;
-                    }
-                    //Ray of Frost control
-                    if (WoW.CanCast("Ray of Frost") && WoW.PlayerHasBuff("Rune of Power") && WoW.PlayerSpellCharges("Rune of Power") == 0 &&
-                        WoW.SpellCooldownTimeRemaining("Icy Veins") >= 60)
-                        WoW.CastSpell("Ray of Frost");
+            ////Insta-Cast Flurry on Proc and ice lance for shatter. 
+            //if (WoW.CanCast("Flurry") && WoW.PlayerHasBuff("Brain Freeze"))
+            //    WoW.CastSpell("Flurry");
+            //if (WoW.CanCast("Ice Lance") && WoW.WasLastCasted("Flurry") && WoW.PlayerHasBuff("Icy Veins"))
+            //    WoW.CastSpell("Ice Lance");
+            ////RoP Control
+            //if (WoW.CanCast("Rune of Power") && !WoW.PlayerHasBuff("Rune of Power") &&
+            //    WoW.SpellCooldownTimeRemaining("Icy Veins") >= 120)
+            //{
+            //    WoW.CastSpell("Rune of Power");
+            //    return;
+            //}
+            ////Ray of Frost control
+            //if (WoW.CanCast("Ray of Frost") && WoW.PlayerHasBuff("Rune of Power") &&
+            //    WoW.PlayerSpellCharges("Rune of Power") == 0 &&
+            //    WoW.SpellCooldownTimeRemaining("Icy Veins") >= 60)
+            //    WoW.CastSpell("Ray of Frost");
 
-                    // FoF Creation
-                    if (WoW.PlayerBuffStacks("Chain Reaction") >= 1 && WoW.SpellCooldownTimeRemaining("Icy Veins") >= 30 && !WoW.WasLastCasted("Flurry"))
-                    {
-                        if (WoW.CanCast("Frozen Orb") && !WoW.IsSpellOnCooldown("Frozen Orb") && WoW.SpellCooldownTimeRemaining("Icy Veins") >= 60)
-                            WoW.CastSpell("Frozen Orb");
-                        if (WoW.CanCast("Frozen Touch") && WoW.PlayerBuffStacks("Fingers of Frost") <= 1 && WoW.IsSpellOnCooldown("Frozen Orb") &&
-                            !WoW.WasLastCasted("Frozen Orb"))
-                            WoW.CastSpell("Frozen Touch");
+            //// FoF Creation
+            //if (WoW.PlayerBuffStacks("Chain Reaction") >= 1 && WoW.SpellCooldownTimeRemaining("Icy Veins") >= 30 &&
+            //    !WoW.WasLastCasted("Flurry"))
+            //{
+            //    if (WoW.CanCast("Frozen Orb") && !WoW.IsSpellOnCooldown("Frozen Orb") &&
+            //        WoW.SpellCooldownTimeRemaining("Icy Veins") >= 60)
+            //        WoW.CastSpell("Frozen Orb");
+            //    if (WoW.CanCast("Frozen Touch") && WoW.PlayerBuffStacks("Fingers of Frost") <= 1 &&
+            //        WoW.IsSpellOnCooldown("Frozen Orb") &&
+            //        !WoW.WasLastCasted("Frozen Orb"))
+            //        WoW.CastSpell("Frozen Touch");
 
-                        if (WoW.CanCast("Ebonbolt") && !WoW.PlayerHasBuff("Fingers of Frost") && !WoW.PlayerHasBuff("Brain Freeze") &&
-                            WoW.SpellCooldownTimeRemaining("Icy Veins") >= 45)
-                        {
-                            WoW.CastSpell("Ebonbolt");
-                            return;
-                        }
-                        //Waterjet on cooldown within parameters		
-                        if (WoW.CanCast("Water Jet") && WoW.PlayerBuffStacks("Fingers of Frost") <= 1 && !WoW.WasLastCasted("Frozen Touch") &&
-                            !WoW.WasLastCasted("Frozen Orb") &&
-                            WoW.IsSpellOnCooldown("Frozen Orb") && WoW.IsSpellOnCooldown("Frozen Touch"))
-                            WoW.CastSpell("Water Jet");
-                        if (WoW.CanCast("Frostbolt") && WoW.TargetHasDebuff("Water Jet"))
-                        {
-                            WoW.CastSpell("Frostbolt");
-                            return;
-                        }
-                    }
-                    //Ice Lance Control
-                    if (WoW.CanCast("Ice Lance") && WoW.WasLastCasted("Frostbolt") && WoW.PlayerHasBuff("Chain Reaction") &&
-                        WoW.PlayerBuffStacks("Chain Reaction") >= 1 &&
-                        WoW.PlayerHasBuff("Fingers of Frost") && WoW.PlayerBuffStacks("Fingers of Frost") >= 2)
-                        WoW.CastSpell("Ice Lance");
-                    if (WoW.CanCast("Ice Lance") && WoW.PlayerBuffStacks("Fingers of Frost") == 3)
-                        WoW.CastSpell("Ice Lance");
+            //    if (WoW.CanCast("Ebonbolt") && !WoW.PlayerHasBuff("Fingers of Frost") &&
+            //        !WoW.PlayerHasBuff("Brain Freeze") &&
+            //        WoW.SpellCooldownTimeRemaining("Icy Veins") >= 45)
+            //    {
+            //        WoW.CastSpell("Ebonbolt");
+            //        return;
+            //    }
+            //    //Waterjet on cooldown within parameters		
+            //    if (WoW.CanCast("Water Jet") && WoW.PlayerBuffStacks("Fingers of Frost") <= 1 &&
+            //        !WoW.WasLastCasted("Frozen Touch") &&
+            //        !WoW.WasLastCasted("Frozen Orb") &&
+            //        WoW.IsSpellOnCooldown("Frozen Orb") && WoW.IsSpellOnCooldown("Frozen Touch"))
+            //        WoW.CastSpell("Water Jet");
+            //    if (WoW.CanCast("Frostbolt") && WoW.TargetHasDebuff("Water Jet"))
+            //    {
+            //        WoW.CastSpell("Frostbolt");
+            //        return;
+            //    }
+            //}
+            ////Ice Lance Control
+            //if (WoW.CanCast("Ice Lance") && WoW.WasLastCasted("Frostbolt") && WoW.PlayerHasBuff("Chain Reaction") &&
+            //    WoW.PlayerBuffStacks("Chain Reaction") >= 1 &&
+            //    WoW.PlayerHasBuff("Fingers of Frost") && WoW.PlayerBuffStacks("Fingers of Frost") >= 2)
+            //    WoW.CastSpell("Ice Lance");
+            //if (WoW.CanCast("Ice Lance") && WoW.PlayerBuffStacks("Fingers of Frost") == 3)
+            //    WoW.CastSpell("Ice Lance");
 
-                    if (WoW.CanCast("Ice Lance") && WoW.PlayerBuffStacks("Fingers of Frost") >= 1 && WoW.WasLastCasted("Ice Lance"))
-                        WoW.CastSpell("Ice Lance");
-                    if (WoW.CanCast("Ice Lance") && !WoW.PlayerHasBuff("Brain Freeze") && WoW.WasLastCasted("Flurry"))
-                        WoW.CastSpell("Ice Lance");
-                    if (WoW.CanCast("Ice Lance") && WoW.PlayerBuffStacks("Chain Reaction") >= 1 && WoW.PlayerHasBuff("Fingers of Frost") &&
-                        WoW.PlayerBuffStacks("Fingers of Frost") >= 1)
-                    {
-                        WoW.CastSpell("Ice Lance");
-                        return;
-                    }
-                    //Frostbolt Control
-                    if (!WoW.PlayerHasBuff("Brain Freeze") && !WoW.WasLastCasted("Flurry"))
-                    {
-                        if (WoW.CanCast("Frostbolt") && !WoW.PlayerHasBuff("Fingers of Frost") && !WoW.WasLastCasted("Frostbolt"))
-                        {
-                            WoW.CastSpell("Frostbolt");
-                            return;
-                        }
+            //if (WoW.CanCast("Ice Lance") && WoW.PlayerBuffStacks("Fingers of Frost") >= 1 &&
+            //    WoW.WasLastCasted("Ice Lance"))
+            //    WoW.CastSpell("Ice Lance");
+            //if (WoW.CanCast("Ice Lance") && !WoW.PlayerHasBuff("Brain Freeze") && WoW.WasLastCasted("Flurry"))
+            //    WoW.CastSpell("Ice Lance");
+            //if (WoW.CanCast("Ice Lance") && WoW.PlayerBuffStacks("Chain Reaction") >= 1 &&
+            //    WoW.PlayerHasBuff("Fingers of Frost") &&
+            //    WoW.PlayerBuffStacks("Fingers of Frost") >= 1)
+            //{
+            //    WoW.CastSpell("Ice Lance");
+            //    return;
+            //}
+            ////Frostbolt Control
+            //if (!WoW.PlayerHasBuff("Brain Freeze") && !WoW.WasLastCasted("Flurry"))
+            //{
+            //    if (WoW.CanCast("Frostbolt") && !WoW.PlayerHasBuff("Fingers of Frost") &&
+            //        !WoW.WasLastCasted("Frostbolt"))
+            //    {
+            //        WoW.CastSpell("Frostbolt");
+            //        return;
+            //    }
 
-                        if (WoW.CanCast("Frostbolt") && WoW.PlayerBuffStacks("Chain Reaction") <= 2 && !WoW.WasLastCasted("Frostbolt"))
-                        {
-                            WoW.CastSpell("Frostbolt");
-                            return;
-                        }
-                        if (WoW.CanCast("Frostbolt") && WoW.PlayerHasBuff("Chain Reaction") && WoW.PlayerBuffStacks("Chain Reaction") == 3 &&
-                            WoW.PlayerBuffTimeRemaining("Chain Reaction") <= 2)
-                        {
-                            WoW.CastSpell("Frostbolt");
-                            return;
-                        }
-                    }
+            //    if (WoW.CanCast("Frostbolt") && WoW.PlayerBuffStacks("Chain Reaction") <= 2 &&
+            //        !WoW.WasLastCasted("Frostbolt"))
+            //    {
+            //        WoW.CastSpell("Frostbolt");
+            //        return;
+            //    }
+            //    if (WoW.CanCast("Frostbolt") && WoW.PlayerHasBuff("Chain Reaction") &&
+            //        WoW.PlayerBuffStacks("Chain Reaction") == 3 &&
+            //        WoW.PlayerBuffTimeRemaining("Chain Reaction") <= 2)
+            //    {
+            //        WoW.CastSpell("Frostbolt");
+            //        return;
+            //    }
+            //}
 
-                    //Frost Bomb - i dont use
-                    //if	((WoW.CanCast("Frost Bomb")&&WoW.PlayerHasBuff("Fingers of Frost")&&WoW.PlayerBuffStacks("Fingers of Frost") == 2)&&!WoW.TargetHasDebuff("Frost Bomb")&&!WoW.WasLastCasted("Ice Lance")&&!WoW.WasLastCasted("Rune of Power"))
-                    //		{
-                    //		WoW.CastSpell("Frost Bomb");
-                    //		return;
-                    //		}
-                }
-            }
-            if (combatRoutine.Type == RotationType.AOE)
-
-                if (combatRoutine.Type == RotationType.Cleave)
-                {
-                    // Do Single Target Cleave stuff here if applicable else ignore this one
-                }
+            ////Frost Bomb - i dont use
+            ////if	((WoW.CanCast("Frost Bomb")&&WoW.PlayerHasBuff("Fingers of Frost")&&WoW.PlayerBuffStacks("Fingers of Frost") == 2)&&!WoW.TargetHasDebuff("Frost Bomb")&&!WoW.WasLastCasted("Ice Lance")&&!WoW.WasLastCasted("Rune of Power"))
+            ////		{
+            ////		WoW.CastSpell("Frost Bomb");
+            ////		return;
+            ////		}
         }
     }
 }

@@ -47,7 +47,6 @@ namespace Frozen.Rotation
             WoW.CastSpell("Blade of Justice", WoW.UnitPower <= 3); // Higher Priority because it can generate 2 holy power in 1 go
             WoW.CastSpell("Crusader Strike", WoW.UnitPower < 5 && WoW.PlayerSpellCharges("Crusader Strike") >= 0);
             WoW.CastSpell("Blade of Justice", true);
-            //WoW.CastSpell("Judgment", true);
         }
 
         public override void MountedPulse()
