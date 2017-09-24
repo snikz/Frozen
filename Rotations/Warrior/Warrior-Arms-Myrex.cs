@@ -6,18 +6,12 @@ namespace Frozen.Rotation
 {
     public class ArmsWarriorLe : CombatRoutine
     {
-        public override string Name => "Arms Warrior";
-
-        public override string Class => "Warrior";
-
         public override Form SettingsForm { get; set; }
-
-		const string rendsupportedTalents = "1322322";
 		
         public override void Initialize()
         {
             Log.Write("Welcome to Arms Warrior", Color.Green);
-            Log.Write("Suggested build: Rend Build {rendsupportedTalents}", Color.Green);
+            Log.Write("Suggested build: Rend Build 1322322", Color.Green);
             Log.Write("Written based on skyhold guide ", Color.Green);
         }
 
@@ -29,8 +23,6 @@ namespace Frozen.Rotation
         {
 			
 			//Talent Checker
-				string currentTalents = WoW.Talent(1) + "" + WoW.Talent(2) + "" + WoW.Talent(3) + "" + WoW.Talent(4) + "" + WoW.Talent(5) + "" + WoW.Talent(6) + "" + WoW.Talent(7);
-                
 				if (WoW.Talent(3) != 2 && WoW.Talent(3) != 1)
                 {
                     Log.Write("Talents are not 1322322", Color.Green);
