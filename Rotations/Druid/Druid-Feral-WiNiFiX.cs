@@ -8,11 +8,19 @@ namespace Frozen.Rotation
         public override void Initialize()
         {
             Log.Write("Welcome to Feral 7.3 by WiNiFiX...");
+            Log.Write("Suggested builds: 3010322 (AOE) or 3010332 (ST)");
         }
 
         public override void Stop()
         {
             Log.Write("Hope you has a good time.");
+        }
+
+        public override void OutOfCombatPulse()
+        {
+            WoW.CastSpell("Prowl", !WoW.PlayerHasBuff("Prowl"));
+            if (WoW.HasTarget && WoW.TargetHealthPercent > 0 && WoW.RangeToTarget <= 8)
+                Pulse();
         }
 
         public override void Pulse()
@@ -22,15 +30,15 @@ namespace Frozen.Rotation
             var RipTime = WoW.TargetDebuffTimeRemaining("Rip");
             var MoonfireTime = WoW.TargetDebuffTimeRemaining("Moonfire");
             
-            WoW.CastSpell("Berserk", UseCooldowns);
+            WoW.CastSpell("Berserk", UseCooldowns && !WoW.PlayerHasBuff("Prowl"));
 
-            WoW.CastSpell("Regrowth", WoW.PlayerHasBuff("PredatorySwiftness") && WoW.PlayerBuffStacks("Bloodtalons") != 2);
+            WoW.CastSpell("Regrowth", WoW.PlayerHasBuff("PredatorySwiftness") && WoW.PlayerBuffStacks("Bloodtalons") != 2 && !WoW.PlayerHasBuff("Prowl"));
 
             // Cast Ferocious Bite if at 5 Combo Points and Rip / Savage Roar do not need refreshing within 10 sec.
-            WoW.CastSpell("FerociousBite", WoW.CurrentComboPoints >= 5 && RipTime > 1000 && SavageRoarTime > 1000);
+            WoW.CastSpell("FerociousBite", WoW.CurrentComboPoints >= 5 && RipTime > 1000 && SavageRoarTime > 1000 && !WoW.PlayerHasBuff("Prowl"));
 
             // Maintain Savage Roar if taken.
-            WoW.CastSpell("SavageRoar", WoW.Talent(6) == 3 && SavageRoarTime <= 200 && WoW.CurrentComboPoints >= 1 && WoW.Energy >= 40);
+            WoW.CastSpell("SavageRoar", WoW.Talent(6) == 3 && SavageRoarTime <= 200 && WoW.CurrentComboPoints >= 1 && WoW.Energy >= 40 && !WoW.PlayerHasBuff("Prowl"));
 
             // Maintain Rake.
             WoW.CastSpell("Rake", RakeTime <= 200 && WoW.Energy >= 35);
@@ -40,7 +48,7 @@ namespace Frozen.Rotation
             WoW.CastSpell("FerociousBite", RipTime <= 200 && WoW.TargetHealthPercent <= 25 && WoW.Talent(6) == 1 && WoW.CurrentComboPoints >= 1);
 
             // Maintain Moonfire if Lunar Inspiration is taken.
-            WoW.CastSpell("Moonfire", MoonfireTime <= 200 && WoW.Energy >= 30);
+            WoW.CastSpell("Moonfire", MoonfireTime <= 200 && WoW.Energy >= 30 && WoW.Talent(1) == 3);
 
             // Use any Omen of Clarity procs to maintain Thrash if using Luffa Wrappings.
             // Will code this when i get the item till then stuff it.... :)
@@ -52,8 +60,15 @@ namespace Frozen.Rotation
             WoW.CastSpell("Ashamane", true);
             
             // Cast Shred to build combo points.
-            WoW.CastSpell("Shred", WoW.CurrentComboPoints < 5 && (WoW.Energy >= 40 || WoW.PlayerHasBuff("ClearCasting")) && WoW.CountEnemyNPCsInRange <= 1);
-            WoW.CastSpell("Thrash", WoW.CurrentComboPoints < 5 && (WoW.Energy >= 40 || WoW.PlayerHasBuff("ClearCasting")) && WoW.CountEnemyNPCsInRange >= 2);
+            WoW.CastSpell("Shred", (WoW.Energy >= 40 || WoW.PlayerHasBuff("ClearCasting")) && WoW.CountEnemyNPCsInRange <= 1);
+            WoW.CastSpell("Thrash", (WoW.Energy >= 40 || WoW.PlayerHasBuff("ClearCasting")) && WoW.CountEnemyNPCsInRange >= 2);
+
+            // When using Brutal Slash, try to make sure that you always have at least one charge on cooldown, 
+            // but have as many charges as possible when a wave of enemies comes into range. 
+            // Try to have short duration buffs such as Tiger's Fury and Bloodtalons active 
+            // on as many high target casts of this as possible, as it deals massive AoE burst damage with each cast.
+            WoW.CastSpell("BrutalSlash", WoW.Talent(6) == 2 && WoW.Energy >= 20 && WoW.PlayerSpellCharges("BrutalSlash") > 1);
+            WoW.CastSpell("BrutalSlash", WoW.Talent(6) == 2 && WoW.Energy >= 20 && WoW.PlayerSpellCharges("BrutalSlash") == 1 && WoW.PlayerHasBuff("TigersFury"));
         }
 
         public override Form SettingsForm { get; set; }
