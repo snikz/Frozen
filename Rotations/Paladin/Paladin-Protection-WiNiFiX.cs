@@ -21,8 +21,7 @@ namespace Frozen.Rotation
             Log.DrawHorizontalLine();
             Log.WriteFrozen("Welcome to Frozen Protection", Color.Black);
             Log.Write("Supported Talents: 2212321");
-            Log.Write("Current Talents  : " + WoW.Talent(1) + WoW.Talent(2) + WoW.Talent(3) + WoW.Talent(4) +
-                      WoW.Talent(5) + WoW.Talent(6) + WoW.Talent(7));
+            Log.Write("Current Talents  : " + WoW.Talent(1) + WoW.Talent(2) + WoW.Talent(3) + WoW.Talent(4) + WoW.Talent(5) + WoW.Talent(6) + WoW.Talent(7));
         }
 
         public override void Stop()
@@ -31,139 +30,27 @@ namespace Frozen.Rotation
 
         public override void Pulse()
         {
-            if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
-            if (!WoW.IsInCombat && WoW.CanCast("Mount") && WoW.IsOutdoors && !WoW.IsMoving && !WoW.PlayerIsChanneling &&
-                ConfigFile.ReadValue<bool>("Protection-Paladin-WiNiFiX", "AutoMount"))
-                WoW.CastSpell("Mount");
-
             if (WoW.TargetHealthPercent == 0) return;
-
-            if (!WoW.TargetIsEnemy &&
-                WoW.PlayerHealthPercent < 100 &&
-                WoW.CanCast("FlashHeal") &&
-                WoW.Mana > 25 &&
-                !WoW.IsMoving &&
-                !WoW.PlayerIsChanneling)
-            {
-                WoW.CastSpell("FlashHeal");
-                return;
-            }
-
+            
             if (!WoW.TargetIsEnemy) return;
-
-            if (WoW.TargetIsCastingAndSpellIsInterruptible &&
-                WoW.TargetPercentCast > 60 &&
-                WoW.CanCast("Rebuke"))
-            {
-                WoW.CastSpell("Rebuke");
-                return;
-            }
-
-            if (WoW.CanCast("ArdentDefender") && WoW.PlayerHealthPercent < 15)
-            {
-                Log.Write("Health < 15% using CD: [Ardent Defender]", Color.Red);
-                WoW.CastSpell("ArdentDefender");
-                return;
-            }
-
-            if (WoW.PlayerHealthPercent < 20 && !WoW.PlayerHasBuff("ArdentDefender"))
-            {
-                if (WoW.CanCast("LayOnHands") &&
-                    !WoW.PlayerHasDebuff("Forbearance"))
-                {
-                    Log.Write("Health < 20% using CD: [Lay On Hands]", Color.Red);
-                    WoW.CastSpell("LayOnHands");
-                    return;
-                }
-
-                if (WoW.CanCast("DivineShield") &&
-                    !WoW.PlayerHasDebuff("Forbearance") &&
-                    WoW.CanCast("HandOfReckoning"))
-                {
-                    Log.Write("Health < 20% using CD: [Taunt & Divine Shield]", Color.Red);
-                    WoW.CastSpell("HandOfReckoning");
-                    WoW.CastSpell("DivineShield");
-                    return;
-                }
-            }
-
-            if (WoW.PlayerHealthPercent < 50)
-                if (WoW.CanCast("GuardianOfAncientKings") &&
-                    !WoW.PlayerHasBuff("ArdentDefender"))
-                {
-                    Log.Write("Health < 50% using CD: [Guardian Of Ancient Kings]", Color.Red);
-                    WoW.CastSpell("GuardianOfAncientKings");
-                    return;
-                }
-
+            WoW.CastSpell("Rebuke", WoW.TargetIsCastingAndSpellIsInterruptible && WoW.TargetPercentCast > 60);
+            WoW.CastSpell("ArdentDefender", WoW.PlayerHealthPercent < 15);
+            WoW.CastSpell("LayOnHands", WoW.CanCast("LayOnHands") && !WoW.PlayerHasDebuff("Forbearance") && WoW.PlayerHealthPercent < 20 && !WoW.PlayerHasBuff("ArdentDefender"));
+            WoW.CastSpell("GuardianOfAncientKings", WoW.PlayerHealthPercent < 50 && !WoW.PlayerHasBuff("ArdentDefender"));
             if (!WoW.HasTarget) return;
-
-            if (WoW.HasBossTarget &&
-                WoW.CanCast("AvengingWrath"))
-                WoW.CastSpell("AvengingWrath"); // Off the GCD no return needed.
-
-            if (WoW.CanCast("AvengersShield"))
-            {
-                WoW.CastSpell("AvengersShield");
-                return;
-            }
-
-            if (WoW.PlayerHealthPercent < 100)
-                if (WoW.CanCast("EyeOfTyr"))
-                {
-                    WoW.CastSpell("EyeOfTyr");
-                    return;
-                }
-
-            if (WoW.CanCast("Judgment"))
-            {
-                WoW.CastSpell("Judgment");
-                return;
-            }
-
-            if (WoW.CanCast("Consecration"))
-            {
-                WoW.CastSpell("Consecration");
-                return;
-            }
-
-            if (WoW.CanCast("LightOfTheProtector") &&
-                WoW.PlayerHasBuff("Consecration") &&
-                WoW.PlayerHealthPercent < 70)
-            {
-                WoW.CastSpell("LightOfTheProtector");
-                return;
-            }
-
-            if (WoW.CanCast("BlessedHammer") &&
-                WoW.CountEnemyNPCsInRange > 1)
-            {
-                WoW.CastSpell("BlessedHammer");
-                return;
-            }
-
-            if (WoW.CanCast("BastionOfLight") &&
-                WoW.PlayerSpellCharges("ShieldOfTheRighteous") == 0 &&
-                !WoW.PlayerHasBuff("ShieldOfTheRighteous"))
-            {
-                WoW.CastSpell("BastionOfLight");
-                return;
-            }
-
-            if (WoW.CanCast("ShieldOfTheRighteous") &&
-                WoW.PlayerHasBuff("Consecration") &&
-                WoW.PlayerSpellCharges("ShieldOfTheRighteous") > 0 &&
-                !WoW.PlayerHasBuff("ShieldOfTheRighteous"))
-
-            {
-                WoW.CastSpell("ShieldOfTheRighteous");
-                return;
-            }
-
-            if (WoW.CanCast("BlessedHammer"))
-            {
-                WoW.CastSpell("BlessedHammer");
-            }
+            WoW.CastSpell("AvengingWrath", UseCooldowns, false); // Off the GCD no return needed.
+            WoW.CastSpell("AvengersShield", true);
+            WoW.CastSpell("EyeOfTyr", WoW.PlayerHealthPercent < 100);
+            WoW.CastSpell("Judgment", true);
+            WoW.CastSpell("Consecration", true);
+            WoW.CastSpell("LightOfTheProtector", WoW.PlayerHasBuff("Consecration") && WoW.PlayerHealthPercent < 70);
+            WoW.CastSpell("BlessedHammer", WoW.Talent(1) == 2);
+            WoW.CastSpell("BastionOfLight", WoW.PlayerSpellCharges("ShieldOfTheRighteous") == 0 && !WoW.PlayerHasBuff("ShieldOfTheRighteous"));
+            WoW.CastSpell("ShieldOfTheRighteous", WoW.PlayerHasBuff("Consecration") && 
+                                                  WoW.PlayerSpellCharges("ShieldOfTheRighteous") > 0 && 
+                                                  !WoW.PlayerHasBuff("ShieldOfTheRighteous"));
+            WoW.CastSpell("Seraphim", WoW.Talent(7) == 2);
+            WoW.CastSpell("BlessedHammer", true);
         }
     }
 }
@@ -191,6 +78,7 @@ Spell,642,DivineShield,D0
 Spell,62124,HandOfReckoning,E
 Spell,96231,Rebuke,S
 Spell,34767,Mount,D4
+Spell,152262,Seraphim,None
 Aura,188370,Consecration
 Aura,132403,ShieldOfTheRighteous
 Aura,25771,Forbearance
