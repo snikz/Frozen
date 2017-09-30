@@ -9,7 +9,7 @@ using Frozen.Helpers;
 
 namespace Frozen.Rotation
 {
-    public class Paladin_Holy : CombatRoutine
+	public class Paladin_Holy : CombatRoutine
     {
         public override Form SettingsForm
         {
@@ -31,17 +31,17 @@ namespace Frozen.Rotation
             Log.DrawHorizontalLine();
             Log.Write("If you do proving grounds the Tank Id is 5 when it asks you.", Color.Red);
             Log.DrawHorizontalLine();
+			
+			WoW.TankId == 0
         }
 
         public override void Stop()
         {
         }
 
-        public override void Pulse()
-        {
-            if (!WoW.InGame) return;
-
-            if (WoW.TankId == 0)
+		public override void OutOfCombatPulse()
+		{
+			if (WoW.TankId == 0)
             {
                 string currentTalents = WoW.Talent(1) + "" + WoW.Talent(2) + "" + WoW.Talent(3) + "" + WoW.Talent(4) + "" + WoW.Talent(5) + "" + WoW.Talent(6) + "" + WoW.Talent(7);
                 if (supportedTalents != currentTalents)
@@ -60,6 +60,13 @@ namespace Frozen.Rotation
                 var f = new frmEnterTankId {TopMost = true};
                 f.ShowDialog();
             }
+		}
+		
+        public override void Pulse()
+        {
+            if (!WoW.InGame) return;
+
+            
             
             if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
             if (WoW.PlayerIsCasting) return;
