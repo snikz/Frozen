@@ -13,7 +13,7 @@ namespace Frozen.Rotation
 
         public override void Stop()
         {
-            Log.Write("Hope you has a good time.");
+            Log.Write("Hope you had a good time.");
         }
 
         public override void OutOfCombatPulse()
