@@ -104,15 +104,28 @@ namespace Frozen.Rotation
             }
         }
 
-        private bool AlphaWolfCheck => Pets.IsRunning && Crash.IsRunning && Crash.ElapsedMilliseconds < 8000;
+        private bool AlphaWolfCheck 
+        {
+            get 
+            {
+                return Pets.IsRunning && Crash.IsRunning && Crash.ElapsedMilliseconds < 8000;
+            }
+        }
 
-        private static float GCD => Convert.ToSingle(150 / (1 + WoW.HastePercent / 100f)) > 75f ? Convert.ToSingle(150f / (1 + WoW.HastePercent / 100f)) : 75f;
+        private static float GCD 
+        {
+            get
+            {
+                return  Convert.ToSingle(150 / (1 + WoW.HastePercent / 100f)) > 75f ? Convert.ToSingle(150f / (1 + WoW.HastePercent / 100f)) : 75f;
+            }
+        }
 
         public override void Initialize()
         {
             Log.Write("Welcome to Enhancement Shaman by Hamuel", Color.Green);
             Log.Write("version " + Revision, Color.Green);
         }
+		
 
         public void EnhancementCD()
         {
