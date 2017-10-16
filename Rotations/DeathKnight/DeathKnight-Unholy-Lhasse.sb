@@ -1,0 +1,27 @@
+/*
+[AddonDetails.db]
+AddonAuthor=Lhasse
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,77575,Outbreak,F6
+Spell,63560,DarkTransformation,F2
+Spell,47541,DeathCoil,F3
+Spell,207349,DarkArbiter,F4
+Spell,49998,DeathStrike,F5
+Spell,85948,FesteringStrike,D1
+Spell,55090,ScourgeStrike,D2
+Spell,220143,Apocalypse,D3
+Spell,43265,DeathAndDecay,D5
+Spell,45524,ChainsOfIce,R
+Spell,47528,MindFreeze,Q
+Spell,42650,ArmyoftheDeath,F7
+Spell,46584,RaiseDead,F
+Spell,48707,AntiMagicShell,D4
+Aura,194310,FesteringWound
+Aura,81340,SuddenDoom
+Aura,191587,VirulentPlaque
+Aura,188290,DeathAndDecay
+Aura,178819,DarkSuccor
+Aura,235599,ColdHeart
+*/
