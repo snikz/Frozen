@@ -100,8 +100,8 @@ namespace Frozen.Rotation
 					if (WoW.CanCast("Mortal Strike") 
 						&& !WoW.IsSpellOnCooldown("Mortal Strike") 
 						&& WoW.PlayerHasBuff("Shattered Defenses") 
-						&& WoW.TargetHasDebuff("ExecutionerÃ¢â‚¬â„¢s Precision") 
-						&& WoW.TargetDebuffStacks("ExecutionerÃ¢â‚¬â„¢s Precision") == 2)
+						&& WoW.TargetHasDebuff("ExecutionerÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s Precision") 
+						&& WoW.TargetDebuffStacks("ExecutionerÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s Precision") == 2)
                         {
                             WoW.CastSpell("Mortal Strike");
                             return;
@@ -187,5 +187,5 @@ Aura,1719,Battle Cry
 Aura,207982,Focused Rage
 Aura,845,Cleave
 Aura,772,Rend
-Aura,242188,ExecutionerÃ¢â‚¬â„¢s Precision
+Aura,242188,ExecutionerÃƒÂ¢Ã¢â€šÂ¬Ã¢â€žÂ¢s Precision
 */
