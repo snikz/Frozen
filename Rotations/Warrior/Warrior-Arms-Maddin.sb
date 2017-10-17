@@ -1,0 +1,30 @@
+/*
+[AddonDetails.db]
+AddonAuthor=Maddin
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,12294,Mortal Strike,1
+Spell,167105,Colossus Smash,2
+Spell,1464,Slam,3
+Spell,207982,Focused Rage,4
+Spell,1719,Battle Cry,5
+Spell,107574,Avatar,6
+Spell,163201,Execute,7
+Spell,100,Charge,8
+Spell,209577,Warbreaker,9
+Spell,845,Cleave,10
+Spell,1680,Whirlwind,11
+Spell,227847,Bladestorm,12
+Spell,772,Rend,13
+Spell,152277,Ravager,14
+Aura,225947,Ayala
+Aura,227847,Bladestorm
+Aura,208086,Colossus Smash
+Aura,209706,Shattered Defenses
+Aura,1719,Battle Cry
+Aura,207982,Focused Rage
+Aura,188923,Cleave
+Aura,772,Rend
+Aura,242188,Executioner's Precision
+*/
