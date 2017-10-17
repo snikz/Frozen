@@ -22,7 +22,9 @@ Aura,202573,Vengeance: Revenge
 Aura,202574,Vengeance: Ignore Pain
 Aura,190456,Ignore Pain
 Aura,132404,ShieldBlockAura
-Aura,32216,VictoryRush
+Aura,32216,Victorious
 Aura,207844,Legendary
 Aura,186305,Mount
+Item,5512,Healthstone
+Item,127834,HealthPotion
 */
