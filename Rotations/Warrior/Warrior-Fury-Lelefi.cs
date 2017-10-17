@@ -41,7 +41,7 @@ namespace Frozen.Rotation
 			}
 
 			// target stuff
-			if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget >= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted|| !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget <=6 && !WoW.IsMounted) 
+			if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget >= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted|| !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange <= 6 && WoW.RangeToTarget <=6 && !WoW.IsMounted) 
 			{
 				WoW.TargetNearestEnemy();
 				return;
