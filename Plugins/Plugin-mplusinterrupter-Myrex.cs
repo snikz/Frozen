@@ -81,7 +81,49 @@ namespace Frozen.Plugins
                     WoW.TargetCastingSpellID == 228255 || WoW.TargetCastingSpellID == 228239 || WoW.TargetCastingSpellID == 227917 || WoW.TargetCastingSpellID == 228625 ||
                     WoW.TargetCastingSpellID == 228606 || WoW.TargetCastingSpellID == 229714 || WoW.TargetCastingSpellID == 227592 || WoW.TargetCastingSpellID == 229083 ||
                     WoW.TargetCastingSpellID == 228025 || WoW.TargetCastingSpellID == 228019 || WoW.TargetCastingSpellID == 227987 || WoW.TargetCastingSpellID == 227420 ||
-                    WoW.TargetCastingSpellID == 200905)
+                    WoW.TargetCastingSpellID == 200905 // Lower Return to Karazhan Mythic+ Interrupt list
+                                || WoW.TargetCastingSpellID == 228239   // Terrifying Wail
+                                || WoW.TargetCastingSpellID == 36247    // Fel Fireball
+                                || WoW.TargetCastingSpellID == 227628   // Piercing Missiles
+                                || WoW.TargetCastingSpellID == 227592   // Frostbite
+                                || WoW.TargetCastingSpellID == 227615   // Inferno Bolt
+                                || WoW.TargetCastingSpellID == 229714   // Consume Magic
+                                || WoW.TargetCastingSpellID == 229083   // Burning Blast
+                                || WoW.TargetCastingSpellID == 230084   // Stabilize Rift
+                                || WoW.TargetCastingSpellID == 230084   // Stabilize Rift
+                                // Upper Return to Karazhan Mythic+ Interrupt list
+                                || WoW.TargetCastingSpellID == 229307   // Reverberating Shadows
+                                || WoW.TargetCastingSpellID == 228280   // Oath of Fealty
+                                || WoW.TargetCastingSpellID == 228279   // Shadow Rejuvenation
+                                || WoW.TargetCastingSpellID == 228277   // Shackles of Servitude
+                                || WoW.TargetCastingSpellID == 226316   // Shadow Bolt Volley
+                                || WoW.TargetCastingSpellID == 228625   // Banshee Wail
+                                || WoW.TargetCastingSpellID == 227823   // Holy Wrath
+                                || WoW.TargetCastingSpellID == 227809   // Holy Bolt
+                                || WoW.TargetCastingSpellID == 227800   // Holy Shock
+                                || WoW.TargetCastingSpellID == 227545   // Mana Drain
+                                || WoW.TargetCastingSpellID == 227616   // Empowered Arms
+                                || WoW.TargetCastingSpellID == 227542   // Smite
+                                || WoW.TargetCastingSpellID == 228606   // Healing Touch
+                                || WoW.TargetCastingSpellID == 228255   // Soul Leech
+                                || WoW.TargetCastingSpellID == 228239   // Terrifying Wail
+                                || WoW.TargetCastingSpellID == 227543   // Dreary Bolt
+                                || WoW.TargetCastingSpellID == 227917   // Poetry Slam
+                                || WoW.TargetCastingSpellID == 232115   // Firelands Portal
+                                // Seat of the Triumvirate Mythic+ Interrupt list                     
+                                || WoW.TargetCastingSpellID == 245727   // Consume Essence
+                                || WoW.TargetCastingSpellID == 248133   // Stygian Blast
+                                || WoW.TargetCastingSpellID == 248831   // Dread Screech
+                                || WoW.TargetCastingSpellID == 248184   // Dark Flay
+                                || WoW.TargetCastingSpellID == 244916   // Void Lashing
+                                || WoW.TargetCastingSpellID == 244751   // Howling Dark
+                                || WoW.TargetCastingSpellID == 248736   // Eternal Twilight  
+                                //Cathedral of Eternal Night Mythic+ Interrupt list
+                                || WoW.TargetCastingSpellID == 241937  // Shadow Wall                           
+                                || WoW.TargetCastingSpellID == 238543  // Demonic Mending   
+                                || WoW.TargetCastingSpellID == 237391  // Alluring Aroma  
+                                || WoW.TargetCastingSpellID == 236737  // Fel Strike
+                                || WoW.TargetCastingSpellID == 230484)  // Fel Blast)
 
                     {
                         if (interrupter && WoW.TargetPercentCast >= 40)
