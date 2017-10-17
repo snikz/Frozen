@@ -1,0 +1,28 @@
+/*
+[AddonDetails.db]
+AddonAuthor=Maddin
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,6343,Thunder Clap,1
+Spell,23922,Shield Slam,2
+Spell,6572,Revenge,3
+Spell,20243,Devastate,4
+Spell,202168,Impending Victory,5
+Spell,34428,Victory Rush,6
+Spell,871,Shield Wall,7
+Spell,12975,Last Stand,8
+Spell,6552,Pummel,9
+Spell,2565,Shield Block,10
+Spell,190456,Ignore Pain,11
+Spell,23920,Spell Reflection,12
+Aura,132168,ShockWavestun
+Aura,122510,Ultimatum
+Aura,202573,Vengeance: Revenge
+Aura,202574,Vengeance: Ignore Pain
+Aura,190456,Ignore Pain
+Aura,132404,ShieldBlockAura
+Aura,32216,VictoryRush
+Aura,207844,Legendary
+Aura,186305,Mount
+*/
