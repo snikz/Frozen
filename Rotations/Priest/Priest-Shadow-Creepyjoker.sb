@@ -1,0 +1,30 @@
+/*
+[AddonDetails.db]
+AddonAuthor=CreepyJoker
+AddonName=Sucstobeyou
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,589,SWPain,1
+Spell,205385,ShadowCrash,7
+Spell,34914,Vampiric Touch,5
+Spell,205065,Void Torrent,9
+Spell,15407,Mind Flay,4
+Spell,8092,Mind Blast,C
+Spell,205448,Void Bolt,V
+Spell,228260,Void Eruption,V
+Spell,193223,Surrender,F
+Spell,200174,Mindbender,Q
+Spell,32379,SWDeath,2
+Spell,34433,Shadowfiend,5
+Spell,232698,Shadowform,B
+Spell,15487,Silence,D2
+Spell,47585,Dispersion,None
+Aura,232698,Shadowform
+Aura,34914,Vampiric Touch
+Aura,589,SWPain
+Aura,193223,Surrender
+Aura,124430,ShadowyInsight
+Aura,197937,Lingering Insanity
+Aura,194249,Voidform
+Aura,17,Power Word: Shield
+*/
