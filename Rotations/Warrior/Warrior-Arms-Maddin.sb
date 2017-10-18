@@ -18,6 +18,11 @@ Spell,1680,Whirlwind,11
 Spell,227847,Bladestorm,12
 Spell,772,Rend,13
 Spell,152277,Ravager,14
+Spell,97462,Commanding Shout,15
+Spell,34428,Victory Rush,16
+Spell,6552,Pummel,17
+Spell,118038,Die by the Sword,18
+Aura,32216,Victorious
 Aura,225947,Ayala
 Aura,227847,Bladestorm
 Aura,208086,Colossus Smash
@@ -27,4 +32,6 @@ Aura,207982,Focused Rage
 Aura,188923,Cleave
 Aura,772,Rend
 Aura,242188,Executioner's Precision
+Item,5512,Healthstone
+Item,127834,HealthPotion
 */
