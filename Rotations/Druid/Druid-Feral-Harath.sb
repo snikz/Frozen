@@ -1,0 +1,42 @@
+﻿/*
+[AddonDetails.db]
+AddonAuthor=Hara
+AddonName=HASHTAGPWNAGE
+WoWVersion=Legion - 70200
+[SpellBook.db]
+Spell,210722,Ashmane,D0
+Spell,106951,Berserk,F2
+Spell,26297,Berserking,F3
+Spell,202028,BrutalSlash,D8
+Spell,202060,Elune,F11
+Spell,22568,FerociousBite,D7
+Spell,102543,Incarnation,F2
+Spell,5217,TigersFury,D1
+Spell,155625,Moonfire,D2
+Spell,1822,Rake, D4
+Spell,8936,Regrowth,D3
+Spell,108238,Renewal,OemMinus
+Spell,1079,Rip, D6
+Spell,52610,SavageRoar,D9
+Spell,5221,Shred, D5
+Spell,106785,Swipe, D8
+Spell,61336,SurvivalInstinct,F5
+Spell,106830,Thrash,D0
+Item,144259,BurningWish,F10
+Range,1822,Rake
+Aura,163505,EmpoweredRakeAura
+Aura,252071,JungleStalkerAura
+Aura,5215,ProwlAura
+Aura,145152,BloodtalonsAura
+Aura,102543,IncarnationAura
+Aura,135700,ClearcastingAura
+Aura,5217,TigersFuryAura
+Aura,69369,PredatorySwiftnessAura
+Aura,52610,SavageRoarAura
+Aura,106951,BerserkAura
+Aura,61336,SurvivalInstinctAura
+Aura,106830,ThrashAura
+Aura,1079,RipAura
+Aura,155722,RakeAura
+Aura,155625,MoonfireAura
+*/
