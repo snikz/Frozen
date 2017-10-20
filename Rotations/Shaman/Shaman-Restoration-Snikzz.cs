@@ -1,4 +1,4 @@
-using System.Diagnostics;
+﻿using System.Diagnostics;
 using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
@@ -14,8 +14,8 @@ namespace Frozen.Rotation
 
         public override void Initialize()
         {
-            Log.Write("Supported build: 3312111", Color.Green);
-            Log.Write("Frozen Enhancement");
+            Log.Write("Supported build: 3000123", Color.Green);
+            Log.Write("Frozen Restoration");
         }
 
         public override void Stop()
@@ -56,12 +56,7 @@ namespace Frozen.Rotation
                     {
                         WoW.CastSpell("Riptide");
                         return;
-                    }/*
-                    if (WoW.CanCast("Earthen Shield Totem"))
-                    {
-                        WoW.CastSpell("Earthen Shield Totem");
-                        return;
-                    }*/
+                    }
                     if (WoW.CanCast("Cloudburst Totem"))
                     {
                         WoW.CastSpell("Cloudburst Totem");
@@ -70,11 +65,6 @@ namespace Frozen.Rotation
                     if (WoW.CanCast("Healing Stream Totem"))
                     {
                         WoW.CastSpell("Healing Stream Totem");
-                        return;
-                    }
-                    if (WoW.CanCast("Spirit Link Totem") && WoW.CountAlliesUnderHealthPercentage(40) >= 8)
-                    {
-                        WoW.CastSpell("Spirit Link Totem");
                         return;
                     }
                     if (WoW.CanCast("Healing Tide Totem") && WoW.CountAlliesUnderHealthPercentage(60) >= 6)
@@ -108,8 +98,8 @@ namespace Frozen.Rotation
 
 /*
 [AddonDetails.db]
-AddonAuthor=Hamuel
-AddonName=Frozen
+AddonAuthor=Snikzz
+AddonName=Snikzz
 WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,77472,Healing Wave

@@ -1,4 +1,4 @@
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
 
@@ -10,7 +10,7 @@ namespace Frozen.Rotation
 
         public override void Initialize()
         {
-            Log.Write("Supported build: 3112331", Color.Green);
+            Log.Write("Supported build: 3002331, 3002332, 3002333", Color.Green);
             Log.Write("Frozen Elemental");
         }
 
@@ -77,11 +77,11 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Elemental Blast");
                         return;
                     }
-                    if(WoW.Talent(7) == 3 && WoW.CanCast("Icefury") && WoW.Maelstrom < 101)
+                    if (WoW.Talent(7) == 3 && WoW.CanCast("Icefury") && WoW.Maelstrom < 101)
                     {
                         WoW.CastSpell("Icefury");
                     }
-                    if(WoW.PlayerHasBuff("Icefury") && WoW.Maelstrom >= 20 && WoW.CanCast("Frost Shock"))
+                    if (WoW.PlayerHasBuff("Icefury") && WoW.Maelstrom >= 20 && WoW.CanCast("Frost Shock"))
                     {
                         WoW.CastSpell("Frost Shock");
                     }
@@ -90,7 +90,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Earth Shock");
                         return;
                     }
-					if (WoW.CanCast("Lava Burst") && WoW.PlayerHasBuff("Lava Surge"))
+                    if (WoW.CanCast("Lava Burst") && WoW.PlayerHasBuff("Lava Surge"))
                     {
                         WoW.CastSpell("Lava Burst");
                         return;
@@ -159,8 +159,8 @@ namespace Frozen.Rotation
 
 /*
 [AddonDetails.db]
-AddonAuthor=Toomicek
-AddonName=Frozen
+AddonAuthor=Snikzz
+AddonName=Snikzz
 WoWVersion=Legion - 70300
 [SpellBook.db]  
 Spell,188389,Flame Shock,D3
