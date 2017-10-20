@@ -3188,7 +3188,7 @@ namespace Frozen.Helpers
 
             try
             {
-                return c.G == Color.Green.G;
+                return c.G == 255;
             }
             catch (Exception ex)
             {
