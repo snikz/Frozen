@@ -1,0 +1,78 @@
+﻿/*
+[AddonDetails.db]
+AddonAuthor=Snikzz
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,77130,Purify Spirit,D1
+Spell,61295,Riptide,D2
+Spell,77472,Healing Wave,D3
+Spell,8004,Healing Surge,D4
+Spell,1064,Chain Heal,D5
+Spell,5394,Healing Stream Totem,D6
+Spell,108280,Healing Tide Totem,D7
+Spell,114052,Ascendence,D8
+Spell,108281,Ancestrial Guidance,D9
+Spell,2645,Ghost Wolf,D0
+Spell,157153,Cloudburst Totem
+Aura,61295,Riptide
+Aura,53390,Tidal Waves
+Aura,114052,Ascendence
+Aura,2645,Ghost Wolf
+Dispel,208165,Withering Soul (CoS Talixae),1
+Dispel,225908,Soul Venom (BRH Illysanna),2
+Dispel,215204,Hinder (CoS Gerdo),1
+Dispel,209033,Fortification (CoS Trash),1
+Dispel,209516,Mana Fang (CoS Trash),1
+Dispel,209404,Seal Magic (CoS Trash),1
+Dispel,209413,Suppress (CoS Trash),1
+Dispel,207261,Resonant Slash (CoS Gerdo),1
+Dispel,207278,Arcane Lockdown (CoS Gerdo) ,1
+Dispel,211470,Bewitch (CoS Trash),1
+Dispel,214688,Carrion Swarm (CoS Trash) ,1
+Dispel,214690,Cripple (CoS Trash),1
+Dispel,224333,Enveloping Winds (CoS Melandrus),1
+Dispel,200642,Despair (DHT Trash),3
+Dispel,204246,Tormenting Fear (DHTTrash),1
+Dispel,201902,Scorching Shot (DHT Xavius),1
+Dispel,201842,Curse of Isolation (DHT Xavius),1
+Dispel,200182,Festering Rip (DHT Xavius),1
+Dispel,193597,Static Nova (EoA Lady Hatecoil),1
+Dispel,196144,Sandstorm (EoA Trash),1
+Dispel,196059,Sea-Brine Toxin (EoA Trash),1
+Dispel,196515,Magic Binding (EoA Trash),1
+Dispel,198959,Etch (HoV Trash),1
+Dispel,198931,Healing Light (HoV Trash),1
+Dispel,198745,Protective Light (HoV Trash),1
+Dispel,194640,Curse of Hope (MoS Trash),1
+Dispel,194615,Sea Legs (MoS Trash),1
+Dispel,194099,Bile Breath (MoS Trash),1
+Dispel,198405,Bone Chilling Scream (MoS Trash),1
+Dispel,195293,Debilitating Shout (MoS Trash) ,1
+Dispel,198410,Necrotic Infusion (MoS Trash),1
+Dispel,197264,Taint of the Sea (MoS Helya),1
+Dispel,186576,Petrifying Cloud (NL Ularogg),1
+Dispel,210150,Toxic Retch (NL Naraxas),1
+Dispel,203592,Black Pague  (Arc Trash),1
+Dispel,202156,Corrosion (Arc Trash),1
+Dispel,210662,Unstable Flux (Arc Trash),1
+Dispel,226285,Demonic Ascension (Arc Trash),1
+Dispel,210684,Siphon Essence (Arc Trash),1
+Dispel,203649,Exterminate (Arc Corstilax),1
+Dispel,211632,Brand of the Legion (Arc Trash),1
+Dispel,203957,Time Lock (Arc Advisors),1
+Dispel,193069,Nightmares (VotW Trash),1
+Dispel,203685,Flesh to Stone (VotW Tormentorum),1
+Dispel,13338,Curse of Tongues (VotW Tormentorum),1
+Dispel,193164,Gift of the Doomsayer (VotW Glazer),1
+Dispel,228241,Cursed Touch (Karazhan),1
+Dispel,228277,Shackles of Servitude (Karazhan),1
+Dispel,228576,Allured (Karazhan),3
+Dispel,230297,Brittle Bones (Karazhan),1
+Dispel,227832,Coat Check (Karazhan),1
+Dispel,229706,Leech Life (Karazhan),1
+Dispel,229705,Web (Karazhan),1
+Dispel,229716,Curse of Doom (Karazhan),1
+Dispel,229159,Chaotic Shadows (Karazhan),1
+Dispel,228571,Rotting Bite (Karazhan),1
+*/
