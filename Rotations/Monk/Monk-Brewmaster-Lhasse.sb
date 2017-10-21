@@ -4,23 +4,24 @@ AddonAuthor=Lhasse
 AddonName=Frozen
 WoWVersion=Legion - 70300
 [SpellBook.db]
-Spell,121253,Keg Smash,1
-Spell,115181,Breath of Fire,2
-Spell,100780,Tiger Palm,3
-Spell,205523,Blackout Strike,4
-Spell,115308,Ironskin Brew,5
-Spell,119582,Purifying Brew,6
-Spell,116705,Spear Hand Strike,7
-Spell,119381,Leg Sweep,8
-Spell,115072,Expel Harm,9
-Spell,214326,Exploding Keg,10
-Spell,116847,RJW,11
-Spell,116694,Effuse,12
-Spell,129597,ArcaneTorrent,13
-Spell,115203,FortifyingBrew,14
-Spell,117952,CJL,15
-Spell,115399,BlackOxBrew,16
-Spell,122281,HealingElixier,17
+Spell,121253,Keg Smash,D1
+Spell,115181,Breath of Fire,D2
+Spell,100780,Tiger Palm,D3
+Spell,205523,Blackout Strike,D4
+Spell,100784,BlackoutKick,None
+Spell,115308,Ironskin Brew,D5
+Spell,119582,Purifying Brew,F
+Spell,116705,Spear Hand Strike,R
+Spell,119381,Leg Sweep,Q
+Spell,115072,Expel Harm,Y
+Spell,214326,Exploding Keg,F12
+Spell,116847,RJW,X
+Spell,116694,Effuse,E
+Spell,129597,ArcaneTorrent,Z
+Spell,115203,FortifyingBrew,T
+Spell,117952,CJL,U
+Spell,115399,BlackOxBrew,O
+Spell,122281,HealingElixier,P
 Aura,116847,RJW
 Aura,121253,Keg Smash
 Aura,115181,Breath of Fire
@@ -30,4 +31,5 @@ Aura,124275,Light Stagger
 Aura,124274,Moderate Stagger
 Aura,124273,Heavy Stagger
 Aura,196607,Eye of the Tiger
+Aura,250437,LightforgedWarframe
 */
