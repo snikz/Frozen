@@ -41,7 +41,7 @@ namespace Frozen.Rotation
 			}
 
 			// target stuff
-			if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget >= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted|| !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange <= 6 && WoW.RangeToTarget <=6 && !WoW.IsMounted) 
+			if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget >= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted|| !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget <=6 && !WoW.IsMounted) 
 			{
 				WoW.TargetNearestEnemy();
 				return;
@@ -50,7 +50,7 @@ namespace Frozen.Rotation
 			if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff")) // Do Single Target Unbuffed Stuff here
 				if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget < 6)
 				{	
-					WoW.CastSpell("Rampage", WoW.Rage >= 100 && WoW.Level >= 18);
+					WoW.CastSpell("Rampage", WoW.Rage == 100 && WoW.Level >= 18);
 					WoW.CastSpell("Bloodthirst", WoW.Rage < 100 && !WoW.PlayerHasBuff("Enrage") && WoW.Level >= 10 || WoW.IsSpellOnCooldown("Raging Blow") && WoW.Rage < 100 && WoW.Level >= 10);
 					WoW.CastSpell("Raging Blow", WoW.IsSpellOnCooldown("Bloodthirst") && WoW.Rage < 100 && WoW.Level >= 13);
 					WoW.CastSpell("Whirlwind", WoW.IsSpellOnCooldown("Bloodthirst") && WoW.IsSpellOnCooldown("Raging Blow") && WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1);
@@ -60,7 +60,7 @@ namespace Frozen.Rotation
 			if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff")) // Do Single Target Buffed Stuff here
 				if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget < 6)
 				{
-					WoW.CastSpell("Rampage", WoW.Rage >= 100);
+					WoW.CastSpell("Rampage", WoW.Rage == 100);
 					WoW.CastSpell("Raging Blow", WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && WoW.Rage < 100 || WoW.IsSpellOnCooldown("Bloodthirst"));
 					WoW.CastSpell("Bloodthirst", WoW.Rage < 100 && WoW.IsSpellOnCooldown("Raging Blow"));
                 }
@@ -101,10 +101,10 @@ namespace Frozen.Rotation
 				if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget < 6)
 				{
 					WoW.CastSpell("Whirlwind", !WoW.PlayerHasBuff("Meat-Cleaver") && WoW.Level >= 28 || WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1 && WoW.Level >= 45);
-					WoW.CastSpell("Rampage", WoW.Rage >= 100 && WoW.PlayerHasBuff("Meat-Cleaver") && WoW.Level >= 18);
+					WoW.CastSpell("Rampage", WoW.Rage == 100 && WoW.PlayerHasBuff("Meat-Cleaver") && WoW.Level >= 18);
 					WoW.CastSpell("Bloodthirst", WoW.Rage < 100 && WoW.CountEnemyNPCsInRange < 8 && WoW.PlayerHasBuff("Meat-Cleaver") && !WoW.PlayerHasBuff("Enrage") && WoW.Level >= 10);
 					WoW.CastSpell("Raging Blow", WoW.PlayerHasBuff("Enrage") && WoW.CountEnemyNPCsInRange < 4 && WoW.Level >= 13);
-					//WoW.CastSpell("Furious Slash",  WoW.IsSpellOnCooldown("Bloodthirst") && WoW.IsSpellOnCooldown("Raging Blow"));
+					WoW.CastSpell("Furious Slash",  WoW.IsSpellOnCooldown("Bloodthirst") && WoW.IsSpellOnCooldown("Raging Blow") && WoW.Level >= 10);
                 }
 
 			if (combatRoutine.Type == RotationType.Cleave)
