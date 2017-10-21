@@ -26,6 +26,8 @@ Spell,196840,Frost Shock
 Spell,57994,Wind Shear
 Spell,8004,Healing Surge
 Spell,2645,Ghost Wolf
+Spell,8004,Healing Surge
+Spell,192249,Storm Elemental
 Aura,188389,Flame Shock
 Aura,210659,Totem Mastery
 Aura;16166,Elemental Mastery
@@ -36,4 +38,5 @@ Aura,205495,Stormkeeper
 Aura,210714,Icefury
 Aura,191861,Power of the Maelstrom
 Aura,2645,Ghost Wolf
+Item,151647,Soul of the Farseer
 */
