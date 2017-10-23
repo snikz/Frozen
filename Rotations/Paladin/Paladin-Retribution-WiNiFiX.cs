@@ -5,7 +5,7 @@ using Frozen.Helpers;
 
 namespace Frozen.Rotation
 {
-    public class Paladin_Retribution_New : CombatRoutine
+    public class Paladin_Retribution : CombatRoutine
     {
         public override Form SettingsForm
         {
@@ -24,34 +24,87 @@ namespace Frozen.Rotation
 
         public override void Stop()
         {
-            Log.Write("Leaving Already?");
-        }
-
-        public override void OutOfCombatPulse()
-        {
-            WoW.CastSpell("Greater Blessing of Kings", (!WoW.HasTarget || WoW.TargetIsFriend) && !WoW.PlayerHasBuff("Greater Blessing of Kings"));
-            WoW.CastSpell("Greater Blessing of Wisdom", (!WoW.HasTarget || WoW.TargetIsFriend) && !WoW.PlayerHasBuff("Greater Blessing of Wisdom"));
         }
 
         public override void Pulse()
-        {   
+        {
+            if (!WoW.HasTarget || WoW.TargetIsFriend)
+            {
+                if (!WoW.PlayerHasBuff("Greater Blessing of Kings"))
+                    if (WoW.CanCast("Greater Blessing of Kings"))
+                    {
+                        WoW.CastSpell("Greater Blessing of Kings");
+                        return;
+                    }
+
+                if (!WoW.PlayerHasBuff("Greater Blessing of Wisdom"))
+                    if (WoW.CanCast("Greater Blessing of Wisdom"))
+                    {
+                        WoW.CastSpell("Greater Blessing of Wisdom");
+                        return;
+                    }
+            }
+
             if (!WoW.HasTarget || !WoW.TargetIsEnemy) return;
 
-            WoW.CastSpell("Shield of Vengeance", true, false);  // Off the GCD no return needed
-            WoW.CastSpell("Judgment", WoW.UnitPower >= 5);
-            WoW.CastSpell("Wake of Ashes", WoW.UnitPower == 0);
-            WoW.CastSpell("Crusade", WoW.UnitPower >= 5 && WoW.TargetHasDebuff("Judgment"));
-            WoW.CastSpell("Execution Sentence", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && !WoW.TargetHasDebuff("Execution Sentence"));
-            WoW.CastSpell("Divine Storm", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && (WoW.CountEnemyNPCsInRange > 1 || combatRoutine.Type == RotationType.AOE));
-            WoW.CastSpell("Templars Verdict", WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && WoW.CountEnemyNPCsInRange <= 1);
-            WoW.CastSpell("Blade of Justice", WoW.UnitPower <= 3); // Higher Priority because it can generate 2 holy power in 1 go
-            WoW.CastSpell("Crusader Strike", WoW.UnitPower < 5 && WoW.PlayerSpellCharges("Crusader Strike") >= 0);
-            WoW.CastSpell("Blade of Justice", true);
-        }
+            if (WoW.CanCast("Shield of Vengeance"))
+            {
+                WoW.CastSpell("Shield of Vengeance");  // Off the GCD no return needed
+            }
 
-        public override void MountedPulse()
-        {
-            Log.Write("Mounted.");
+            if (WoW.CanCast("Judgment") && WoW.UnitPower >= 5)
+            {
+                WoW.CastSpell("Judgment");
+                return;
+            }
+
+            if (WoW.UnitPower == 0 && WoW.CanCast("Wake of Ashes"))
+            {
+                WoW.CastSpell("Wake of Ashes");
+                return;
+            }
+
+            if (WoW.CanCast("Crusade") && WoW.UnitPower >= 5 && WoW.TargetHasDebuff("Judgment"))
+            {
+                WoW.CastSpell("Crusade");
+                return;
+            }
+
+            if (WoW.CanCast("Execution Sentence") && WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") &&
+                !WoW.TargetHasDebuff("Execution Sentence"))
+            {
+                WoW.CastSpell("Execution Sentence");
+                return;
+            }
+
+            if (WoW.CanCast("Divine Storm") && WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && WoW.CountEnemyNPCsInRange > 1)
+            {
+                WoW.CastSpell("Divine Storm");
+                return;
+            }
+
+            if (WoW.CanCast("Templars Verdict") && WoW.UnitPower >= 3 && WoW.TargetHasDebuff("Judgment") && WoW.CountEnemyNPCsInRange <= 1)
+            {
+                WoW.CastSpell("Templars Verdict");
+                return;
+            }
+
+            if (WoW.CanCast("Blade of Justice") && WoW.UnitPower <= 3) // Higher Priority because it can generate 2 holy power in 1 go
+            {
+                WoW.CastSpell("Blade of Justice");
+                return;
+            }
+
+            if (WoW.CanCast("Crusader Strike") && WoW.UnitPower < 5 && WoW.PlayerSpellCharges("Crusader Strike") >= 0)
+            {
+                WoW.CastSpell("Crusader Strike");
+                return;
+            }
+
+            if (WoW.CanCast("Blade of Justice"))
+            {
+                WoW.CastSpell("Blade of Justice");
+            }
         }
     }
 }
