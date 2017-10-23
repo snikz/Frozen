@@ -18,9 +18,11 @@ namespace Frozen.Rotation
 
         public override void OutOfCombatPulse()
         {
-            WoW.CastSpell("Prowl", !WoW.PlayerHasBuff("Prowl"));
-            if (WoW.HasTarget && WoW.TargetHealthPercent > 0 && WoW.RangeToTarget <= 8)
-                Pulse();
+			if (!WoW.PlayerHasBuff("Prowl") && WoW.CanCast("Prowl"))
+			{				
+				WoW.CastSpell("Prowl");
+				return;
+			}            
         }
 
         public override void Pulse()
