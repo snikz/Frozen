@@ -35,7 +35,7 @@ namespace Frozen.Helpers
     [SuppressMessage("ReSharper", "UnusedVariable")]
     [SuppressMessage("ReSharper", "MethodOverloadWithOptionalParameter")]
 
-    [ObfuscationAttribute(Exclude = true, ApplyToMembers = true)]
+    [Obfuscation(Exclude = true, ApplyToMembers = true)]
     public static class WoW
     {
         internal static Process Process;
@@ -46,7 +46,7 @@ namespace Frozen.Helpers
         private static SpeechSynthesizer synthesizer;
         private static readonly IDictionary<string, int> damageModifierHash = new Dictionary<string, int>();
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string RandomAdjective
         {
             get
@@ -61,7 +61,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string RandomNoun
         {
             get
@@ -76,19 +76,19 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         private static string Version => Process.MainModule.FileVersionInfo.FileVersion;
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string AddonPath => InstallPath + "\\Interface\\AddOns";
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string Config => new StreamReader(Path.Combine(InstallPath, "WTF\\Config.wtf")).ReadToEnd();
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string LastSpell { private set; get; } = "";
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int GroupSize
         {
             get
@@ -110,7 +110,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsInCombat
         {
             get
@@ -126,7 +126,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [player is channeling]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PlayerIsChanneling
         {
             get
@@ -142,7 +142,7 @@ namespace Frozen.Helpers
         /// <value>
         /// <c>true</c> if this instance has target; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool HasTarget
         {
             get
@@ -162,7 +162,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [player is casting]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PlayerIsCasting
         {
             get
@@ -178,7 +178,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [target is casting]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetIsCasting => TargetCastingSpellID != 0;
 
         /// <summary>
@@ -187,7 +187,7 @@ namespace Frozen.Helpers
         /// <value>
         /// <c>true</c> if [target is casting and spell is interruptible]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetIsCastingAndSpellIsInterruptible
         {
             get
@@ -203,7 +203,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The target percent cast.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TargetPercentCast
         {
             get
@@ -220,7 +220,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [target is visible]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetIsVisible
         {
             get
@@ -236,7 +236,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [target is friend]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetIsFriend
         {
             get
@@ -252,7 +252,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current chi.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentChi => UnitPower;
 
         /// <summary>
@@ -261,7 +261,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current arcane charges.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentArcaneCharges => UnitPower;
 
         /// <summary>
@@ -270,7 +270,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current runes.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentRunes => UnitPower;
 
         /// <summary>
@@ -279,7 +279,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current combo points.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentComboPoints => UnitPower;
 
         /// <summary>
@@ -288,7 +288,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current soul shards.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentSoulShards => UnitPower;
 
         /// <summary>
@@ -297,7 +297,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current holy power.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentHolyPower => UnitPower;
 
         /// <summary>
@@ -306,7 +306,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The unit power.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int UnitPower
         {
             get
@@ -333,7 +333,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [target is enemy]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetIsEnemy => !TargetIsFriend;
 
         /// <summary>
@@ -343,7 +343,7 @@ namespace Frozen.Helpers
         /// The health percent.
         /// </value>
         [Obsolete("Please use WoW.PlayerHealthPercent instead.")]
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int HealthPercent
         {
             get
@@ -366,11 +366,11 @@ namespace Frozen.Helpers
         }
 
 #pragma warning disable 618
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PlayerHealthPercent => HealthPercent;
 #pragma warning restore 618
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int KeyBind(int spellNoInArrayOfSpells)
         {
             var c = GetBlockColor(spellNoInArrayOfSpells, 15);
@@ -391,7 +391,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int ModifierKeyBind(int spellNoInArrayOfSpells)
         {
             var c = GetBlockColor(spellNoInArrayOfSpells, 15);
@@ -412,7 +412,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PartyHealthPercent(int partyId)
         {
             if (partyId > GroupSize || partyId < 1)
@@ -437,7 +437,7 @@ namespace Frozen.Helpers
             }         
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PartyNeedsDispel(int partyId)
         {
             if (partyId > GroupSize || partyId < 1)
@@ -459,7 +459,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PartyAverageHealthPercent
         {
             get
@@ -477,7 +477,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CountAlliesUnderHealthPercentage(int percent)
         {
             if (percent > 100 || percent < 0) return 0;
@@ -499,7 +499,7 @@ namespace Frozen.Helpers
             return ret;
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PartyLowestHealthPercent
         {
             get
@@ -523,7 +523,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PartyMemberIsNeedingADispel
         {
             get
@@ -539,7 +539,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PartyMemberIdWithLowestHealthPercent
         {
             get
@@ -558,20 +558,20 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TankHealth => PartyHealthPercent(TankId);
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void SetTank(int id)
         {
             TankId = id;
             Log.Write("Tank id set to: " + id, Color.Green);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TankId { get; private set; }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void TargetMember(int i)
         {
             if (CurrentPartyTargetId != i) // If we are not currently targeting the correct unit
@@ -704,7 +704,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentPartyTargetId { get; private set; }
 
 
@@ -712,7 +712,7 @@ namespace Frozen.Helpers
         /// Counts Number of Hostile NPC Nameplaes
         /// </summary>
         /// <returns>Returns Count</returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CountEnemyNPCsInRange
         {
             get
@@ -740,7 +740,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <returns>True or False</returns>
         /// 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool Nameplates
         {
             get
@@ -768,7 +768,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="tier">What tier set bonus: 19-20 </param>
         /// <returns>#num of piece of set worn</returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int SetBonus(int tier)
         {
             var c = GetBlockColor(4, 13);
@@ -807,7 +807,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="num">What legendary 1 or 2 </param>
         /// <returns>EquipmentSlot legendar worn</returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Legendary(int num)
         {
             var c = GetBlockColor(4, 13);
@@ -846,7 +846,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The pet health percent.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PetHealthPercent
         {
             get
@@ -870,7 +870,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool InGame
         {
             get
@@ -892,7 +892,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool InRaid
         {
             get
@@ -914,7 +914,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool RotationOn
         {
             get
@@ -936,7 +936,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
 
         public static int RangeToTarget
         {
@@ -957,7 +957,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int RangeToPet
         {
             get
@@ -977,10 +977,10 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PetRangeToTarget => RangeToTarget - RangeToPet;
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool HasFocusTarget
         {
             get
@@ -1001,7 +1001,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool CooldownsOn
         {
             get
@@ -1023,7 +1023,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool AoeOn
         {
             get
@@ -1045,7 +1045,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool CleaveOn
         {
             get
@@ -1067,7 +1067,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool SingleTargetOn => !AoeOn && !CleaveOn;
 
         /// <summary>
@@ -1076,7 +1076,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The last spell casted identifier.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int LastSpellCastedID //returns the ID of the spell
         {
             get
@@ -1156,7 +1156,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The target casting spell identifier.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TargetCastingSpellID //returns the ID of the spell
         {
             get
@@ -1225,7 +1225,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The arena1 casting spell identifier.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Arena1CastingSpellID //returns the ID of the spell
         {
             get
@@ -1293,7 +1293,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The arena2 casting spell identifier.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Arena2CastingSpellID //returns the ID of the spell
         {
             get
@@ -1361,7 +1361,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The arena3 casting spell identifier.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Arena3CastingSpellID //returns the ID of the spell
         {
             get
@@ -1431,7 +1431,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if this instance has pet; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool HasPet
         {
             get
@@ -1447,7 +1447,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The target health percent.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TargetHealthPercent
         {
             get
@@ -1475,7 +1475,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The level.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Level
         {
             get
@@ -1516,7 +1516,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The power.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Power
         {
             get
@@ -1557,7 +1557,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The focus.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Focus => Power;
 
         /// <summary>
@@ -1566,7 +1566,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The mana.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Mana => Power;
 
         /// <summary>
@@ -1575,7 +1575,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The energy.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Energy => Power;
         /// <summary>
         /// Gets the rage.
@@ -1583,7 +1583,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The rage.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Rage => Power;
         /// <summary>
         /// Gets the pain.
@@ -1591,7 +1591,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The pain.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Pain => Power;
         /// <summary>
         /// Gets the fury.
@@ -1599,7 +1599,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The fury.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Fury => Power;
         /// <summary>
         /// Gets the runic power.
@@ -1607,7 +1607,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The runic power.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int RunicPower => Power;
         /// <summary>
         /// Gets the current astral power.
@@ -1615,7 +1615,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The current astral power.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int CurrentAstralPower => Power;
         /// <summary>
         /// Gets the maelstrom.
@@ -1623,7 +1623,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The maelstrom.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Maelstrom => Power;
         /// <summary>
         /// Gets the insanity.
@@ -1631,7 +1631,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The insanity.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Insanity => Power;
 
         /// <summary>
@@ -1640,7 +1640,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The haste percent.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int HastePercent
         {
             get
@@ -1676,7 +1676,7 @@ namespace Frozen.Helpers
         ///   <c>true</c> if [wow window has focus]; otherwise, <c>false</c>.
         /// </value>
         /// <exception cref="Exception">World of warcraft is not detected / running, please login before attempting to restart the bot</exception>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool WowWindowHasFocus
         {
             get
@@ -1705,7 +1705,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [automatic atacking]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool AutoAtacking
         {
             get
@@ -1721,7 +1721,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if this instance is moving; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsMoving
         {
             get
@@ -1731,7 +1731,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsMounted
         {
             get
@@ -1746,7 +1746,7 @@ namespace Frozen.Helpers
         /// <value>
         ///   <c>true</c> if [target is player]; otherwise, <c>false</c>.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetIsPlayer
         {
             get
@@ -1756,7 +1756,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsOutdoors
         {
             get
@@ -1766,7 +1766,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool HasBossTarget
         {
             get
@@ -1776,7 +1776,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsBoss => HasBossTarget;
 
         /// <summary>
@@ -1785,7 +1785,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The wild imps count.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int WildImpsCount
         {
             get
@@ -1813,7 +1813,7 @@ namespace Frozen.Helpers
         /// <value>
         /// The dreadstalkers count.
         /// </value>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int DreadstalkersCount
         {
             get
@@ -1834,7 +1834,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void TargetNearestEnemy()
         {
             KeyPressRelease(Keys.Tab);
@@ -1846,7 +1846,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="spellBookSpellName">Name of the spell book spell.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool WasLastCasted(string spellBookSpellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
@@ -1865,7 +1865,7 @@ namespace Frozen.Helpers
             synthesizer.SpeakAsync(words);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static Bitmap GetScreenCapture(Rectangle fov)
         {
             // Define the size of the screencopy.
@@ -1886,7 +1886,7 @@ namespace Frozen.Helpers
             return screenCopy;
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static Point SearchColor(ref Bitmap screenCapture, Color searchColor, int tolerance = 0)
         {
             unsafe
@@ -1941,7 +1941,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string InstallPath => ConfigFile.ReadValue("Frozen", "WoWPath");
 
         /// <summary>
@@ -2038,7 +2038,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="buffName">Name of the buff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetHasBuff(string buffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == buffName);
@@ -2057,7 +2057,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="auraNoInArrayOfAuras">The aura no in array of auras.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         private static bool TargetHasBuff(int auraNoInArrayOfAuras)
         {
             var c = GetBlockColor(auraNoInArrayOfAuras, 6);
@@ -2092,7 +2092,7 @@ namespace Frozen.Helpers
         /// <returns>
         ///   <c>true</c> if [is spell on cooldown] [the specified spell book spell name]; otherwise, <c>false</c>.
         /// </returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsSpellOnCooldown(string spellBookSpellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
@@ -2138,7 +2138,7 @@ namespace Frozen.Helpers
         /// Talent By Row
         /// </summary>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int Talent(int row)
         {
             var c = GetBlockColor(4, 13);
@@ -2183,7 +2183,7 @@ namespace Frozen.Helpers
         /// Returns Player Race
         /// </summary>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string PlayerRace
         {
             get
@@ -2215,7 +2215,7 @@ namespace Frozen.Helpers
         /// Returns Player Spec
         /// </summary>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static string PlayerClassSpec
         {
             get
@@ -2280,7 +2280,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="spellBookSpellName">Name of the spell book spell.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int SpellCooldownTimeRemaining(string spellBookSpellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
@@ -2304,7 +2304,7 @@ namespace Frozen.Helpers
         /// <returns>
         ///   <c>true</c> if [is spell on GCD] [the specified spell book spell name]; otherwise, <c>false</c>.
         /// </returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsSpellOnGCD(string spellBookSpellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
@@ -2334,7 +2334,7 @@ namespace Frozen.Helpers
         /// <returns>
         ///   <c>true</c> if [is spell in range] [the specified spell book spell name]; otherwise, <c>false</c>.
         /// </returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void SetupHealingKeybinds()
         {
             // Clear all previous macros
@@ -2366,7 +2366,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsSpellInRange(string spellBookSpellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
@@ -2415,7 +2415,7 @@ namespace Frozen.Helpers
         /// <returns>
         ///   <c>true</c> if this instance can cast the specified spell book spell name; otherwise, <c>false</c>.
         /// </returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool CanCast(string spellBookSpellName, 
             bool checkIfPlayerIsCasting = true, 
             bool checkIfSpellIsOnCooldown = true, 
@@ -2786,7 +2786,7 @@ namespace Frozen.Helpers
         /// Casts the spell on me.
         /// </summary>
         /// <param name="spellName">Name of the spell.</param>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void CastSpellOnMe(string spellName)
         {
             SendMacro($"/cast [@player] {spellName}");            
@@ -2798,7 +2798,7 @@ namespace Frozen.Helpers
         /// <param name="key">The key.</param>
         /// <param name="x">The x.</param>
         /// <param name="y">The y.</param>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void SendKeyAtLocation(Keys key, int x, int y)
         {
             Log.Write($"Sending keypress {key} at location: x = {x}, y = {y}", Color.Gray);
@@ -2818,7 +2818,7 @@ namespace Frozen.Helpers
         /// Sends the macro.
         /// </summary>
         /// <param name="macro">The macro.</param>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         internal static void SendMacro(string macro)
         {
             Log.Write("Sending macro: " + macro, Color.Gray);
@@ -2830,7 +2830,7 @@ namespace Frozen.Helpers
             KeyPressRelease(Keys.Enter);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PlayerBuffStacks(int auraNoInArrayOfAuras)
         {
             var c = GetBlockColor(auraNoInArrayOfAuras, 8);
@@ -2852,7 +2852,7 @@ namespace Frozen.Helpers
             return 0;
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PlayerBuffStacks(string auraName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == auraName);
@@ -2892,7 +2892,7 @@ namespace Frozen.Helpers
             return 0;
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void Reload()
         {
             SendMacro("/reload");
@@ -2903,7 +2903,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="auraName">Name of the aura.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PetBuffStacks(string auraName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == auraName);
@@ -2945,7 +2945,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="debuffName">Name of the debuff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TargetDebuffTimeRemaining(string debuffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
@@ -2985,7 +2985,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="buffName">Name of the buff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PlayerBuffTimeRemaining(string buffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == buffName);
@@ -3026,7 +3026,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="buffName">Name of the buff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PetBuffTimeRemaining(string buffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == buffName);
@@ -3070,7 +3070,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="debuffName">Name of the debuff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int TargetDebuffStacks(string debuffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
@@ -3109,7 +3109,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="spellName">Name of the spell.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int PlayerSpellCharges(string spellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellName);
@@ -3128,7 +3128,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="itemName">Name of the item.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static int ItemCount(string itemName)
         {
             var item = SpellBook.Items.FirstOrDefault(s => s.ItemName == itemName);
@@ -3167,7 +3167,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="itemName">Name of the item.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsEquippedItem(string itemName)
         {
             var item = SpellBook.Items.FirstOrDefault(s => s.ItemName == itemName);
@@ -3181,7 +3181,7 @@ namespace Frozen.Helpers
             return IsEquippedItem(item.InternalItemNo);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsEquippedItem(int itemNoInArrayOfItems)
         {
             var c = GetBlockColor(itemNoInArrayOfItems, 9);
@@ -3204,7 +3204,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="itemName">Name of the item.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool ItemOnCooldown(string itemName)
         {
             var item = SpellBook.Items.FirstOrDefault(s => s.ItemName == itemName);
@@ -3218,7 +3218,7 @@ namespace Frozen.Helpers
             return ItemOnCooldown(item.InternalItemNo);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool ItemOnCooldown(int itemNoInArrayOfItems)
         {
             var c = GetBlockColor(itemNoInArrayOfItems, 9);
@@ -3236,7 +3236,7 @@ namespace Frozen.Helpers
             return false;
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PlayerHasBuff(int auraNoInArrayOfAuras)
         {
             var c = GetBlockColor(auraNoInArrayOfAuras, 8);
@@ -3248,7 +3248,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="buffName">Name of the buff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PlayerHasBuff(string buffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == buffName);
@@ -3283,7 +3283,7 @@ namespace Frozen.Helpers
         /// <returns>
         ///   <c>true</c> if [is spell overlayed] [the specified spell name]; otherwise, <c>false</c>.
         /// </returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool IsSpellOverlayed(string spellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellName);
@@ -3302,7 +3302,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="debuffName">Name of the debuff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PlayerHasDebuff(string debuffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
@@ -3327,7 +3327,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="buffName">Name of the buff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool PetHasBuff(string buffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == buffName);
@@ -3346,7 +3346,7 @@ namespace Frozen.Helpers
         /// </summary>
         /// <param name="debuffName">Name of the debuff.</param>
         /// <returns></returns>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static bool TargetHasDebuff(string debuffName)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
@@ -3370,8 +3370,8 @@ namespace Frozen.Helpers
         /// Casts the spell.
         /// </summary>
         /// <param name="spellBookSpellName">Name of the spell book spell.</param>
-        [Obsolete("Please use the new method CastSpell(string spellName, bool requirements)")]
-        [ObfuscationAttribute(Exclude = true)]
+        
+        [Obfuscation(Exclude = true)]
         public static void CastSpell(string spellBookSpellName)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
@@ -3387,9 +3387,11 @@ namespace Frozen.Helpers
             SendKey(ModifierKeyBind(spell.InternalSpellNo), KeyBind(spell.InternalSpellNo), spell.SpellId, 50, spellBookSpellName);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obsolete("Please use the new method CastSpell(string spellName)")]
+        [Obfuscation(Exclude = true)]
         public static void CastSpell(string spell, bool requirements = true, bool ret = true)
 		{
+            Log.Write("Please use the original CastSpell(string spellName) method this version has been confirmed to contain bugs.", Color.Red);
 			if (!CanCast(spell) || !requirements) return;
 			CastSpell(spell);
 			Thread.Sleep(100);
@@ -3549,7 +3551,7 @@ namespace Frozen.Helpers
         [DllImport("user32.dll", CharSet = CharSet.Auto, SetLastError = true)]
         private static extern int GetWindowThreadProcessId(IntPtr handle, out int processId);
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static MemoryStream FromBytes(byte[] buffer)
         {
             return new MemoryStream(buffer);
@@ -3568,13 +3570,13 @@ namespace Frozen.Helpers
         /// Keys down.
         /// </summary>
         /// <param name="Key">The key.</param>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void KeyDown(Keys Key)
         {
             SendMessage(Process.MainWindowHandle, 0x100, (int) Key, 0);
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void KeyUp(Keys Key)
         {
             SendMessage(Process.MainWindowHandle, 0x101, (int) Key, 0);
@@ -3586,7 +3588,7 @@ namespace Frozen.Helpers
         /// <param name="key">The key.</param>
         /// <param name="modifier"></param>
         /// <param name="raidMemberId"></param>
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         public static void KeyPressRelease(Keys key, Keys modifier = Keys.None, int raidMemberId = 0)
         {
             if (raidMemberId != 0)
@@ -3611,7 +3613,7 @@ namespace Frozen.Helpers
             }
         }
 
-        [ObfuscationAttribute(Exclude = true)]
+        [Obfuscation(Exclude = true)]
         private static void Write(string text, params object[] args)
         {
             foreach (var character in string.Format(text, args))
