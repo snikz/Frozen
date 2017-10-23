@@ -73,7 +73,7 @@ namespace Frozen.Rotation
 			}
 			if (RipTime <= 200 && WoW.TargetHealthPercent <= 25 && WoW.Talent(6) == 1 && WoW.CurrentComboPoints >= 1 && WoW.CanCast("FerociousBite"))
 			{
-				WoW.CastSpell("FerociousBite", );
+				WoW.CastSpell("FerociousBite");
 				return;
 			}
 
