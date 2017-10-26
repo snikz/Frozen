@@ -574,9 +574,6 @@ namespace Frozen.Helpers
         [Obfuscation(Exclude = true)]
         public static void TargetMember(int i)
         {
-            if (CurrentPartyTargetId != i) // If we are not currently targeting the correct unit
-                //KeyPressRelease(Keys.F6);  // Clears the current target (this is a macro setup in healer setup)
-
             if (GroupSize <= 5) // Party
             {
                 CurrentPartyTargetId = i;
