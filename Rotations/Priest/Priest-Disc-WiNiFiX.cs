@@ -19,7 +19,11 @@ namespace Frozen.Rotation
         {
             Log.Clear();
             Log.WriteFrozen("Welcome to Frozen Disc", Color.Black);
-            Log.Write("Supported Talents: All");
+            Log.Write("Supported Talents: X1XX1X1");
+			
+			Log.DrawHorizontalLine();
+			
+			Log.Write("Make sure you have macro for /cast [@player] Angelic Feather", Color.Red);
             Log.Write("Ensure you have setup healing keybinds before.", Color.Red);
             
             Log.DrawHorizontalLine();
