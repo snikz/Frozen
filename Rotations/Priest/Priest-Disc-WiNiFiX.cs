@@ -47,6 +47,8 @@ namespace Frozen.Rotation
 
         public override void Pulse()
         {
+			if (WoW.IsMounted) return;
+			
             if (WoW.TankId == 0)
             {
                 var f = new frmEnterTankId { TopMost = true };
