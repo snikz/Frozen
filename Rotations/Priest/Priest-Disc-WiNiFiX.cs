@@ -188,7 +188,7 @@ namespace Frozen.Rotation
                 return;
             }
 
-            if (WoW.CanCast("Shadow Mend") && (lowest < 80 || WoW.TargetHasBuff("Attonement")))
+            if (WoW.CanCast("Shadow Mend") && (lowest < 80 || (WoW.TargetHasBuff("Attonement") && lowest < 99)))
             {
                 WoW.CastSpell("Shadow Mend");
                 return;
