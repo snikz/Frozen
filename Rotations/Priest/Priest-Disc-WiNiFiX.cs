@@ -48,6 +48,12 @@ namespace Frozen.Rotation
                 var f = new frmEnterTankId { TopMost = true };
                 f.ShowDialog();
             }
+
+            if (!WoW.IsInCombat && WoW.CanCast("Angelic Feather") && WoW.IsMoving && !WoW.PlayerHasBuff("Angelic Feather"))
+            {
+                WoW.CastSpell("Angelic Feather");
+                return;
+            }
                         
             var lowest = WoW.PartyLowestHealthPercent;
             int currentTargetId = WoW.PartyMemberIdWithLowestHealthPercent;
@@ -176,13 +182,13 @@ namespace Frozen.Rotation
                 return;
             }
 
-            if (WoW.CanCast("Shadow Mend") && lowest < 80)
+            if (WoW.CanCast("Shadow Mend") && (lowest < 80 || WoW.TargetHasBuff("Attonement")))
             {
                 WoW.CastSpell("Shadow Mend");
                 return;
             }
 
-            if (WoW.CanCast("Plea") && lowest < 100 && lowest >= 80)
+            if (WoW.CanCast("Plea") && lowest < 99 && lowest >= 80)
             {
                 WoW.CastSpell("Plea");
                 return;
@@ -219,12 +225,15 @@ Spell,10060,Power Infusion
 Spell,527,Purify
 Spell,200829,Plea
 Spell,186263,Shadow Mend
+Spell,121536,Angelic Feather
 Aura,589,Shadow Word: Pain
 Aura,204213,Purge the Wicked
 Aura,17,Power Word: Shield
 Aura,223166,Overloaded with Light
 Aura,33206,Pain Suppression
 Aura,10060,Power Infusion
+Aura,121557,Angelic Feather
+Aura,194384,Attonement
 Item,132455,Norgganan
 Dispel,145206,Aqua Bomb
 */
