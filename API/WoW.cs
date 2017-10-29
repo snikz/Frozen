@@ -1128,7 +1128,7 @@ namespace Frozen.Helpers
 
                     var spellText = strRed1 + strGreen1 + strBlue1 + strRed2 + strGreen2 + strBlue2;
                     //Log.Write("Last casted ID: " + spellText);
-                    return RemoveTrailingZerosFromSpell(spellText);
+                    return int.Parse(spellText);
                 }
                 catch (Exception ex)
                 {
@@ -1138,19 +1138,7 @@ namespace Frozen.Helpers
                 }
             }
         }
-
-        private static int RemoveTrailingZerosFromSpell(string spellId)
-        {
-            if (int.Parse(spellId) == 0)
-                return 0;
-
-            while(spellId.EndsWith("0"))
-            {
-                spellId = spellId.Substring(0, spellId.Length - 1);
-            }
-            return int.Parse(spellId);
-        }
-
+                
         /// <summary>
         /// Gets the target casting spell identifier.
         /// </summary>
@@ -1209,7 +1197,7 @@ namespace Frozen.Helpers
 
                     var spellText = strRed1 + strGreen1 + strBlue1 + strRed2 + strGreen2 + strBlue2;
                     //Log.Write("Target casting spell ID: " + spellText);
-                    return RemoveTrailingZerosFromSpell(spellText);
+                    return int.Parse(spellText);
                 }
                 catch (Exception ex)
                 {
@@ -1277,7 +1265,7 @@ namespace Frozen.Helpers
 
                     var spellText = strRed1 + strGreen1 + strBlue1 + strRed2 + strGreen2 + strBlue2;
                     //Log.Write("Arena 1 casting spell ID: " + spellText);
-                    return RemoveTrailingZerosFromSpell(spellText);
+                    return int.Parse(spellText);
                 }
                 catch (Exception ex)
                 {
@@ -1345,7 +1333,7 @@ namespace Frozen.Helpers
 
                     var spellText = strRed1 + strGreen1 + strBlue1 + strRed2 + strGreen2 + strBlue2;
                     //Log.Write("Arena 2 casting spell ID: " + spellText);
-                    return RemoveTrailingZerosFromSpell(spellText);
+                    return int.Parse(spellText);
                 }
                 catch (Exception ex)
                 {
@@ -1413,7 +1401,7 @@ namespace Frozen.Helpers
 
                     var spellText = strRed1 + strGreen1 + strBlue1 + strRed2 + strGreen2 + strBlue2;
                     //Log.Write("Arena 3 casting spell ID: " + spellText);
-                    return RemoveTrailingZerosFromSpell(spellText);
+                    return int.Parse(spellText);
                 }
                 catch (Exception ex)
                 {
@@ -2078,6 +2066,68 @@ namespace Frozen.Helpers
         {
             var c = GetBlockColor(auraNoInArrayOfAuras, 6);
             return c.R != 255  && c.B != 255;
+        }
+
+        [Obfuscation(Exclude = true)]
+        public static int FocusCastingSpellID //returns the ID of the spell
+        {
+            get
+            {
+                var c1 = GetBlockColor(2, 20);
+                var c2 = GetBlockColor(3, 20);
+                try
+                {
+                    var red1 = (int)(float.Parse((string)dtColorHelper.Select($"[Rounded] = '{c1.R}'").FirstOrDefault()?["Value"]) / 10);
+                    var green1 = (int)(float.Parse((string)dtColorHelper.Select($"[Rounded] = '{c1.G}'").FirstOrDefault()?["Value"]) / 10);
+                    var blue1 = (int)(float.Parse((string)dtColorHelper.Select($"[Rounded] = '{c1.B}'").FirstOrDefault()?["Value"]) / 10);
+
+                    var red2 = (int)(float.Parse((string)dtColorHelper.Select($"[Rounded] = '{c2.R}'").FirstOrDefault()?["Value"]) / 10);
+                    var green2 = (int)(float.Parse((string)dtColorHelper.Select($"[Rounded] = '{c2.G}'").FirstOrDefault()?["Value"]) / 10);
+                    var blue2 = (int)(float.Parse((string)dtColorHelper.Select($"[Rounded] = '{c2.B}'").FirstOrDefault()?["Value"]) / 10);
+
+                    var strRed1 = "";
+                    var strGreen1 = "";
+                    var strBlue1 = "";
+                    var strRed2 = "";
+                    var strGreen2 = "";
+                    var strBlue2 = "";
+
+                    if (red1 != 10)
+                    {
+                        strRed1 = red1.ToString();
+                    }
+                    if (green1 != 10)
+                    {
+                        strGreen1 = green1.ToString();
+                    }
+                    if (blue1 != 10)
+                    {
+                        strBlue1 = blue1.ToString();
+                    }
+                    if (red2 != 10)
+                    {
+                        strRed2 = red2.ToString();
+                    }
+                    if (green2 != 10)
+                    {
+                        strGreen2 = green2.ToString();
+                    }
+                    if (blue2 != 10)
+                    {
+                        strBlue2 = blue2.ToString();
+                    }
+
+                    var spellText = strRed1 + strGreen1 + strBlue1 + strRed2 + strGreen2 + strBlue2;
+                    //Log.Write("Arena 3 casting spell ID: " + spellText);
+                    return int.Parse(spellText);
+                }
+                catch (Exception ex)
+                {
+                    Log.Write($" Red1 = {c1.R} Green1 = {c1.G} Blue1 = {c1.B} Red2 = {c2.R} Green2 = {c2.G} Blue2 = {c2.B}");
+                    Log.Write(ex.Message, Color.Red);
+                    return 0;
+                }
+            }
         }
 
 
