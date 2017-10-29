@@ -29,45 +29,50 @@ namespace Frozen.Rotation
         {
             if (combatRoutine.Type == RotationType.SingleTarget)
 
-                if (WoW.CanCast("Counter Shot")  && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Counter Shot") && WoW.TargetPercentCast > Random.Next(30, 85))
+                if (WoW.CanCast("Counter Shot") && WoW.Level >= 32 && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Counter Shot") && WoW.TargetPercentCast > Random.Next(30, 85))
 
                 {
                     WoW.CastSpell("Counter Shot");
                     return;
                 }
 
-            if (WoW.CanCast("Murder of crows")  && WoW.Talent(6) == 1)
+            if (WoW.CanCast("Murder of crows") && WoW.Level >= 90 && WoW.Talent(6) == 1)
                 {
                     WoW.CastSpell("Murder of crows");
                     return;
                 }
-                 if (WoW.CanCast("Bestial wrath")  )
+                 if (WoW.CanCast("Bestial wrath") && WoW.Level >= 40 )
                 {
                 WoW.CastSpell("Bestial wrath");
                 return;
                  }
-                              
-            if (WoW.CanCast("Dire frenzy")&& WoW.PlayerBuffStacks("Dire frenzy") <= 2)
+                  if (WoW.CanCast("Dire beast") && WoW.Level <= 29 && WoW.PlayerBuffStacks("Dire beast") <=2)
+                  {
+                WoW.CastSpell("Dire beast");
+                return;
+                  }
+            
+            if (WoW.CanCast("Dire frenzy") && WoW.Level >= 30  && WoW.PlayerBuffStacks("Dire frenzy") <= 2)
                  {
                 WoW.CastSpell("Dire frenzy");
                 return;
                  }
-            if (WoW.CanCast("Kill command"))
+            if (WoW.CanCast("Kill command") && WoW.Level >= 10 )
             {
                 WoW.CastSpell("Kill command");
                 return;
             }
-            if (WoW.CanCast("Titans thunder") )
+            if (WoW.CanCast("Titans thunder") && WoW.Level >= 98)
             {
                 WoW.CastSpell("Titans thunder");
                 return;
             }
-            if (WoW.CanCast("Aspect of the wild") )
+            if (WoW.CanCast("Aspect of the wild") && WoW.Level >=26)
             {
                 WoW.CastSpell("Aspect of the wild");
                 return;
             }
-            if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
+            if (WoW.CanCast("Cobra shot") && WoW.Level >= 1 && WoW.Focus >= 60)
             {
                 WoW.CastSpell("Cobra shot");
                 return;
