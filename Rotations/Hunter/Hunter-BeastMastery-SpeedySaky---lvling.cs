@@ -72,7 +72,7 @@ namespace Frozen.Rotation
                 WoW.CastSpell("Aspect of the wild");
                 return;
             }
-            if (WoW.CanCast("Cobra shot") && WoW.Level >= 1 && WoW.Focus >= 70)
+            if (WoW.CanCast("Cobra shot") && WoW.Level >= 1 && WoW.Focus >= 60)
             {
                 WoW.CastSpell("Cobra shot");
                 return;

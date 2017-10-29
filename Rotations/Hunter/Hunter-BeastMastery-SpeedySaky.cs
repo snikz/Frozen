@@ -46,12 +46,7 @@ namespace Frozen.Rotation
                 WoW.CastSpell("Bestial wrath");
                 return;
                  }
-                  if (WoW.CanCast("Dire beast")  && WoW.PlayerBuffStacks("Dire beast") <=2)
-                  {
-                WoW.CastSpell("Dire beast");
-                return;
-                  }
-            
+                              
             if (WoW.CanCast("Dire frenzy")&& WoW.PlayerBuffStacks("Dire frenzy") <= 2)
                  {
                 WoW.CastSpell("Dire frenzy");
@@ -72,7 +67,7 @@ namespace Frozen.Rotation
                 WoW.CastSpell("Aspect of the wild");
                 return;
             }
-            if (WoW.CanCast("Cobra shot") && WoW.Focus >= 90)
+            if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
             {
                 WoW.CastSpell("Cobra shot");
                 return;
