@@ -7,16 +7,22 @@ using System.Diagnostics;
 namespace Frozen.Rotation
 {
     public class Priest : CombatRoutine
-    {     
+    {
+        private Settings settingsForm;
         public override Form SettingsForm
         {
-            get { return null; }
+            get { return settingsForm.FormSettings; }
 
             set { }
         }
                 
         public override void Initialize()
         {
+            settingsForm = new Settings("Disc-Priest-WiNiFiX");
+            settingsForm.Add("Pain Suppression Health", new NumericUpDown(), 10);
+            settingsForm.Add("DPS when party above", new NumericUpDown(), 80);
+            settingsForm.Add("Use Feather for speed", new CheckBox(), true);
+
             Log.Clear();
             Log.WriteFrozen("Welcome to Frozen Disc", Color.Black);
             Log.Write("Supported Talents: X1XX1X1");
@@ -45,6 +51,31 @@ namespace Frozen.Rotation
             }
         }
 
+        private int PainSuppressionHealth
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Pain Suppression Health");
+            }
+        }
+
+        private int DPSWhenPartyAbove
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("DPS when party above");
+            }
+        }
+
+        private bool UseFeatherForSpeed
+        {
+            get
+            {
+                return settingsForm.ReadSetting<bool>("Use Feather for speed");
+            }
+        }
+
+
         public override void Pulse()
         {
 			if (WoW.IsMounted) return;
@@ -55,7 +86,7 @@ namespace Frozen.Rotation
                 f.ShowDialog();
             }
 
-            if (!WoW.IsInCombat && WoW.CanCast("Angelic Feather") && WoW.IsMoving && !WoW.PlayerHasBuff("Angelic Feather"))
+            if (!WoW.IsInCombat && WoW.CanCast("Angelic Feather") && WoW.IsMoving && !WoW.PlayerHasBuff("Angelic Feather") && UseFeatherForSpeed)
             {
                 WoW.CastSpell("Angelic Feather");
                 return;
@@ -66,7 +97,7 @@ namespace Frozen.Rotation
 
             Log.Write("Party Lowest HP: " + lowest);
                         
-            if (lowest >= 80 && WoW.PartyMemberIsNeedingADispel == 0 && WoW.IsInCombat)
+            if (lowest >= DPSWhenPartyAbove && WoW.PartyMemberIsNeedingADispel == 0 && WoW.IsInCombat)
             {   
                 WoW.TargetNearestEnemy();
                 
@@ -169,7 +200,7 @@ namespace Frozen.Rotation
             }
 
             // If we are targeting the tank and his HP < 20% Pain Suppression him
-            if (lowest <= 20 && WoW.CanCast("Pain Suppression") && WoW.TankId == currentTargetId)
+            if (lowest <= PainSuppressionHealth && WoW.CanCast("Pain Suppression") && WoW.TankId == currentTargetId)
             {
                 WoW.CastSpell("Pain Suppression");
                 return;
