@@ -574,8 +574,12 @@ namespace Frozen.Helpers
         [Obfuscation(Exclude = true)]
         public static void TargetMember(int i)
         {
+            if (CurrentPartyTargetId == i) return; // If we are not currently targeting the correct unit
+
+            Log.Write($"Targeting Member: {i} Health %: {PartyLowestHealthPercent}");
+
             if (GroupSize <= 5) // Party
-            {
+            {                
                 CurrentPartyTargetId = i;
                 if (i == 1)
                 {
@@ -1834,8 +1838,23 @@ namespace Frozen.Helpers
         [Obfuscation(Exclude = true)]
         public static void TargetNearestEnemy()
         {
-            KeyPressRelease(Keys.Tab);
-            CurrentPartyTargetId = 0;
+            if (!TargetIsEnemy && IsInCombat)
+            {
+                Log.Write("Targeting Nearest Enemy", Color.Blue);
+                KeyPressRelease(Keys.Tab);
+                CurrentPartyTargetId = 0;                
+            }
+        }
+
+        [Obfuscation(Exclude = true)]
+        public static void TargetNextEnemy()
+        {
+            if (IsInCombat)
+            {
+                Log.Write("Targeting Next Enemy", Color.Blue);
+                KeyPressRelease(Keys.Tab);
+                CurrentPartyTargetId = 0;
+            }
         }
 
         /// <summary>
@@ -2061,6 +2080,106 @@ namespace Frozen.Helpers
             return c.R != 255  && c.B != 255;
         }
 
+
+        [Obfuscation(Exclude = true)]
+        public static int FocusHealthPercent
+        {
+            get
+            {
+                if (!HasFocusTarget)
+                {
+                    Log.Write("You do not have a focus target, returning 0 as health", Color.Gray);
+                    return 0;
+                }
+                var c = GetBlockColor(1, 20);
+                try
+                {
+                    var health = Convert.ToInt32(Math.Round(Convert.ToSingle(c.R) * 100 / 255));
+                    return health;
+                }
+                catch (Exception ex)
+                {
+                    Log.Write($"[Focus Health] Red = {c.R}");
+                    Log.Write(ex.Message, Color.Red);
+                    return 0;
+                }
+            }
+        }
+
+        [Obfuscation(Exclude = true)]
+        public static bool FocusHasDebuff(string debuffName)
+        {
+            if (!HasFocusTarget) return false;
+
+            var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
+
+            if (aura == null)
+            {
+                Log.Write($"[FocusHasDebuff] cant find debuff '{debuffName}' in Spell Book");
+                return false;
+            }
+
+            return FocusHasDebuff(aura.InternalAuraNo);
+        }
+
+        [Obfuscation(Exclude = true)]
+        private static bool FocusHasDebuff(int auraNoInArrayOfAuras)
+        {
+            var c = GetBlockColor(auraNoInArrayOfAuras, 21);
+            return c.R == 255;
+        }
+
+        private static int FocusDebuffTimeRemaining(int auraNoInArrayOfAuras, bool debug)
+        {
+            Color c = Color.Red;
+            try
+            {
+                c = GetBlockColor(auraNoInArrayOfAuras, 21);
+
+                if (c.R == 0)
+                    return 0;
+
+                var val1 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.G) * 100 / 255));
+                var val2 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.B) * 100 / 255));
+                var ret = val1 * 10 + val2;
+
+                ret = ret * 100; // to make it ms
+
+                if (debug)
+                {
+                    Log.Write($"ToReturn = {ret}ms Green = {c.G} val1 = {val1} | Blue = {c.B} val2 = {val2} ");
+                }
+
+                return ret;
+            }
+            catch (Exception ex)
+            {
+                Log.Write("Failed to find Debuff Time Remaining for color G = " + c.G, Color.Red);
+                Log.Write("Error: " + ex.Message, Color.Red);
+            }
+
+            return 0;
+        }
+
+        /// <summary>
+        /// Targets the debuff time remaining in Milliseconds.
+        /// </summary>
+        /// <param name="debuffName">Name of the debuff.</param>
+        /// <returns></returns>
+        [Obfuscation(Exclude = true)]
+        public static int FocusDebuffTimeRemaining(string debuffName, bool debug = false)
+        {
+            var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
+
+            if (aura == null)
+            {
+                Log.Write($"[FocusDebuffTimeRemaining] Unable to find debuff with name '{debuffName}' in Spell Book");
+                return -1;
+            }
+
+            return FocusDebuffTimeRemaining(aura.InternalAuraNo, debug);
+        }
+
         [DllImport("user32.dll")]
         private static extern bool GetWindowRect(IntPtr hWnd, ref Rectangle rect);
 
@@ -2101,25 +2220,36 @@ namespace Frozen.Helpers
         }
 
         /// <summary>
-        /// Spells the cooldown time remaining.
+        /// Spells the cooldown time remaining in MS
         /// </summary>
         /// <param name="spellNoInArrayOfSpells">The spell no in array of spells.</param>
         /// <returns></returns>
 
-        private static int SpellCooldownTimeRemaining(int spellNoInArrayOfSpells)
+        private static int SpellCooldownTimeRemaining(int spellNoInArrayOfSpells, bool debug)
         {
-            var c = GetBlockColor(spellNoInArrayOfSpells, 2);
-
+            Color c = Color.Red;
+            
             try
             {
-                Log.WriteDirectlyToLogFile($"Red = {c.R} Green = {c.G} Blue = {c.B}");
+                c = GetBlockColor(spellNoInArrayOfSpells, 2);
+                                
                 if (c.R == 255)
                     return 0;
+
                 if (c.R == 0)
                 {
-                    var power = dtColorHelper.Select($"[Rounded] = '{c.G}'").FirstOrDefault()?["Value"].ToString();
-                    var power2 = dtColorHelper.Select($"[Rounded] = '{c.B}'").FirstOrDefault()?["Value"].ToString();
-                    return power != null && power2 != null ? int.Parse(power) * 100 + int.Parse(power2) : 0;
+                    var val1 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.G) * 100 / 255));
+                    var val2 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.B) * 100 / 255));
+                    var ret = val1 * 10 + val2;
+
+                    ret = ret * 100; // to make it ms
+
+                    if (debug)
+                    {
+                        Log.Write($"ToReturn = {ret}ms Green = {c.G} val1 = {val1} | Blue = {c.B} val2 = {val2} ");
+                    }
+
+                    return ret;
                 }
             }
             catch (Exception ex)
@@ -2278,11 +2408,11 @@ namespace Frozen.Helpers
         /// <param name="spellBookSpellName">Name of the spell book spell.</param>
         /// <returns></returns>
         [Obfuscation(Exclude = true)]
-        public static int SpellCooldownTimeRemaining(string spellBookSpellName)
+        public static int SpellCooldownTimeRemaining(string spellBookSpellName, bool debug = false)
         {
             var spell = SpellBook.Spells.FirstOrDefault(s => s.SpellName == spellBookSpellName);
 
-            if (spell != null) return SpellCooldownTimeRemaining(spell.InternalSpellNo);
+            if (spell != null) return SpellCooldownTimeRemaining(spell.InternalSpellNo, debug);
 
             Log.Write($"[SpellCooldownTimeRemaining] Unable to find spell with name '{spellBookSpellName}' in Spell Book");
             return 0;
@@ -2913,20 +3043,29 @@ namespace Frozen.Helpers
 
             return PetBuffStacks(aura.InternalAuraNo);
         }
-
-        private static int TargetDebuffTimeRemaining(int auraNoInArrayOfAuras)
+        
+        private static int TargetDebuffTimeRemaining(int auraNoInArrayOfAuras, bool debug)
         {
-            var c = GetBlockColor(auraNoInArrayOfAuras, 4);
-
+            Color c = Color.Red;
             try
             {
-                if (c.R == 255)
-                    return 0;
-                // ReSharper disable once PossibleNullReferenceException
-                var power = dtColorHelper.Select($"[Rounded] = '{c.G}'").FirstOrDefault()?["Value"].ToString();
-                var power2 = dtColorHelper.Select($"[Rounded] = '{c.B}'").FirstOrDefault()?["Value"].ToString();
-                return power != null && power2 != null ? int.Parse(power) * 100 + int.Parse(power2) : 0;
+                c = GetBlockColor(auraNoInArrayOfAuras, 4);
 
+                if (c.R == 255)
+                    return 0;                
+        
+                var val1 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.G) * 100 / 255));
+                var val2 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.B) * 100 / 255));
+                var ret = val1 * 10 + val2;
+
+                ret = ret * 100; // to make it ms
+
+                if (debug)
+                {
+                    Log.Write($"ToReturn = {ret}ms Green = {c.G} val1 = {val1} | Blue = {c.B} val2 = {val2} ");
+                }
+
+                return ret;
             }
             catch (Exception ex)
             {
@@ -2938,12 +3077,12 @@ namespace Frozen.Helpers
         }
 
         /// <summary>
-        /// Targets the debuff time remaining.
+        /// Targets the debuff time remaining in Milliseconds.
         /// </summary>
         /// <param name="debuffName">Name of the debuff.</param>
         /// <returns></returns>
         [Obfuscation(Exclude = true)]
-        public static int TargetDebuffTimeRemaining(string debuffName)
+        public static int TargetDebuffTimeRemaining(string debuffName, bool debug = false)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == debuffName);
 
@@ -2953,20 +3092,32 @@ namespace Frozen.Helpers
                 return -1;
             }
 
-            return TargetDebuffTimeRemaining(aura.InternalAuraNo);
+            return TargetDebuffTimeRemaining(aura.InternalAuraNo, debug);
         }
 
-        public static int PlayerBuffTimeRemaining(int auraNoInArrayOfAuras)
+        public static int PlayerBuffTimeRemaining(int auraNoInArrayOfAuras, bool debug = false)
         {
-            var c = GetBlockColor(auraNoInArrayOfAuras, 8);
-            if (c.R == 255 || c.B == 255)
-                return 0;
+            Color c = Color.Red;
+                        
             try
             {
-                // ReSharper disable once PossibleNullReferenceException
-                var power = dtColorHelper.Select($"[Rounded] = '{c.G}'").FirstOrDefault()?["Value"].ToString();
-                var power2 = dtColorHelper.Select($"[Rounded] = '{c.B}'").FirstOrDefault()?["Value"].ToString();
-                return power != null && power2 != null ? int.Parse(power) * 100 + int.Parse(power2) : 0;
+                c = GetBlockColor(auraNoInArrayOfAuras, 8);
+
+                if (c.R == 255)
+                    return 0;
+
+                var val1 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.G) * 100 / 255));
+                var val2 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.B) * 100 / 255));
+                var ret = val1 * 10 + val2;
+
+                ret = ret * 100; // to make it ms
+
+                if (debug)
+                {
+                    Log.Write($"ToReturn = {ret}ms Green = {c.G} val1 = {val1} | Blue = {c.B} val2 = {val2} ");
+                }
+
+                return ret;
             }
             catch (Exception ex)
             {
@@ -2983,7 +3134,7 @@ namespace Frozen.Helpers
         /// <param name="buffName">Name of the buff.</param>
         /// <returns></returns>
         [Obfuscation(Exclude = true)]
-        public static int PlayerBuffTimeRemaining(string buffName)
+        public static int PlayerBuffTimeRemaining(string buffName, bool debug = false)
         {
             var aura = SpellBook.Auras.FirstOrDefault(s => s.AuraName == buffName);
 
@@ -2993,21 +3144,29 @@ namespace Frozen.Helpers
                 return -1;
             }
 
-            return PlayerBuffTimeRemaining(aura.InternalAuraNo);
+            return PlayerBuffTimeRemaining(aura.InternalAuraNo, debug);
         }
 
         public static int PetBuffTimeRemaining(int auraNoInArrayOfAuras)
         {
-            var c = GetBlockColor(auraNoInArrayOfAuras, 10);
-
+            Color c = Color.Red;
+            
             try
             {
-                if (c.R == 255 || c.B == 255)
+                c = GetBlockColor(auraNoInArrayOfAuras, 10);
+
+                if (c.R == 255)
                     return 0;
-                var power = dtColorHelper.Select($"[Rounded] = '{c.G}'").FirstOrDefault()?["Value"].ToString();
-                var power2 = dtColorHelper.Select($"[Rounded] = '{c.B}'").FirstOrDefault()?["Value"].ToString();
-                return power != null && power2 != null ? int.Parse(power) * 100 + int.Parse(power2) : 0;
-                // ReSharper disable once PossibleNullReferenceException
+
+                var val1 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.G) * 100 / 255));
+                var val2 = Convert.ToInt32(Math.Round(Convert.ToSingle(c.B) * 100 / 255));
+                var ret = val1 * 10 + val2;
+
+                ret = ret * 100; // to make it ms
+
+                //Log.Write($"ToReturn = {ret}ms Green = {c.G} val1 = {val1} | Blue = {c.B} val2 = {val2} ");
+
+                return ret;
             }
             catch (Exception ex)
             {
@@ -3598,7 +3757,7 @@ namespace Frozen.Helpers
                 KeyDown(modifier);
                 Thread.Sleep(50);
             }
-
+            
             KeyDown(key);
             Thread.Sleep(50);
             KeyUp(key);
