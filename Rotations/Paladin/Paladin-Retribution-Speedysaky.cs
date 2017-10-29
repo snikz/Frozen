@@ -41,11 +41,7 @@ namespace Frozen.Rotation
                 return;
             }
             
-            if (WoW.CanCast("Flash of Light") && WoW.PlayerHealthPercent < 80)
-            {
-                WoW.CastSpell("Flash of Light");
-                return;
-            }
+           
         }
 
         public override void Pulse()
@@ -75,25 +71,7 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if (WoW.CanCast("Lay on Hands") && WoW.PlayerHealthPercent < 25 )
-
-                    {
-                        WoW.CastSpell("Lay on Hands");
-                        return;
-                    }
-
-                    if (WoW.CanCast("Divine Shield") && WoW.PlayerHealthPercent < 15)
-
-                    {
-                        WoW.CastSpell("Divine Shield");
-                        return;
-                    }
-                        if (WoW.CanCast("Flash of Light") && WoW.PlayerHealthPercent < 60 && WoW.Mana > 20)
-
-                    {
-                        WoW.CastSpell("Flash of Light");
-                        return;
-                    }
+                    
 
                  }   
                 if (WoW.CanCast("Judgement") && WoW.Level >= 3 && WoW.IsSpellInRange("Judgement"))
@@ -138,9 +116,10 @@ namespace Frozen.Rotation
                 if (WoW.Level >= 80 && WoW.Level < 100 && WoW.CanCast("Avenging Wrath") && UseCooldowns)
                 {
                     WoW.CastSpell("Avenging Wrath");
-                }
-                return;
-
+                 return;
+				}
+				
+               
                 if (WoW.CanCast("Crusade") && WoW.Level >= 100 && WoW.Talent(7) == 2)
                 {
                     WoW.CastSpell("Crusade");
@@ -180,25 +159,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Rebuke");
                         return;
                     }
-                    if (WoW.CanCast("Lay on Hands") && WoW.PlayerHealthPercent < 25)
-
-                    {
-                        WoW.CastSpell("Lay on Hands");
-                        return;
-                    }
-                        if (WoW.CanCast("Divine Shield") && WoW.PlayerHealthPercent < 15)
-
-                    {
-                        WoW.CastSpell("Divine Shield");
-                        return;
-                    }
-
-                    if (WoW.CanCast("Flash of Light") && WoW.PlayerHealthPercent < 60 && WoW.Mana > 20 )
-
-                    {
-                        WoW.CastSpell("Flash of Light");
-                        return;
-                    }
+                    
 
                 }
 
@@ -244,11 +205,12 @@ namespace Frozen.Rotation
                     WoW.CastSpell("Crusade");
                     }
 
-                if (WoW.Level >= 80 && WoW.Level < 100 && WoW.CanCast("Avenging Wrath") && UseCooldowns)
-                {
+					if (WoW.Level >= 80 && WoW.Level < 100 && WoW.CanCast("Avenging Wrath") && UseCooldowns)
+					{
                     WoW.CastSpell("Avenging Wrath");
-                }
-                return;
+					 return;
+					}
+             
 
                 if (WoW.CanCast("Justicar's Vengeance") && WoW.Level >= 100 && WoW.CurrentHolyPower >= 5 && UseCooldowns)
                 {
@@ -264,8 +226,8 @@ namespace Frozen.Rotation
 
 /*
 [AddonDetails.db]
-AddonAuthor=WiNiFiX
-AddonName=Frozen
+AddonAuthor=SpeedySaky
+AddonName=SpeedySaky
 WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,85256,Templar's Verdict
@@ -289,5 +251,4 @@ Spell,203538,Greater Blessing of Kings
 Aura,203538,Greater Blessing of Kings
 Aura,203539,Greater Blessing of Wisdom
 Aura,20271,Judgement
-190784
 */
