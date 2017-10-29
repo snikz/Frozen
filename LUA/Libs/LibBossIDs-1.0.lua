@@ -1910,7 +1910,7 @@ local BossIDs = {
 	[104288] = true, -- Trilliax
 	[106643] = true, -- Elisande 2nd
 	[104881] = true, -- Spellblade Aluriel 2nd
-	-- Argus -- 
+	-- Antorus, the Burning Throne -- 
 	[122367] = true, -- Admiral Svirax
 	[124691] = true, -- Aggramar 
 	[124828] = true, -- Argus the Unmaker
