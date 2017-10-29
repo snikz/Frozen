@@ -18,7 +18,7 @@ namespace Frozen.Rotation
                 
         public override void Initialize()
         {
-            settingsForm = new Settings("Disc-Priest-WiNiFiX");
+            settingsForm = new Settings("Disc-Priest-WiNiFiX", WoWClass.Priest);
             settingsForm.Add("Pain Suppression Health", new NumericUpDown(), 10);
             settingsForm.Add("DPS when party above", new NumericUpDown(), 80);
             settingsForm.Add("Use Feather for speed", new CheckBox(), true);
