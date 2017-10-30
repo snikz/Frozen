@@ -2064,8 +2064,8 @@ namespace Frozen.Helpers
         [Obfuscation(Exclude = true)]
         private static bool TargetHasBuff(int auraNoInArrayOfAuras)
         {
-            var c = GetBlockColor(auraNoInArrayOfAuras, 6);
-            return c.R != 255  && c.B != 255;
+            var c = GetBlockColor(auraNoInArrayOfAuras, 6);            
+            return c.R == 255;
         }
 
         [Obfuscation(Exclude = true)]
