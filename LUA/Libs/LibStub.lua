@@ -1,36 +1,13 @@
-
--- LibStub is a simple versioning stub meant for use in Libraries.  http://www.wowace.com/wiki/LibStub for more info
--- LibStub is hereby placed in the Public Domain Credits: Kaelten, Cladhaire, ckknight, Mikk, Ammo, Nevcairiel, joshborke
-local LIBSTUB_MAJOR, LIBSTUB_MINOR = "LibStub", 2  -- NEVER MAKE THIS AN SVN REVISION! IT NEEDS TO BE USABLE IN ALL REPOS!
-local LibStub = _G[LIBSTUB_MAJOR]
-
-if not LibStub or LibStub.minor<LIBSTUB_MINOR then
-    LibStub = LibStub or { libs = { }, minors = { } }
-        _G[LIBSTUB_MAJOR] = LibStub
-        LibStub.minor = LIBSTUB_MINOR
-
-        function LibStub:NewLibrary(major, minor)
-
-        assert(type(major) == "string", "Bad argument #2 to `NewLibrary' (string expected)")
-		minor = assert(tonumber(strmatch(minor, "%d+")), "Minor version must either be a number or contain a number.")
-		
-		local oldminor = self.minors[major]
-		if oldminor and oldminor >= minor then return nil end
-
-        self.minors[major], self.libs[major] = minor, self.libs[major] or { }
-		return self.libs[major], oldminor
-    end
-
-
-    function LibStub:GetLibrary(major, silent)
-		if not self.libs[major] and not silent then
-
-            error(("Cannot find a library instance of %q."):format(tostring(major)), 2)
-		end
-		return self.libs[major], self.minors[major]
-    end
-
-
-    function LibStub:IterateLibraries() return pairs(self.libs) end
-    setmetatable(LibStub, { __call = LibStub.GetLibrary })
-end
+local ZA,_IQQ="LibStub",2;local XpkjA=_G[ZA]
+if not XpkjA or XpkjA.minor<_IQQ then XpkjA=
+XpkjA or{libs={},minors={}}_G[ZA]=XpkjA;XpkjA.minor=_IQQ
+function XpkjA:NewLibrary(pVRj,fuZ3z86)
+assert(
+type(pVRj)=="string","Bad argument #2 to `NewLibrary' (string expected)")
+fuZ3z86=assert(tonumber(strmatch(fuZ3z86,"%d+")),"Minor version must either be a number or contain a number.")local er=self.minors[pVRj]
+if er and er>=fuZ3z86 then return nil end
+self.minors[pVRj],self.libs[pVRj]=fuZ3z86,self.libs[pVRj]or{}return self.libs[pVRj],er end
+function XpkjA:GetLibrary(DFb100j,XL_)if not self.libs[DFb100j]and not XL_ then
+error(("Cannot find a library instance of %q."):format(tostring(DFb100j)),2)end;return
+self.libs[DFb100j],self.minors[DFb100j]end;function XpkjA:IterateLibraries()return pairs(self.libs)end
+setmetatable(XpkjA,{__call=XpkjA.GetLibrary})end
