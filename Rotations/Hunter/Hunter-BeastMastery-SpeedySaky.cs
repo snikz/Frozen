@@ -77,12 +77,7 @@ namespace Frozen.Rotation
                 WoW.CastSpell("Kill command");
                 return;
             }
-            if (WoW.CanCast("Titans thunder") )
-            {
-                WoW.CastSpell("Titans thunder");
-                return;
-            }
-           
+                     
             if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
             {
                 WoW.CastSpell("Cobra shot");
