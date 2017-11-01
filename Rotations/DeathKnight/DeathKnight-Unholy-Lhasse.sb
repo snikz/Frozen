@@ -18,10 +18,14 @@ Spell,47528,MindFreeze,Q
 Spell,42650,ArmyoftheDeath,F7
 Spell,46584,RaiseDead,F
 Spell,48707,AntiMagicShell,D4
+Spell,194918,BlightedRuneWeapon,None
 Aura,194310,FesteringWound
+Aura,194918,BlightedRuneWeapon
 Aura,81340,SuddenDoom
 Aura,191587,VirulentPlaque
 Aura,188290,DeathAndDecay
 Aura,178819,DarkSuccor
 Aura,235599,ColdHeart
+Aura,53365,UnholyStrength
+Item,137075,TaktheritrixsShoulderpads
 */
