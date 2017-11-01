@@ -1,6 +1,8 @@
-﻿using System.Windows.Forms;
+﻿using System.Drawing;
+using System.Windows.Forms;
 using Frozen.Helpers;
-using System.Drawing;
+using System.Diagnostics;
+using System;
 
 namespace Frozen.Rotation
 {
@@ -34,7 +36,7 @@ namespace Frozen.Rotation
 			
 			var TasteForBloodTime = WoW.PlayerBuffTimeRemaining("TasteForBlood");
 			var EnrageTime = WoW.PlayerBuffTimeRemaining("Enrage");
-			var BattleCryTime = WoW.PlayerBuffTimeRemaining("BattleCryBuff");
+			var BattleCryTime = WoW.PlayerBuffTimeRemaining("BattleCry");
 			
             if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
             if (WoW.PlayerIsChanneling) return;
