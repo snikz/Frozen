@@ -36,7 +36,6 @@ namespace Frozen.Rotation
 			
 			var TasteForBloodTime = WoW.PlayerBuffTimeRemaining("TasteForBlood");
 			var EnrageTime = WoW.PlayerBuffTimeRemaining("Enrage");
-			var BattleCryTime = WoW.PlayerBuffTimeRemaining("BattleCry");
 			
             if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
             if (WoW.PlayerIsChanneling) return;
@@ -55,7 +54,8 @@ namespace Frozen.Rotation
                     return;
                 }
 
-                if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.IsSpellOnCooldown("Raging Blow") && WoW.PlayerHasBuff("BattleCryBuff") && !WoW.IsSpellOnGCD("Raging Blow") && WoW.PlayerHasBuff("Frothing") && WoW.Rage < 100)
+                if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.IsSpellOnCooldown("Raging Blow") && WoW.PlayerHasBuff("BattleCryBuff") && !WoW.IsSpellOnGCD("Raging Blow") 
+					&& WoW.PlayerHasBuff("Frothing") && WoW.Rage < 100)
                 {
                     WoW.CastSpell("OdynsFury");
                     return;
@@ -101,7 +101,8 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if ((WoW.CanCast("Bloodthirst") && !WoW.PlayerHasBuff("Enrage") && WoW.Rage < 100 && level >= 10) || WoW.CanCast("Bloodthirst") && WoW.IsSpellOnCooldown("Raging Blow") && WoW.Rage < 100 && level >= 10)
+                    if ((WoW.CanCast("Bloodthirst") && !WoW.PlayerHasBuff("Enrage") && WoW.Rage < 100 && level >= 10) || WoW.CanCast("Bloodthirst") && WoW.IsSpellOnCooldown("Raging Blow") 
+						&& WoW.Rage < 100 && level >= 10)
                     {
                         WoW.CastSpell("Bloodthirst");
                         return;
@@ -151,28 +152,28 @@ namespace Frozen.Rotation
 
                 }
 
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && BattleCryTime >= 11000 && level >= 60) // Do Single Target Execute Stuff here
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60) // Do Single Target Execute Stuff here
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat)
                 {
-                    if (WoW.CanCast("Execute") && WoW.Rage == 100 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("BattleCryBuff") && WoW.Rage >= 25)
+                    if ((WoW.CanCast("Execute") && WoW.Rage == 100 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("BattleCryBuff") && WoW.Rage >= 25) && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("SenseDeath")&& WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000 || WoW.CanCast("Execute") && WoW.Rage >= 25 && level >= 8&& WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
                     {
                         WoW.CastSpell("Execute");
                         return;
                     }
 
-                    if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100)
+                    if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Bloodthirst") && WoW.Rage < 25 && level >= 10 && WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
                     {
                         WoW.CastSpell("Bloodthirst");
                         return;
                     }
 
-                    if (WoW.CanCast("Raging Blow") && WoW.Rage < 100 && WoW.IsSpellOnCooldown("Bloodthirst"))
+                    if (WoW.CanCast("Raging Blow") && WoW.Rage < 100 && WoW.IsSpellOnCooldown("Bloodthirst") && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Raging Blow") && WoW.Rage < 25 && WoW.IsSpellOnCooldown("Bloodthirst") && level >= 13 && WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
                     {
                         WoW.CastSpell("Raging Blow");
                         return;
                     }
 
-                    if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") && TasteForBloodTime <= 4000)
+                    if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") && TasteForBloodTime <= 4000 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000)
                     {
                         WoW.CastSpell("Furious Slash");
                         return;
@@ -180,30 +181,7 @@ namespace Frozen.Rotation
 
                 }
 
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && BattleCryTime <= 9000 && level >= 60) // Do Single Target Execute Stuff here
-                if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat)
-                {
-                    if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("SenseDeath") || WoW.CanCast("Execute") && WoW.Rage >= 25 && level >= 8)
-                    {
-                        WoW.CastSpell("Execute");
-                        return;
-                    }
-
-                    if (WoW.CanCast("Bloodthirst") && WoW.Rage < 25 && level >= 10)
-                    {
-                        WoW.CastSpell("Bloodthirst");
-                        return;
-                    }
-
-                    if (WoW.CanCast("Raging Blow") && WoW.Rage < 25 && WoW.IsSpellOnCooldown("Bloodthirst") && level >= 13)
-                    {
-                        WoW.CastSpell("Raging Blow");
-                        return;
-                    }
-
-                }
-
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59)
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59) //leveling
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat)
                 {
                     if (WoW.CanCast("Execute") && WoW.Rage >= 25 && level >= 8)
@@ -231,7 +209,6 @@ namespace Frozen.Rotation
                     }
 
                 }
-
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 9 && WoW.PlayerClassSpec == "Warrior-Arms") // more leveling
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat)
                 {
@@ -252,7 +229,8 @@ namespace Frozen.Rotation
             if (combatRoutine.Type == RotationType.AOE) // Aoe stuff
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat)
                 {
-                    if (WoW.CanCast("Whirlwind") && !WoW.PlayerHasBuff("Meat-Cleaver") && level >= 28 || WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1 && level >= 45)
+                    if (WoW.CanCast("Whirlwind") && !WoW.PlayerHasBuff("Meat-Cleaver") && level >= 28 || WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1 
+						&& level >= 45)
                     {
                         WoW.CastSpell("Whirlwind");
                         return;
@@ -264,7 +242,8 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") && TasteForBloodTime <= 4000)
+                    if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") 
+						&& TasteForBloodTime <= 4000)
                     {
                         WoW.CastSpell("Furious Slash");
                         return;
