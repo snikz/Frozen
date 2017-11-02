@@ -155,7 +155,7 @@ namespace Frozen.Rotation
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60) // Do Single Target Execute Stuff here
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat)
                 {
-					if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2 || WoW.CanCast("Execute") &&
+					if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2000 || WoW.CanCast("Execute") &&
 						WoW.SpellCooldownTimeRemaining("BattleCry") < 10000 || WoW.CanCast("Execute") && WoW.Rage >= 100 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("SenseDeath") &&
 						WoW.Rage >= 100 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("BattleCryBuff") && WoW.PlayerHasBuff("Frothing"))
                     {
