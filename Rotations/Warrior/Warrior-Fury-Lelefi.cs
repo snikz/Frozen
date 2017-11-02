@@ -8,17 +8,42 @@ namespace Frozen.Rotation
 {
     public class WarriorFury : CombatRoutine
     {
+		public override Form SettingsForm
+		{
+			get { return settingsForm.FormSettings; }
 
-        public override Form SettingsForm { get; set; }
+			set { }
+		}
 
         private bool validtargetmelee;
         private int level = 0;
-        
+		private Settings settingsForm;
+
+		private bool Autokick
+		{
+			get
+			{
+				return settingsForm.ReadSetting<bool>("Autokick");
+			}
+		}
+
+		private bool AutoMount
+		{
+			get
+			{
+				return settingsForm.ReadSetting<bool>("AutoMount");
+			}
+		}
+
         public override void Initialize()
         {
             Log.Write("Welcome to Fury Warrior by Lelefi", Color.Green);
             Log.Write("Suggested build: 2xxx232", Color.Green);
 			Log.Write("Stack Haste and Mastery!", Color.Green);
+			
+			settingsForm = new Settings("Fury-Warrior-Lelefi", WoWClass.Warrior);
+			settingsForm.Add("Autokick", new CheckBox(), true);
+			//settingsForm.Add("Automount", new CheckBox(), true);
         }
 
         public override void Stop()
@@ -62,6 +87,21 @@ namespace Frozen.Rotation
                 }
 
             }
+			//Autokick
+			if (WoW.CanCast("Pummel") && WoW.TargetPercentCast >= 40 && WoW.TargetIsCasting && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.RangeToTarget < 6
+				&& ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Autokick"))
+			    {
+					WoW.CastSpell("Pummel");
+					Log.Write("Pummel", Color.Blue);
+					return;
+                }
+
+
+            //if(!WoW.IsInCombat && WoW.CanCast("Mount") && WoW.IsOutdoors && !WoW.IsMoving && !WoW.PlayerIsChanneling && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Automount"))
+            //{
+			//	WoW.CastSpell("Mount");
+			//	return;
+            //}
 
             if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=6 && WoW.IsInCombat && WoW.PlayerHasBuff("Enraged Regeneration")) //Heal stuff
             {
@@ -86,7 +126,8 @@ namespace Frozen.Rotation
             }
 
             // target stuff
-            if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget <= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted || !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget <= 6 && !WoW.IsMounted)
+            if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget <= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted || !WoW.HasTarget && WoW.IsInCombat &&
+				WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget <= 6 && !WoW.IsMounted)
             {
                 WoW.TargetNextEnemy();
                 return;
@@ -120,7 +161,8 @@ namespace Frozen.Rotation
                         return;
                     }
 
-					if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") && TasteForBloodTime <= 4000 && WoW.Rage <= 90 && WoW.SpellCooldownTimeRemaining("Bloodthirst") <= 1000)
+					if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") &&
+						TasteForBloodTime <= 4000 && WoW.Rage <= 90 && WoW.SpellCooldownTimeRemaining("Bloodthirst") <= 1000)
                     {
                         WoW.CastSpell("Furious Slash");
                         return;
@@ -162,19 +204,22 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Execute");
                         return;
                     }
-                    if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Bloodthirst") && WoW.Rage < 25 && level >= 10 && WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
+                    if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Bloodthirst") && WoW.Rage < 25 && level >= 10 &&
+						WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
                     {
                         WoW.CastSpell("Bloodthirst");
                         return;
                     }
 
-                    if (WoW.CanCast("Raging Blow") && WoW.Rage < 100 && WoW.IsSpellOnCooldown("Bloodthirst") && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Raging Blow") && WoW.Rage < 25 && WoW.IsSpellOnCooldown("Bloodthirst") && level >= 13 && WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
+                    if (WoW.CanCast("Raging Blow") && WoW.Rage < 100 && WoW.IsSpellOnCooldown("Bloodthirst") && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000 || WoW.CanCast("Raging Blow") &&
+						WoW.Rage < 25 && WoW.IsSpellOnCooldown("Bloodthirst") && level >= 13 && WoW.SpellCooldownTimeRemaining("BattleCry") <= 9000)
                     {
                         WoW.CastSpell("Raging Blow");
                         return;
                     }
 
-                    if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") && TasteForBloodTime <= 4000 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000)
+                    if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") &&
+						TasteForBloodTime <= 4000 && WoW.SpellCooldownTimeRemaining("BattleCry") >= 11000)
                     {
                         WoW.CastSpell("Furious Slash");
                         return;
@@ -270,12 +315,7 @@ namespace Frozen.Rotation
                     //{
                     //    WoW.CastSpell("Mount");
                     //}
-                    //if (WoW.CanCast("Pummel") && WoW.TargetPercentCast >= 40 && WoW.TargetIsCasting && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.RangeToTarget < 6) 
-					// Do Single Target Cleave stuff here if applicable else ignore this on
-                    //{
-                    //    WoW.CastSpell("Pummel");
-                    //    return;
-                    //}
+
             if (combatRoutine.Type == RotationType.Cleave) //
             {
 
@@ -291,6 +331,7 @@ AddonName=Frozen
 WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,23881,Bloodthirst,D3
+Spell,6552,Pummel,D2
 Spell,1464,Slam,D3
 Spell,12294,Mortal Strike,D5
 Spell,85288,Raging Blow,D4
@@ -303,6 +344,7 @@ Spell,118000,DragonRoar,-
 Spell,107574,Avatar,D0
 Spell,205545,OdynsFury,T
 Spell,18499,Berserker Rage,U
+Spell,253109,Mount,K
 Aura,206333,TasteForBlood
 Aura,118000,DragonRoarBuff
 Aura,1719,BattleCryBuff
