@@ -382,6 +382,17 @@ namespace Frozen.Rotation
                             WoW.CastSpell("Slice and Dice");
                             return;
                         }
+						if (WoW.PlayerHasBuff("LegyBracersProc") && WoW.CanCast("Saber Slash") && !WoW.PlayerHasBuff("Killing Spree") && WoW.Energy >= 50 && WoW.CurrentComboPoints < 5)
+                            {
+                                WoW.CastSpell("Saber Slash");
+                                return;
+                            }
+						if(WoW.IsEquippedItem("LegyBracers") && WoW.CurrentComboPoints >= 5 && WoW.Energy >= RunThroughEnergy && !WoW.IsSpellOnCooldown("BetweenTheEyes") && WoW.CanCast("BetweenTheEyes"))
+						{
+							WoW.CastSpell("BetweenTheEyes");
+							Log.Write("Proc please!");
+							return;
+						}
                         if (isTalentSND && !isTalentRTB && WoW.CanCast("Run Through") && WoW.PlayerHasBuff("Slice and Dice") &&
                             WoW.Energy >= RunThroughEnergy && WoW.CurrentComboPoints >= 5 &&
                             WoW.IsSpellInRange("Run Through") && WoW.PlayerBuffTimeRemaining("Slice and Dice") > 10)
@@ -1050,4 +1061,6 @@ Aura,51690,Killing Spree
 Aura,196937,Ghostly Strike
 Aura,193356,Broadsides
 Aura,13750,Adrenaline Rush
+Aura,209420,LegyBracersProc
+Item,137099,LegyBracers
 */
