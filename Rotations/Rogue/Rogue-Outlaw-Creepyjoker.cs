@@ -1039,6 +1039,7 @@ WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,137619,Marked for Death,F
 Spell,13877,Blade Flurry,D0
+Spell,199804,BetweenTheEyes,None
 Spell,51690,Killing Spree,D9
 Spell,152150,Death from Above,D6
 Spell,2098,Run Through,D3
