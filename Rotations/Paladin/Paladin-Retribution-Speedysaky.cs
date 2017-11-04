@@ -1,16 +1,25 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
-
+using Frozen.GUI;
+using System.Diagnostics;
 namespace Frozen.Rotation
 {
     public class Retribution : CombatRoutine
     {
 
-        public override Form SettingsForm { get; set; }
+        private Settings settingsForm;
+        public override Form SettingsForm
+        {
+            get { return settingsForm.FormSettings; }
+
+            set { }
+        }
 
         public override void Initialize()
         {
+            settingsForm.Add("Rebuke", new CheckBox(), true);
+
             Log.Write("Welcome to Retribution DPS rotation");
             Log.Write("Suggested builds: 1232132 ");
         }
@@ -18,6 +27,15 @@ namespace Frozen.Rotation
         public override void Stop()
         {
             Log.Write("For any bugs and suggestions contact me on discord--SpeedySaky");
+        }
+
+
+        private bool Rebuke
+        {
+            get
+            {
+                return settingsForm.ReadSetting<bool>("Rebuke");
+            }
         }
         bool doneOpener = false;
         public override void OutOfCombatPulse()
@@ -48,6 +66,19 @@ namespace Frozen.Rotation
         {
             if (combatRoutine.Type == RotationType.SingleTarget)
             {
+
+                if (WoW.Level >= 100 && WoW.Talent(7) == 2 && WoW.CanCast("Crusade") && UseCooldowns)
+                {
+                    WoW.CastSpell("Crusade");
+                }
+
+                if (Rebuke && WoW.CanCast("Rebuke") && WoW.Level >= 35 && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Rebuke") && WoW.TargetPercentCast > Random.Next(30, 85))
+
+                {
+                    WoW.CastSpell("Rebuke");
+                    return;
+                }
+
                 if (WoW.HasTarget && WoW.TargetIsEnemy)
                 {
                     if (!doneOpener)
@@ -62,24 +93,9 @@ namespace Frozen.Rotation
                     {
                         WoW.CastSpell("Judgement");
                         return;
-                    }
-
-                    if (WoW.CanCast("Rebuke") && WoW.Level >= 35 && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Rebuke") && WoW.TargetPercentCast > Random.Next(30, 85))
-
-                    {
-                        WoW.CastSpell("Rebuke");
-                        return;
-                    }
-
-                    
-
-                 }   
-                if (WoW.CanCast("Judgement") && WoW.Level >= 3 && WoW.IsSpellInRange("Judgement"))
-
-                {
-                    WoW.CastSpell("Judgement");
-                    return;
-                }
+                    }                                       
+                                       
+                 }                  
 
                 if (WoW.CanCast("Wake of Ashes"))
                 {
@@ -109,23 +125,12 @@ namespace Frozen.Rotation
                     return;
                 }
                
-                if (WoW.Level >= 100 && WoW.Talent(7) == 2 && WoW.CanCast("Crusade") && UseCooldowns)
-                {
-                    WoW.CastSpell("Crusade");
-                }
                 if (WoW.Level >= 80 && WoW.Level < 100 && WoW.CanCast("Avenging Wrath") && UseCooldowns)
                 {
                     WoW.CastSpell("Avenging Wrath");
                  return;
-				}
-				
-               
-                if (WoW.CanCast("Crusade") && WoW.Level >= 100 && WoW.Talent(7) == 2)
-                {
-                    WoW.CastSpell("Crusade");
-                    return;
-                }
-                
+				}         
+                               
                 if (WoW.CanCast("Justicar's Vengeance") && WoW.Level >= 100 && WoW.CurrentHolyPower >= 5 && UseCooldowns)
                 {
                     WoW.CastSpell("Justicar's Vengeance");
@@ -151,18 +156,9 @@ namespace Frozen.Rotation
                     {
                         WoW.CastSpell("Judgement");
                         return;
-                    }
+                    }                                       
 
-                    if (WoW.CanCast("Rebuke") && WoW.Level >= 35 && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Rebuke") && WoW.TargetPercentCast > Random.Next(30, 85))
-
-                    {
-                        WoW.CastSpell("Rebuke");
-                        return;
-                    }
-                    
-
-                }
-
+               
                 if (WoW.CanCast("Judgement") && WoW.Level >= 3 && WoW.IsSpellInRange("Judgement"))
 
                 {
@@ -200,11 +196,7 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if (WoW.Level >= 100 && WoW.Talent(7) == 2 && WoW.CanCast("Crusade") && UseCooldowns)                   
-                    {
-                    WoW.CastSpell("Crusade");
-                    }
-
+                   
 					if (WoW.Level >= 80 && WoW.Level < 100 && WoW.CanCast("Avenging Wrath") && UseCooldowns)
 					{
                     WoW.CastSpell("Avenging Wrath");
@@ -220,7 +212,9 @@ namespace Frozen.Rotation
             }
         }
     }
+    }
 }
+
 
 
 
