@@ -1866,7 +1866,9 @@ namespace Frozen.Helpers
         
         public static void Speak(string words)
         {
-            synthesizer.SpeakAsync(words);
+            var muted = ConfigFile.ReadValue("Frozen", "Sound-Muted");
+            if (muted != "True")
+                synthesizer.SpeakAsync(words);
         }
 
         [Obfuscation(Exclude = true)]
