@@ -1,0 +1,26 @@
+/*
+[AddonDetails.db]
+AddonAuthor=WiNiFiX
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,120360,Barrage
+Spell,136,Mend pet
+Spell,194386,Volley
+Spell,147362,Counter Shot
+Spell,186265,Aspect of the turtle
+Spell,2643,Multi shot
+Spell,120679,Dire beast
+Spell,19574,Bestial wrath
+Spell,131894,Murder of crows
+Spell,217200,Dire frenzy
+Spell,34026,Kill command
+Spell,207068,Titans thunder
+Spell,193530,Aspect of the wild
+Spell,193455,Cobra shot
+Spell,109304,Exhilaration
+Aura,194386,Volley
+Aura,217200,Dire frenzy
+Aura,246152,Dire frenzy
+Aura,118455,Beast cleave
+*/
