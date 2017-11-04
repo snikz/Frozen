@@ -1,8 +1,6 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
-using System.Diagnostics;
-using System;
 
 namespace Frozen.Rotation
 {
@@ -32,6 +30,30 @@ namespace Frozen.Rotation
 			get
 			{
 				return settingsForm.ReadSetting<bool>("AutoMount");
+			}
+		}
+
+		private bool AutoAoe
+		{
+			get
+			{
+				return settingsForm.ReadSetting<bool>("AutoAoE");
+			}
+		}
+
+		private bool AutoRetarget
+		{
+			get
+			{
+				return settingsForm.ReadSetting<bool>("Retarget");
+			}
+		}
+
+		private bool AutoRegeneration
+		{
+			get
+			{
+				return settingsForm.ReadSetting<bool>("AutoRegeneration");
 			}
 		}
 
@@ -163,7 +185,7 @@ namespace Frozen.Rotation
 			
 			//Heal stuff
             if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRegeneration") &&
-				level >= 36 && WoW.HealthPercent <= 20) 
+				level >= 36 && WoW.HealthPercent <= 20 && WoW.TargetIsVisible) 
             {	
 				if (WoW.CanCast("Enraged Regeneration"))
                 {
@@ -204,10 +226,12 @@ namespace Frozen.Rotation
 			//}
 
             // Retarget stuff
-            if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget <= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted || !WoW.HasTarget && WoW.IsInCombat &&
-				WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget <= 6 && !WoW.IsMounted && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget"))
+			if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget >= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted &&
+				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget") || !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget >=1 &&
+				!WoW.IsMounted && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget")) 
             {
                 WoW.TargetNextEnemy();
+				Log.Write("Next Enemy", Color.Blue);
                 return;
             }
 
@@ -251,7 +275,7 @@ namespace Frozen.Rotation
 
 			// Do Single Target Buffed Stuff here
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat)
+				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible)
 			{
 				if (WoW.CanCast("Rampage") && WoW.Rage == 100)
 				{
@@ -275,7 +299,7 @@ namespace Frozen.Rotation
 
 			// Do Single Target Execute Stuff here
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat)
+				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible)
             {
 				if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2000 || WoW.CanCast("Execute") &&
 					WoW.SpellCooldownTimeRemaining("BattleCry") < 10000 || WoW.CanCast("Execute") && WoW.Rage >= 100 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("SenseDeath") &&
@@ -310,7 +334,7 @@ namespace Frozen.Rotation
 
 			//leveling
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59 && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat) 
+				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible) 
             {
 				if (WoW.CanCast("Execute") && WoW.Rage >= 25 && level >= 8)
 				{
@@ -340,7 +364,7 @@ namespace Frozen.Rotation
                 }
 
             if (combatRoutine.Type == RotationType.SingleTarget && level <= 9 && WoW.PlayerClassSpec == "Warrior-Arms" && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat)
+				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible)
             {
                 if (WoW.CanCast("Slam") && WoW.IsSpellOnCooldown("Mortal Strike") && WoW.Rage >= 20)
                 {
