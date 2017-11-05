@@ -135,7 +135,7 @@ namespace Frozen.Rotation
                 return;
             }
 
-            if (WoW.CanCast("Light of Tuure") &&
+            if (WoW.CanCast("Light of Tuure") && WoW.Level == 110 &&
               lowest <= 85 && 
               !WoW.IsSpellOnCooldown("Light of Tuure") &&
 			  !WoW.TargetHasBuff("Light of Tuure")) // Make sure we dont try and use it whilst on cooldown
