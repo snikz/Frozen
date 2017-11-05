@@ -111,13 +111,23 @@ namespace Frozen.Rotation
                   return;
                   }
 
-                    if (WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1)
+                    if (WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1 && WoW.Talent(2) == 2)
 
                     {
                         WoW.CastSpell("Dire frenzy");
                         return;
                     }
-                    if (WoW.CanCast("Kill command"))
+
+                     if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 )
+
+                     {
+                    WoW.CastSpell("Dire beast");
+                    return;
+                     }
+                     
+
+
+                     if (WoW.CanCast("Kill command"))
                     {
                         WoW.CastSpell("Kill command");
                         return;
@@ -129,7 +139,7 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if (WoW.CanCast("Cobra shot") && WoW.Focus >= 60)
+                    if (WoW.CanCast("Cobra shot") && WoW.Focus >= 40)
 
                     {
                         WoW.CastSpell("Cobra shot");
@@ -158,11 +168,18 @@ namespace Frozen.Rotation
                 {
                 WoW.CastSpell("Bestial wrath");
                 }
-                if( WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 2)
+                if( WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1 && WoW.Talent(2) == 2)
                 {
                 WoW.CastSpell("Dire frenzy");
                 }
-                if( WoW.CanCast("Kill command") && WoW.PetHasBuff("Beast cleave"))                                                                        
+                if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1)
+
+                {
+                    WoW.CastSpell("Dire beast");
+                    return;
+                }
+
+                if ( WoW.CanCast("Kill command") && WoW.PetHasBuff("Beast cleave"))                                                                        
                 {
                 WoW.CastSpell("Kill command");
                 }
@@ -207,5 +224,6 @@ Spell,109304,Exhilaration
 Aura,194386,Volley
 Aura,217200,Dire frenzy
 Aura,246152,Dire frenzy
+Aura,120964,Dire beast
 Aura,118455,Beast cleave
 */
