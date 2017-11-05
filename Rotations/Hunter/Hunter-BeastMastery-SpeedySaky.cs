@@ -75,7 +75,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Exhilaration");
                     }
 
-                    if (Countershot && WoW.CanCast("Counter Shot") && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Counter Shot") && WoW.TargetPercentCast > Random.Next(50, 85))
+                    if (Countershot && WoW.CanCast("Counter shot") && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Counter shot") && WoW.TargetPercentCast > Random.Next(50, 85))
 
                     {
                         WoW.CastSpell("Counter shot");
@@ -192,7 +192,7 @@ WoWVersion=Legion - 70300
 Spell,120360,Barrage
 Spell,136,Mend pet
 Spell,194386,Volley
-Spell,147362,Counter Shot
+Spell,147362,Counter shot
 Spell,186265,Aspect of the turtle
 Spell,2643,Multi shot
 Spell,120679,Dire beast
