@@ -120,16 +120,8 @@ namespace Frozen.Rotation
                         {
                             WoW.CastSpell("A murder of crows");
 
-                        }
-
-
-                        if (WoW.CanCast("Trueshot"))
-                        {
-                            WoW.CastSpell("Trueshot");
-
-                        }
-
-
+                        }                                       
+                        
 
                         if (WoW.CanCast("Aimed shot") && WoW.Focus >= 60)
                         {
