@@ -25,6 +25,8 @@ Spell,35395,CrusaderStrike,18
 Spell,498,DivineProtection,19
 Spell,26573,Consecration,20
 Spell,0,StopCasting,21
+Spell,1,SetFocus,22
+Spell,2,DamageHolyShock,23
 Aura,188370,Consecration
 Aura,196941,JudgmentofLight
 Aura,211210,AuraMastery
@@ -36,4 +38,6 @@ Aura,105809,HolyAvenger
 Aura,31842,AvengingWrath
 Aura,214222,Judgment
 Aura,223306,BestowFaith
+Aura,244834,NetherGale
+Aura,234848,MaraadsDyingBreath
 */
