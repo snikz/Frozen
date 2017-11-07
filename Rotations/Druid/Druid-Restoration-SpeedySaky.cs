@@ -1,46 +1,110 @@
-﻿using System.Diagnostics;
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
-
+using Frozen.GUI;
+using System.Diagnostics;
 namespace Frozen.Rotation
 {
     public class Restoration : CombatRoutine
 
     {
-        private Stopwatch Efflorescence = new Stopwatch();
+        private Settings settingsForm;
+        public override Form SettingsForm
+        {
+            get { return settingsForm.FormSettings; }
 
-        public override Form SettingsForm { get; set; }
+            set { }
+        }
+
+      
 
         public override void Initialize()
         {
             Log.Write("Supported build: 2233332", Color.Green);
             Log.Write("Frozen Restoration Druid by Speedysaky", Color.Green);
-            Log.Write("This rotations is build according to icy-veins.com/wow/restoration-druid-pve-healing-easy-mode", Color.Blue);
+            Log.Write("This rotations is build according to icy-veins-com/wow/restoration-druid-pve-healing-easy-mode", Color.Blue);
             Log.Write("Make sure you ALWAYS have TANK in FOCUS");
-            Log.Write("You will need to make macro /cast [@cursor] Efflorescence put that macro to your bar and keybind it", Color.Green);
-            Log.Write("You will need to make macro /cast [@player] Innervate put that macro to your bar and keybind it", Color.Green);
+            
 
             Log.DrawHorizontalLine();
             Log.Write("If you do proving grounds the Tank Id is 5 when it asks you.", Color.Red);
             Log.DrawHorizontalLine();
+
+            settingsForm = new Settings("Restoration Druid by SpeedySaky", WoWClass.Druid);
+            settingsForm.Add("Healing Touch", new NumericUpDown(), 70);
+            settingsForm.Add("Cenarion Ward", new NumericUpDown(), 50);
+            settingsForm.Add("Swiftmend", new NumericUpDown(), 30);
+            settingsForm.Add("Regrowth", new NumericUpDown(), 60);
+            settingsForm.Add("Wild growth", new NumericUpDown(), 80);
+            settingsForm.Add("Rejuvenation", new NumericUpDown(), 95);
+            settingsForm.Add("Tranquility", new NumericUpDown(), 60);       
+
+
         }
 
         public override void Stop()
         {
-			if(Efflorescence.IsRunning && !WoW.IsInCombat)
-			{
-				Efflorescence.Reset(); // resetting the timer to be able to stop it;
-				Efflorescence.Stop(); // stopping the timer @Stop button;
-			}
+			
         }
-		public override void OutOfCombatPulse()
+
+
+        private int HealingTouch
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Healing Touch");
+            }
+        }
+        private int Wildgrowth
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Wild growth");
+            }
+           }
+private int Tranquility
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Tranquility");
+            }
+        }
+        private int Rejuvenation
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Rejuvenation");
+            }
+        }
+        private int Regrowth
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Regrowth");
+            }
+        }
+
+        private int Swiftmend
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Swiftmend");
+            }
+        }
+
+
+        private int CenarionWard
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Cenarion Ward");
+            }
+        }
+
+
+
+        public override void OutOfCombatPulse()
 		{ 
-			if(Efflorescence.IsRunning && !WoW.IsInCombat)
-			{
-				Efflorescence.Reset(); // resetting the timer to be able to stop it;
-				Efflorescence.Stop(); // stopping the timer when leaving combat;
-			}
 
             if (WoW.CanCast("Healing Touch") && WoW.Level >= 24 && WoW.PartyLowestHealthPercent <= 70)
             {
@@ -68,8 +132,10 @@ namespace Frozen.Rotation
                         if (WoW.PlayerIsCasting) return;
 
                           var lowest = WoW.PartyLowestHealthPercent;
+            var average = WoW.CountAlliesUnderHealthPercentage(Wildgrowth);
+            var averageHp = WoW.PartyAverageHealthPercent;
 
-                          int currentTargetId = WoW.PartyMemberIdWithLowestHealthPercent;
+            int currentTargetId = WoW.PartyMemberIdWithLowestHealthPercent;
 
                          if (WoW.PartyMemberIsNeedingADispel != 0)
                          {
@@ -78,7 +144,7 @@ namespace Frozen.Rotation
 
                        if (currentTargetId == 0) return;
                        if (lowest == 100) return;
-                       var averageHp = WoW.PartyAverageHealthPercent;
+                       
                        WoW.TargetMember(currentTargetId);
             if (WoW.PartyMemberIsNeedingADispel != 0 && WoW.CanCast("Nature's Cure") && WoW.Level >= 22)
             {
@@ -109,52 +175,50 @@ namespace Frozen.Rotation
                 return;
             }
 
-            if (!WoW.TargetIsEnemy && WoW.CanCast("Cenarion Ward") && WoW.PartyLowestHealthPercent <= 50 && WoW.Talent(1) == 2)
+            if (!WoW.TargetIsEnemy && WoW.CanCast("Cenarion Ward") && lowest <= CenarionWard && WoW.Talent(1) == 2)
             {
                 WoW.CastSpell("Cenarion Ward");
                 return;
             }
-            if (!WoW.TargetIsEnemy && WoW.CanCast("Swiftmend") && WoW.PartyLowestHealthPercent <= 30 && WoW.Level >= 12)
+            if (!WoW.TargetIsEnemy && WoW.CanCast("Swiftmend") && lowest <= Swiftmend && WoW.Level >= 12)
             {
                 WoW.CastSpell("Swiftmend");
                 return;
             }
 
 
-            if (!WoW.TargetIsEnemy && WoW.CountAlliesUnderHealthPercentage(80) >= 2 && WoW.CanCast("Wild growth") && WoW.Level >= 40)
+            if (!WoW.TargetIsEnemy && average >= Wildgrowth && WoW.CanCast("Wild growth") && WoW.Level >= 40)
             {
                 WoW.CastSpell("Wild growth");
                 return;
             }
-
-            if (!WoW.TargetIsEnemy && WoW.CanCast("Regrowth") && WoW.PartyLowestHealthPercent <= 50 && WoW.Level >= 44)
-            {
-                WoW.CastSpell("Regrowth");
-                return;
-            }
-
-
-            if (!WoW.TargetIsEnemy && WoW.CanCast("Regrowth") && WoW.PlayerHasBuff("Clearcasting") && WoW.PartyLowestHealthPercent <= 70 && WoW.Level >= 44)
+            if (!WoW.TargetIsEnemy && WoW.CanCast("Regrowth") && WoW.PlayerHasBuff("Clearcasting") && WoW.Level >= 44 && lowest <= Regrowth)
             {
                 WoW.CastSpell("Regrowth");
                 return;
 
             }
+            if (!WoW.TargetIsEnemy && WoW.CanCast("Regrowth") && lowest <= Regrowth && WoW.Level >= 44)
+            {
+                WoW.CastSpell("Regrowth");
+                return;
+            }
+                    
 
-            if (!WoW.TargetIsEnemy &&WoW.CanCast("Healing Touch") && WoW.Level >= 24 && WoW.PartyLowestHealthPercent <= 70)
+            if (!WoW.TargetIsEnemy && WoW.CanCast("Healing Touch") && WoW.Level >= 24 && lowest <= HealingTouch)
             {
 
                 WoW.CastSpell("Healing Touch");
                 return;
             }
 
-            if (!WoW.TargetIsEnemy && WoW.CountAlliesUnderHealthPercentage(60) >= 2 && WoW.CanCast("Tranquility") && WoW.Level >= 80)
+            if (!WoW.TargetIsEnemy && averageHp <= Tranquility && WoW.CanCast("Tranquility") && WoW.Level >= 80)
             {
                 WoW.CastSpell("Tranquility");
                 return;
 
             }
-            if (!WoW.TargetIsEnemy && WoW.CanCast("Rejuvenation") && WoW.PartyLowestHealthPercent <= 95 && !WoW.TargetHasBuff("Rejuvenation") && !WoW.PlayerHasBuff ("Rejuvenation") && WoW.Level >= 10)
+            if (!WoW.TargetIsEnemy && WoW.CanCast("Rejuvenation") && lowest <= Rejuvenation && !WoW.TargetHasBuff("Rejuvenation") && !WoW.PlayerHasBuff ("Rejuvenation") && WoW.Level >= 10)
             {
                 WoW.CastSpell("Rejuvenation");
                 return;
