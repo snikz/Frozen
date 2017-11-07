@@ -143,18 +143,20 @@ namespace Frozen.Rotation
              {
                 if (WoW.HasTarget && WoW.TargetIsEnemy) //First things go first
                     if (doneOpener)
-
-
-                        if (WoW.CanCast("Aimed shot") && WoW.TargetHasDebuff("Vulnerable") && WoW.TargetDebuffTimeRemaining("Vulnerable") >= 1800)
-                        {
-                            WoW.CastSpell("Aimed shot");
-
-                        }
-
-
+                     
+                        
                 if (WoW.CanCast("Windburst"))
                 {
                     WoW.CastSpell("Windburst");
+
+                }
+                if (WoW.CanCast("Marked shot") && WoW.TargetHasDebuff("Hunters Mark") && WoW.Focus >= 70)
+                {
+                    WoW.CastSpell("Marked shot");
+                }
+                if (WoW.CanCast("Aimed shot") && WoW.TargetHasDebuff("Vulnerable") && WoW.TargetDebuffTimeRemaining("Vulnerable") >= 1800 && WoW.Focus >= 50 )
+                {
+                    WoW.CastSpell("Aimed shot");
 
                 }
                 if (WoW.CanCast("A murder of crows"))
@@ -162,26 +164,17 @@ namespace Frozen.Rotation
                     WoW.CastSpell("A murder of crows");
                 }
 
-
-                if (WoW.CanCast("Marked shot") && WoW.TargetHasDebuff("Hunters Mark") && WoW.Focus >= 70)
-                {
-                    WoW.CastSpell("Marked shot");
-                }
-
-                if (WoW.CanCast("Arcane shot") && !WoW.PlayerHasBuff("Trueshot") && WoW.Focus <= 60)
-                {
-                    WoW.CastSpell("Arcane shot");
-
-                }
-
-
                 if (WoW.CanCast("Arcane shot") && WoW.PlayerHasBuff("Marking Targets") && WoW.Focus <= 60)
                 {
                     WoW.CastSpell("Arcane shot");
                     return;
                 }
+                
+                if (WoW.CanCast("Arcane shot") && !WoW.PlayerHasBuff("Trueshot") && WoW.Focus <= 60)
+                {
+                    WoW.CastSpell("Arcane shot");
 
-
+                }
 
                 if (WoW.CanCast("Aimed shot") && WoW.Focus >= 90)
                 {
