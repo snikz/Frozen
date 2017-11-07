@@ -79,7 +79,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Wake of Ashes");
                         return;
                     }
-                    if (WoW.CanCast("Justicar's Vengeance") && WoW.Level >= 100 && WoW.CurrentHolyPower >= 5 )
+                    if (WoW.CanCast("Justicar's Vengeance") && WoW.Level >= 100 && WoW.CurrentHolyPower >= 5 && WoW.Talent(7) == 1)
                     {
                         WoW.CastSpell("Justicar's Vengeance");
                         return;
@@ -129,7 +129,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Wake of Ashes");
                         return;
                     }
-                    if (WoW.CanCast("Justicar's Vengeance") && WoW.Level >= 100 && WoW.CurrentHolyPower >= 5)
+                    if (WoW.CanCast("Justicar's Vengeance") && WoW.Level >= 100 && WoW.CurrentHolyPower >= 5 && WoW.Talent(7) == 1)
                     {
                         WoW.CastSpell("Justicar's Vengeance");
                         return;
