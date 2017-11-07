@@ -25,7 +25,7 @@ namespace Frozen.Rotation
 
 
             Log.Write("Welcome to BeastMastery DPS rotation");
-            Log.Write("Suggested builds for Raiding: 32121X3 ");
+            Log.Write("Suggested builds for Raiding: xx121X3 ");
         }
 
         public override void Stop()
@@ -118,7 +118,7 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                     if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 )
+                     if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 && WoW.Talent(2) != 2)
 
                      {
                     WoW.CastSpell("Dire beast");
@@ -139,7 +139,7 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if (WoW.CanCast("Cobra shot") && WoW.Focus >= 40)
+                    if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
 
                     {
                         WoW.CastSpell("Cobra shot");
@@ -172,7 +172,7 @@ namespace Frozen.Rotation
                 {
                 WoW.CastSpell("Dire frenzy");
                 }
-                if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1)
+                if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 & WoW.Talent(2) != 2)
 
                 {
                     WoW.CastSpell("Dire beast");
@@ -191,7 +191,7 @@ namespace Frozen.Rotation
                 {
                 WoW.CastSpell("Multi shot");
                 }
-                if( WoW.CanCast("Cobra shot") && WoW.Focus >= 60)
+                if( WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
                 {
                 WoW.CastSpell("Cobra shot");
                 }
