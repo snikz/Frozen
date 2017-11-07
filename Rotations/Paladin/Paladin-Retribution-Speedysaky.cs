@@ -1,16 +1,26 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
 using Frozen.Helpers;
-
+using Frozen.GUI;
+using System.Diagnostics;
 namespace Frozen.Rotation
 {
     public class Retribution : CombatRoutine
     {
+        
+        private Settings settingsForm;
+        public override Form SettingsForm
+        {
+            get { return settingsForm.FormSettings; }
 
-        public override Form SettingsForm { get; set; }
+            set { }
+        }
 
         public override void Initialize()
         {
+
+            settingsForm = new Settings("Paladin Retribution by SpeedySaky", WoWClass.Paladin);
+            settingsForm.Add("Rebuke", new CheckBox(), true);
             Log.Write("Welcome to Retribution DPS rotation");
             Log.Write("Suggested builds: 1212222 ");
         }
@@ -19,7 +29,14 @@ namespace Frozen.Rotation
         {
             Log.Write("For any bugs and suggestions contact me on discord--SpeedySaky");
         }
-        
+
+        private bool Rebuke
+        {
+            get
+            {
+                return settingsForm.ReadSetting<bool>("Rebuke");
+            }
+        }
         public override void OutOfCombatPulse()
         {
 
@@ -27,6 +44,14 @@ namespace Frozen.Rotation
 
         public override void Pulse()
         {
+
+            if (Rebuke && WoW.CanCast("Rebuke") && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Rebuke") && WoW.TargetPercentCast > Random.Next(50, 85))
+
+            {
+                WoW.CastSpell("Rebuke");
+            }
+
+
             if (combatRoutine.Type == RotationType.SingleTarget)
             {
 
@@ -44,12 +69,12 @@ namespace Frozen.Rotation
                         return;
                     }
 
-                    if (WoW.CanCast("Zeal") && WoW.Level >= 30)
+                    if (WoW.CanCast("Zeal") && WoW.Level >= 30 )
                     {
                         WoW.CastSpell("Zeal");
                         return;
                     }
-                    if (WoW.CanCast("Wake of Ashes"))
+                    if (WoW.CanCast("Wake of Ashes") && WoW.Level >= 100)
                     {
                         WoW.CastSpell("Wake of Ashes");
                         return;
@@ -59,7 +84,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Justicar's Vengeance");
                         return;
                     }
-                    if (WoW.CanCast("Templar's Verdict") && WoW.Level >= 10 && WoW.HolyPower >=3)
+                    if (WoW.CanCast("Templar's Verdict") && WoW.Level >= 10 && WoW.CurrentHolyPower >= 3)
                     {
                         WoW.CastSpell("Templar's Verdict");
                         return;
@@ -99,7 +124,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Zeal");
                         return;
                     }
-                    if (WoW.CanCast("Wake of Ashes"))
+                    if (WoW.CanCast("Wake of Ashes") && WoW.Level >= 100)
                     {
                         WoW.CastSpell("Wake of Ashes");
                         return;
@@ -109,7 +134,7 @@ namespace Frozen.Rotation
                         WoW.CastSpell("Justicar's Vengeance");
                         return;
                     }
-                    if (WoW.CanCast("Divine Storm") && WoW.Level >= 10 && WoW.HolyPower >= 3)
+                    if (WoW.CanCast("Divine Storm") && WoW.Level >= 10 && WoW.CurrentHolyPower >= 3)
                     {
                         WoW.CastSpell("Divine Storm");
                         return;
