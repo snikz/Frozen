@@ -7,15 +7,17 @@ SetBinding("F1","TARGETSELF")SaveBindings(2)
 SetBinding("F2","TARGETPARTYMEMBER1")SaveBindings(2)
 SetBinding("F3","TARGETPARTYMEMBER2")SaveBindings(2)
 SetBinding("F4","TARGETPARTYMEMBER3")SaveBindings(2)
-SetBinding("F5","TARGETPARTYMEMBER4")SaveBindings(2)return end;if(LmcA2auZ>30)then LmcA2auZ=30 end;for Q=1,36 do DeleteMacro(1)
-DeleteMacro(37)end
-for ZA=1,LmcA2auZ do local _IQQ=UnitName("raid"..ZA)
-if
-(ZA<=10)then local XpkjA=ZA;if XpkjA>=4 then XpkjA=XpkjA+1 end
-CreateMacro("Tar"..ZA,"INV_MISC_QUESTIONMARK",
-"/tar [mod:alt,@raid".. (ZA+10).."][nomod,@raid"..ZA.."] ",
-nil)SetBindingMacro("F"..XpkjA,"Tar"..ZA)
+SetBinding("F5","TARGETPARTYMEMBER4")SaveBindings(2)return end;if(LmcA2auZ>30)then LmcA2auZ=30 end
+for Q=1,LmcA2auZ do
+local ZA=UnitName("raid"..Q)
+if(Q<=10)then local _IQQ=Q;if _IQQ>=4 then _IQQ=_IQQ+1 end
+if(
+GetMacroIndexByName("Tar"..Q)==0)then
+CreateMacro("Tar"..Q,"INV_MISC_QUESTIONMARK","/tar [mod:alt,@raid"..
+(Q+10).."][nomod,@raid"..Q.."] ",nil)end;SetBindingMacro("F".._IQQ,"Tar"..Q)
 SaveBindings(2)end
-if(ZA<=10)then
-CreateMacro("TarNP"..ZA,"INV_MISC_QUESTIONMARK","/tar [@raid".. (ZA+20).."]",nil)
-SetBindingMacro("NUMPAD".. (ZA-1),"TarNP"..ZA)SaveBindings(2)end end end
+if(Q<=10)then if
+(GetMacroIndexByName("TarNP"..Q)==0)then
+CreateMacro("TarNP"..Q,"INV_MISC_QUESTIONMARK","/tar [@raid".. (Q+20).."]",nil)end;SetBindingMacro("NUMPAD".. (Q-
+1),"TarNP"..Q)
+SaveBindings(2)end end end
