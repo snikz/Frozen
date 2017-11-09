@@ -15,17 +15,18 @@ namespace Frozen.Rotation
             set { }
         }
 
-        
+
         public override void Initialize()
         {
             settingsForm = new Settings("Hunter Beastmastery by SpeedySaky", WoWClass.Hunter);
             settingsForm.Add("Aspect of the turtle", new NumericUpDown(), 30);
             settingsForm.Add("Exhilaration", new NumericUpDown(), 15);
+            settingsForm.Add("Mend Pet", new NumericUpDown(), 50);
             settingsForm.Add("Counter shot", new CheckBox(), true);
 
-
+            
             Log.Write("Welcome to BeastMastery DPS rotation");
-            Log.Write("Suggested builds for Raiding: xx121X3 ");
+            Log.Write("Suggested builds for Raiding: xx121XX ");
         }
 
         public override void Stop()
@@ -56,121 +57,132 @@ namespace Frozen.Rotation
                 return settingsForm.ReadSetting<bool>("Counter shot");
             }
         }
+        private int Mendpet
+        {
+            get
+            {
+                return settingsForm.ReadSetting<int>("Mend pet");
+            }
+        }
 
+
+       
         public override void Pulse()
         {
 
             if (WoW.PlayerIsChanneling)
                 return;
-            
-                if (WoW.HasTarget && WoW.TargetIsEnemy)
+
+            if (WoW.HasTarget && WoW.TargetIsEnemy)
+            {
+                if (WoW.CanCast("Aspect of the wild") && UseCooldowns)
                 {
-                    if (WoW.CanCast("Aspect of the wild") && UseCooldowns)
-                    {
-                        WoW.CastSpell("Aspect of the wild");
-                    }
-
-                    if (WoW.PlayerHealthPercent <= Exhilaration && WoW.CanCast("Exhilaration"))
-                    {
-                        WoW.CastSpell("Exhilaration");
-                    }
-
-                    if (Countershot && WoW.CanCast("Counter shot") && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Counter shot") && WoW.TargetPercentCast > Random.Next(50, 85))
-
-                    {
-                        WoW.CastSpell("Counter shot");
-                    }
-
-
-                    if (WoW.CanCast("Murder of crows") && WoW.Talent(6) == 1)
-                    {
-                        WoW.CastSpell("Murder of crows");
-                    }
-
-
-                    if (WoW.CanCast("Volley") && WoW.Talent(6) == 3 && !WoW.PlayerHasBuff("Volley"))
-
-                    {
-                        WoW.CastSpell("Volley");
-                    }
-
-                    if (WoW.HasPet && WoW.PetHealthPercent <= 40 && WoW.CanCast("Mend pet"))
-
-                    {
-                        WoW.CastSpell("Mend pet");
-                    }
+                    WoW.CastSpell("Aspect of the wild");
                 }
 
-                if (combatRoutine.Type == RotationType.SingleTarget)
+                if (WoW.PlayerHealthPercent <= Exhilaration && WoW.CanCast("Exhilaration"))
                 {
-                    if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsInCombat)
+                    WoW.CastSpell("Exhilaration");
+                }
 
-                  if (WoW.CanCast("Bestial wrath"))
-                  {
-                  WoW.CastSpell("Bestial wrath");
-                  return;
-                  }
+                if (Countershot && WoW.CanCast("Counter shot") && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.IsSpellInRange("Counter shot") && WoW.TargetPercentCast > Random.Next(50, 85))
 
-                    if (WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1 && WoW.Talent(2) == 2)
+                {
+                    WoW.CastSpell("Counter shot");
+                }
 
+
+                if (WoW.CanCast("Murder of crows") && WoW.Talent(6) == 1)
+                {
+                    WoW.CastSpell("Murder of crows");
+                }
+
+
+                if (WoW.CanCast("Volley") && WoW.Talent(6) == 3 && !WoW.PlayerHasBuff("Volley"))
+
+                {
+                    WoW.CastSpell("Volley");
+                }
+
+                if (WoW.HasPet && WoW.PetHealthPercent <= Mendpet && WoW.CanCast("Mend pet"))
+
+                {
+                    WoW.CastSpell("Mend pet");
+                }
+            }
+
+            if (combatRoutine.Type == RotationType.SingleTarget)
+            {
+                if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsInCombat)
+
+                    if (WoW.CanCast("Bestial wrath"))
                     {
-                        WoW.CastSpell("Dire frenzy");
+                        WoW.CastSpell("Bestial wrath");
                         return;
                     }
 
-                     if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 && WoW.Talent(2) != 2)
+                if (WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1 && WoW.Talent(2) == 2)
 
-                     {
+                {
+                    WoW.CastSpell("Dire frenzy");
+                    return;
+                }
+
+                if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 && WoW.Talent(2) != 2)
+
+                {
                     WoW.CastSpell("Dire beast");
                     return;
-                     }
-                     
-
-
-                     if (WoW.CanCast("Kill command"))
-                    {
-                        WoW.CastSpell("Kill command");
-                        return;
-                    }
-                    if (WoW.CanCast("Titans thunder"))
-
-                    {
-                        WoW.CastSpell("Titans thunder");
-                        return;
-                    }
-
-                    if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
-
-                    {
-                        WoW.CastSpell("Cobra shot");
-                        return;
-                    }
                 }
-            
-        
-            if (combatRoutine.Type == RotationType.Cleave )
-                  {
-                          if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsInCombat)
-
-                    if ( WoW.CanCast("Barrage") && WoW.Talent(6) == 2)
-                              
-                    {
-                     WoW.CastSpell("Barrage");
-                    }
-
-                if ( WoW.CanCast("Titans thunder"))
-                                                            
+                if (WoW.CanCast("Kill command"))
                 {
-                WoW.CastSpell("Titans thunder");
+                    WoW.CastSpell("Kill command");
+                    return;
+                }
+                if (WoW.CanCast("Titans thunder"))
+
+                {
+                    WoW.CastSpell("Titans thunder");
+                    return;
+                }
+
+                if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
+
+                {
+                    WoW.CastSpell("Cobra shot");
+                    return;
+                }
+            }
+
+
+            if (combatRoutine.Type == RotationType.Cleave)
+            {
+                if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsInCombat)
+
+                    if (WoW.CanCast("Barrage") && WoW.Talent(6) == 2)
+
+                    {
+                        WoW.CastSpell("Barrage");
+                    }
+                if (WoW.CanCast("Stampedo") && WoW.Talent(7) == 1)
+
+                {
+                    WoW.CastSpell("Stampedo");
+                }
+
+                if (WoW.CanCast("Titans thunder"))
+
+                {
+                    WoW.CastSpell("Titans thunder");
                 }
 
                 if (WoW.CanCast("Bestial wrath"))
                 {
-                WoW.CastSpell("Bestial wrath");
+                    WoW.CastSpell("Bestial wrath");
                 }
-                if( WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1 && WoW.Talent(2) == 2)
+                if (WoW.CanCast("Dire frenzy") && WoW.PlayerBuffStacks("Dire frenzy") <= 1 && WoW.Talent(2) == 2)
                 {
-                WoW.CastSpell("Dire frenzy");
+                    WoW.CastSpell("Dire frenzy");
                 }
                 if (WoW.CanCast("Dire beast") && WoW.PlayerBuffStacks("Dire beast") <= 1 & WoW.Talent(2) != 2)
 
@@ -179,21 +191,21 @@ namespace Frozen.Rotation
                     return;
                 }
 
-                if ( WoW.CanCast("Kill command") && WoW.PetHasBuff("Beast cleave"))                                                                        
+                if (WoW.CanCast("Kill command") && WoW.PetHasBuff("Beast cleave"))
                 {
-                WoW.CastSpell("Kill command");
+                    WoW.CastSpell("Kill command");
                 }
                 if (WoW.CanCast("Multi shot") && WoW.PetBuffTimeRemaining("Beast cleave") <= 500 && WoW.CountEnemyNPCsInRange <= 3)
                 {
-                WoW.CastSpell("Multi shot");
+                    WoW.CastSpell("Multi shot");
                 }
                 if (WoW.CanCast("Multi shot") && WoW.CountEnemyNPCsInRange >= 4)
                 {
-                WoW.CastSpell("Multi shot");
+                    WoW.CastSpell("Multi shot");
                 }
-                if( WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
+                if (WoW.CanCast("Cobra shot") && WoW.Focus >= 80)
                 {
-                WoW.CastSpell("Cobra shot");
+                    WoW.CastSpell("Cobra shot");
                 }
             }
         }
@@ -218,6 +230,7 @@ Spell,131894,Murder of crows
 Spell,217200,Dire frenzy
 Spell,34026,Kill command
 Spell,207068,Titans thunder
+Spell,201430,Stampedo
 Spell,193530,Aspect of the wild
 Spell,193455,Cobra shot
 Spell,109304,Exhilaration
