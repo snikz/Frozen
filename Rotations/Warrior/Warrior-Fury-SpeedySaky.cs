@@ -141,7 +141,7 @@ namespace Frozen.Rotation
                 return;
             }
 
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && WoW.Level >= 60) /
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && WoW.Level >= 60)
 
                 if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <= 6 && WoW.IsInCombat)
                    
