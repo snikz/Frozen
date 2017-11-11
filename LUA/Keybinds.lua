@@ -1,9 +1,9 @@
 
-function SetupKeybinds()local QDnlt=IsInRaid()and"raid"or"party"
-local LmcA2auZ=GetNumGroupMembers()if(LmcA2auZ==0)then SetBinding("F1","TARGETSELF")
-SaveBindings(2)return end
-if(QDnlt=="party")then
-SetBinding("F1","TARGETSELF")SaveBindings(2)
+function SetupKeybinds()if PlayerIsInCombat then return end
+local QDnlt=IsInRaid()and"raid"or"party"local LmcA2auZ=GetNumGroupMembers()if(LmcA2auZ==0)then
+SetBinding("F1","TARGETSELF")SaveBindings(2)return end
+if
+(QDnlt=="party")then SetBinding("F1","TARGETSELF")SaveBindings(2)
 SetBinding("F2","TARGETPARTYMEMBER1")SaveBindings(2)
 SetBinding("F3","TARGETPARTYMEMBER2")SaveBindings(2)
 SetBinding("F4","TARGETPARTYMEMBER3")SaveBindings(2)

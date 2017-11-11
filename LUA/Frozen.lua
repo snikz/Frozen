@@ -49,9 +49,10 @@ wUVm.activeUnitPlates[
 "nameplate"..S]=UnitGUID("nameplate"..S)wO9T=false end end;wO9T=false end end;local function n()
 for aUR,c4 in pairs(wUVm.activeUnitPlates)do if aUR~=UnitGUID("target")then wUVm.activeUnitPlates[aUR]=
 nil end end end
-local function TKu(ZNXs3Bwd,Ginn,...)if Ginn==
-"PLAYER_REGEN_ENABLED"then
-unitCombatFrame.t:SetColorTexture(1,1,1,IWQcC)end;if Ginn=="PLAYER_REGEN_DISABLED"then
+PlayerIsInCombat=false
+local function TKu(ZNXs3Bwd,Ginn,...)if Ginn=="PLAYER_REGEN_ENABLED"then PlayerIsInCombat=false
+unitCombatFrame.t:SetColorTexture(1,1,1,IWQcC)end;if
+Ginn=="PLAYER_REGEN_DISABLED"then PlayerIsInCombat=true
 unitCombatFrame.t:SetColorTexture(1,0,0,IWQcC)end end
 local function M6kL(h_pK)under=math.floor(h_pK)upper=math.floor(h_pK)+1;underV=- (
 under-h_pK)upperV=upper-h_pK;if(upperV>underV)then return
