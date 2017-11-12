@@ -185,7 +185,7 @@ namespace Frozen.Rotation
 			
 			//Heal stuff
             if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRegeneration") &&
-				level >= 36 && WoW.HealthPercent <= 20 && WoW.TargetIsVisible) 
+				level >= 36 && WoW.PlayerHealthPercent <= 20 && WoW.TargetIsVisible) 
             {	
 				if (WoW.CanCast("Enraged Regeneration"))
                 {
@@ -387,11 +387,11 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Furious Slash") && WoW.SetBonus(19) >= 2)
-				{
-					WoW.CastSpell("Furious Slash");
-					return;
-				}
+				//if (WoW.CanCast("Furious Slash") && WoW.SetBonus(19) >= 2)
+				//{
+				//	WoW.CastSpell("Furious Slash");
+				//	return;
+				//}
 
 				if (WoW.CanCast("Raging Blow"))
 				{
