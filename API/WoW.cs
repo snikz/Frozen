@@ -3600,28 +3600,8 @@ namespace Frozen.Helpers
         public static void CastSpell(string spell, bool requirements = true, bool ret = true)
 		{
             Log.Write("Please use the original CastSpell(string spellName) method this version has been confirmed to contain bugs.", Color.Red);
-			if (!CanCast(spell) || !requirements) return;
-			CastSpell(spell);
-			Thread.Sleep(100);
-			if (ret)
-			{
-				if (IsMounted)
-				{
-					frmMain.combatRoutine.MountedPulse();
-				}
-				else
-				{
-					if (IsInCombat)
-					{
-						frmMain.combatRoutine.Pulse();
-					}
-					else
-					{
-						frmMain.combatRoutine.OutOfCombatPulse();
-					}
-				}
-			}
-		}
+            Log.Write("and is now disabled.", Color.Red);
+        }
 
         [DllImport("gdi32.dll")]
         static extern int GetDeviceCaps(IntPtr hdc, int nIndex);
