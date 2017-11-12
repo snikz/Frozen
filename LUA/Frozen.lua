@@ -31,9 +31,17 @@ for JC,PDA in pairs(wUVm)do
 if PDA~=nil then
 if
 (
+
+
+
+
+
+
+
 KfM==581 or KfM==70 or
-KfM==261 or KfM==269 or KfM==263 or KfM==270)then local Kqne5Stra,FKLmmhnQ=LMMNWLk:GetRange(JC)
-if FKLmmhnQ==nil then FKLmmhnQ=100 end;local F82=8;if(KfM==261)then F82=10 end;if
+KfM==261 or KfM==269 or KfM==263 or KfM==71 or KfM==72 or KfM==73 or KfM==66 or KfM==259 or KfM==250 or KfM==251 or KfM==252 or KfM==255 or KfM==268 or KfM==270)then local Kqne5Stra,FKLmmhnQ=LMMNWLk:GetRange(JC)
+if FKLmmhnQ==nil then FKLmmhnQ=100 end;local F82=8;if(KfM==261 or KfM==250 or KfM==259)then
+F82=10 end;if
 UnitCanAttack("player",JC)and FKLmmhnQ<=F82 and UnitIsDead(JC)==false then
 o_v255=o_v255+1 end else if UnitCanAttack("player",JC)and
 LibStub("SpellRange-1.0").IsSpellInRange(P5G,JC)==1 and
