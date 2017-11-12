@@ -51,13 +51,13 @@ namespace Frozen.Helpers
         {
             get
             {
-                random = new Random();
+                random = new Random(DateTime.Now.Millisecond);
 
                 var word = English.Adjective[random.Next(0, English.Adjective.Length)];
 
                 var culture_info = Thread.CurrentThread.CurrentCulture;
                 var text_info = culture_info.TextInfo;
-                return text_info.ToTitleCase(word);
+                return text_info.ToTitleCase(word).Replace("-", "");
             }
         }
 
@@ -66,13 +66,13 @@ namespace Frozen.Helpers
         {
             get
             {
-                random = new Random();
+                random = new Random(DateTime.Now.Millisecond);
 
                 var word = English.Noun[random.Next(0, English.Noun.Length)];
 
                 var culture_info = Thread.CurrentThread.CurrentCulture;
                 var text_info = culture_info.TextInfo;
-                return text_info.ToTitleCase(word);
+                return text_info.ToTitleCase(word).Replace("-", "");
             }
         }
 
