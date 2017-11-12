@@ -72,6 +72,25 @@ namespace Frozen.Rotation
 			//settingsForm.Add("AntiFear", new CheckBox(), true);
 			//settingsForm.Add("AutoPartyCommandingShout", new CheckBox(), true);
         }
+		
+		public int SetBoniListT20
+		{
+			get
+			{
+				string[] idSetboni= { 
+				"147187",
+				"147188",
+				"147189",
+				"147190",
+				"147191",
+				"147192"};
+				int setboni= 0;
+				for (int i = 0; i < idSetboni.Length; i++) 
+					if (WoW.IsEquippedItem(idSetboni[i]))
+						setboni++;
+				return setboni;
+			}
+		}
 
         public override void Stop()
         {
@@ -387,11 +406,11 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				//if (WoW.CanCast("Furious Slash") && WoW.SetBonus(19) >= 2)
-				//{
-				//	WoW.CastSpell("Furious Slash");
-				//	return;
-				//}
+				if (WoW.CanCast("Furious Slash") && SetBoniListT20 >= 2)
+				{
+					WoW.CastSpell("Furious Slash");
+					return;
+				}
 
 				if (WoW.CanCast("Raging Blow"))
 				{
