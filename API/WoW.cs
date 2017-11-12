@@ -42,9 +42,7 @@
         public static void TargetMember(int i)
         public static int CurrentPartyTargetId { get; private set; }
         public static int CountEnemyNPCsInRange
-        public static bool Nameplates
-        public static int SetBonus(int tier)
-        public static int Legendary(int num)
+        public static bool Nameplates        
         public static int PetHealthPercent
         public static bool InGame
         public static bool InRaid
