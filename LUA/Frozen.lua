@@ -1,34 +1,33 @@
-local rb21L2=0;local o_v255=0;local wUVm={}local VQ=nil
-local oTYNsnP={["Human"]=0.01,["Dwarf"]=0.02,["NightElf"]=0.03,["Gnome"]=0.04,["Draenei"]=0.05,["Pandaren"]=0.06,["Orc"]=0.07,["Scourge"]=0.08,["Tauren"]=0.09,["Troll"]=0.10,["BloodElf"]=0.11,["Goblin"]=0.12,["Worgen"]=0.13}
-local I={[0]=0.00,[250]=0.01,[251]=0.02,[252]=0.03,[577]=0.04,[581]=0.05,[102]=0.06,[103]=0.07,[104]=0.08,[105]=0.09,[253]=0.10,[254]=0.11,[255]=0.12,[62]=0.13,[63]=0.14,[64]=0.15,[268]=0.16,[269]=0.17,[270]=0.18,[65]=0.19,[66]=0.20,[70]=0.21,[256]=0.22,[257]=0.23,[258]=0.24,[259]=0.25,[260]=0.26,[261]=0.27,[262]=0.28,[263]=0.29,[264]=0.30,[265]=0.31,[71]=0.32,[72]=0.33,[73]=0.34,[266]=0.35,[267]=0.36}
-local LmR5gwW={[0]="Death Strike",[250]="Death Strike",[251]="Frost Strike",[252]="Festering Strike",[577]="Chaos Strike",[581]="Shear",[102]="Solar Wrath",[103]="Shred",[104]="Mangle",[105]="Solar Wrath",[253]="Counter Shot",[254]="Counter Shot",[255]="Mongoose Bite",[62]="Arcane Blast",[63]="Fireball",[64]="Frostbolt",[268]="Blackout Strike",[269]="Rising Sun Kick",[270]="Rising Sun Kick",[65]="Crusader Strike",[66]="Shield of the Righteous",[70]="Crusader Strike",[256]="Penance",[257]="Smite",[258]="Mind Blast",[259]="Mutilate",[260]="Saber Slash",[261]="Backstab",[262]="Lightning Bolt",[263]="Rockbiter",[264]="Lightning Bolt",[265]="Agony",[71]="Mortal Strike",[72]="Bloodthirst",[73]="Devastate",[266]="Doom",[267]="Incinerate"}local DfbW;local sh={}local rrFLbCtj={}local YcPea0vg={}local usLpLoaH={}local e7dv={}local inx0={}local A5k5yt={}local B7SHDx7h={}
-local EEpoeR={}local _k=0;local Ef=GetSpecialization()local KfM=0;local Vd={}local Oynw={}local QBO={}local s4ggux={}
-local hrVI4meU={}local xEq6TAF={}local UIjls={}local jdLnB0vD={}local PSlD={}local nN=nil;local J=nil;local A={}local g3Qeqnr=nil;local qHpY64=nil
-local z={}local qccJ5b=nil;local ARuba=nil;local Wo53nZ=nil;local XRfQ=nil;local gFPRdEC=nil;local lw9gLt3={}local TI5={}local JmE={}
-local s4={}local FFG={}local a31jEAS={}local LS4h={}local eux092_P={}local ZA9=0;local hWgmxm=0;local UBg54E=0;local gQGq=0;local OyHc5FEv=0
-local Dn1Xi=nil;local _gGmBBE=1;local rIX4={}local AI14eFhp={}local iW2O={}local Gdp,nbqmx,IWQcC=UnitClass("player")
-local cvRh=0;local W9yaJm=0;local oJ1ec={}local LMMNWLk=LibStub("LibRangeCheck-2.0")
-PlayerIsInCombat=false;local x6Ni=GetCurrentResolution()
-local Q2waXkyp=select(x6Ni,GetScreenResolutions())local EG72,mlTMZ=strsplit("x",Q2waXkyp,2)
-local q=GetScreenWidth()/EG72;parent=CreateFrame("frame","Recount",UIParent)
-parent:SetSize(40,25)parent:SetPoint("TOPLEFT",0,0)parent:SetScale(q)
-parent:RegisterEvent("ADDON_LOADED")parent:RegisterEvent("NAME_PLATE_UNIT_ADDED")
-parent:RegisterEvent("PLAYER_ENTERING_WORLD")parent:RegisterEvent("PLAYER_REGEN_DISABLED")
-parent:RegisterEvent("PLAYER_REGEN_ENABLED")
+local F2tY=0;local rb21L2=0;local o_v255={}local wUVm=nil
+local VQ={["Human"]=0.01,["Dwarf"]=0.02,["NightElf"]=0.03,["Gnome"]=0.04,["Draenei"]=0.05,["Pandaren"]=0.06,["Orc"]=0.07,["Scourge"]=0.08,["Tauren"]=0.09,["Troll"]=0.10,["BloodElf"]=0.11,["Goblin"]=0.12,["Worgen"]=0.13}
+local oTYNsnP={[0]=0.00,[250]=0.01,[251]=0.02,[252]=0.03,[577]=0.04,[581]=0.05,[102]=0.06,[103]=0.07,[104]=0.08,[105]=0.09,[253]=0.10,[254]=0.11,[255]=0.12,[62]=0.13,[63]=0.14,[64]=0.15,[268]=0.16,[269]=0.17,[270]=0.18,[65]=0.19,[66]=0.20,[70]=0.21,[256]=0.22,[257]=0.23,[258]=0.24,[259]=0.25,[260]=0.26,[261]=0.27,[262]=0.28,[263]=0.29,[264]=0.30,[265]=0.31,[71]=0.32,[72]=0.33,[73]=0.34,[266]=0.35,[267]=0.36}
+local I={[0]="Death Strike",[250]="Death Strike",[251]="Frost Strike",[252]="Festering Strike",[577]="Chaos Strike",[581]="Shear",[102]="Solar Wrath",[103]="Shred",[104]="Mangle",[105]="Solar Wrath",[253]="Counter Shot",[254]="Counter Shot",[255]="Mongoose Bite",[62]="Arcane Blast",[63]="Fireball",[64]="Frostbolt",[268]="Blackout Strike",[269]="Rising Sun Kick",[270]="Rising Sun Kick",[65]="Crusader Strike",[66]="Shield of the Righteous",[70]="Crusader Strike",[256]="Penance",[257]="Smite",[258]="Mind Blast",[259]="Mutilate",[260]="Saber Slash",[261]="Backstab",[262]="Lightning Bolt",[263]="Rockbiter",[264]="Lightning Bolt",[265]="Agony",[71]="Mortal Strike",[72]="Bloodthirst",[73]="Devastate",[266]="Doom",[267]="Incinerate"}local LmR5gwW;local DfbW={}local sh={}local rrFLbCtj={}local YcPea0vg={}local usLpLoaH={}local e7dv={}local inx0={}local A5k5yt={}
+local B7SHDx7h={}local EEpoeR=0;local _k=GetSpecialization()local Ef=0;local KfM={}local Vd={}local Oynw={}local QBO={}
+local s4ggux={}local hrVI4meU={}local xEq6TAF={}local UIjls={}local jdLnB0vD={}local PSlD=nil;local nN=nil;local J={}local A=nil;local g3Qeqnr=nil
+local qHpY64={}local z=nil;local qccJ5b=nil;local ARuba=nil;local Wo53nZ=nil;local XRfQ=nil;local gFPRdEC={}local lw9gLt3={}local TI5={}
+local JmE={}local s4={}local FFG={}local a31jEAS={}local LS4h={}local eux092_P=0;local ZA9=0;local hWgmxm=0;local UBg54E=0;local gQGq=0
+local OyHc5FEv=nil;local Dn1Xi=1;local _gGmBBE={}local rIX4={}local AI14eFhp={}local iW2O,Gdp,nbqmx=UnitClass("player")
+local IWQcC=0;local cvRh=0;local W9yaJm={}local oJ1ec=LibStub("LibRangeCheck-2.0")
+PlayerIsInCombat=false;local LMMNWLk=GetCurrentResolution()
+local x6Ni=select(LMMNWLk,GetScreenResolutions())local Q2waXkyp,EG72=strsplit("x",x6Ni,2)
+local mlTMZ=GetScreenWidth()/Q2waXkyp;parent=CreateFrame("frame","Recount",UIParent)
+parent:SetSize(40,25)parent:SetPoint("TOPLEFT",0,0)
+parent:SetScale(mlTMZ)parent:RegisterEvent("ADDON_LOADED")
+parent:RegisterEvent("NAME_PLATE_UNIT_ADDED")parent:RegisterEvent("PLAYER_ENTERING_WORLD")
+parent:RegisterEvent("PLAYER_REGEN_DISABLED")parent:RegisterEvent("PLAYER_REGEN_ENABLED")
 parent:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")parent.t=parent:CreateTexture()
 parent.t:SetColorTexture(0,0,0,1)parent.t:SetAllPoints(parent)
-parent:SetFrameStrata("TOOLTIP")local function xb6(s0FU,wQl)return
-(("%%.%df"):format(wQl)):format(s0FU)end
-local function yK(g)if UnitIsDead(g)or
-UnitIsGhost(g)then return 0 end;local m4u=UnitHealth(g)
-local StZ=UnitHealthMax(g)local C1NqzxY=ceil((m4u/StZ)*100)local T1gVrYq="0.0"..C1NqzxY;if(
-C1NqzxY>=10)then T1gVrYq="0."..C1NqzxY end
-val=tonumber(T1gVrYq)if C1NqzxY==100 then val=1 end;return val end
-local function rHLz2GD()
-KfM=Ef and
-select(1,GetSpecializationInfo(GetSpecialization()))or 0;o_v255=0;local P5G=LmR5gwW[KfM]
-for JC,PDA in pairs(wUVm)do
-if PDA~=nil then
+parent:SetFrameStrata("TOOLTIP")local function q(K,uK)
+return(("%%.%df"):format(uK)):format(K)end
+local function xb6(s0FU)if
+UnitIsDead(s0FU)or UnitIsGhost(s0FU)then return 0 end;local wQl=UnitHealth(s0FU)
+local g=UnitHealthMax(s0FU)local m4u=ceil((wQl/g)*100)local StZ="0.0"..m4u;if(m4u>=10)then
+StZ="0."..m4u end;val=tonumber(StZ)if m4u==100 then val=1 end;return val end
+local function yK()
+Ef=_k and
+select(1,GetSpecializationInfo(GetSpecialization()))or 0;rb21L2=0;local C1NqzxY=I[Ef]
+for T1gVrYq,P5G in pairs(o_v255)do
+if P5G~=nil then
 if
 (
 
@@ -38,761 +37,767 @@ if
 
 
 
-KfM==581 or KfM==70 or
-KfM==261 or KfM==269 or KfM==263 or KfM==71 or KfM==72 or KfM==73 or KfM==66 or KfM==259 or KfM==250 or KfM==251 or KfM==252 or KfM==255 or KfM==268 or KfM==270)then local Kqne5Stra,FKLmmhnQ=LMMNWLk:GetRange(JC)
-if FKLmmhnQ==nil then FKLmmhnQ=100 end;local F82=8;if(KfM==261 or KfM==250 or KfM==259)then
-F82=10 end;if
-UnitCanAttack("player",JC)and FKLmmhnQ<=F82 and UnitIsDead(JC)==false then
-o_v255=o_v255+1 end else if UnitCanAttack("player",JC)and
-LibStub("SpellRange-1.0").IsSpellInRange(P5G,JC)==1 and
-UnitIsDead(JC)==false then
-o_v255=o_v255+1 end end end end;o_v255=o_v255/100
-VQ.t:SetColorTexture(1,o_v255,rb21L2,_gGmBBE)end
-local function BlW0RhJA(wJ6tY_)local TNg=false;for wO9T,QMcSUqdi in pairs(wUVm)do wUVm[wO9T]=nil end
-for sKy2P9i=1,30 do
-if UnitGUID("nameplate"..
-sKy2P9i)~=nil and not
-UnitIsPlayer("nameplate"..sKy2P9i)then for S,AD in pairs(wUVm)do
-if AD==UnitGUID(
-"nameplate"..sKy2P9i)then TNg=true end end
-if TNg==false then wUVm["nameplate"..sKy2P9i]=UnitGUID(
-"nameplate"..sKy2P9i)TNg=false end end;TNg=false end end
-local function Uy(AkxLdb66,aUR,...)if aUR=="PLAYER_REGEN_ENABLED"then PlayerIsInCombat=false
-unitCombatFrame.t:SetColorTexture(1,1,1,_gGmBBE)end;if
-aUR=="PLAYER_REGEN_DISABLED"then PlayerIsInCombat=true
-unitCombatFrame.t:SetColorTexture(1,0,0,_gGmBBE)end end
-local function n(c4)under=math.floor(c4)upper=math.floor(c4)+1;underV=-
-(under-c4)upperV=upper-c4
+Ef==581 or Ef==70 or Ef==261 or Ef==269 or Ef==263 or Ef==71 or Ef==72 or Ef==73 or Ef==66 or Ef==259 or Ef==250 or Ef==251 or Ef==252 or Ef==255 or Ef==268 or Ef==270)then local JC,PDA=oJ1ec:GetRange(T1gVrYq)if PDA==nil then PDA=100 end;local K=8
+if(
+Ef==261 or Ef==250 or Ef==259)then K=10 end
+if UnitCanAttack("player",T1gVrYq)and PDA<=K and UnitIsDead(T1gVrYq)==
+false then rb21L2=rb21L2+1 end else
+if
+
+UnitCanAttack("player",T1gVrYq)and
+LibStub("SpellRange-1.0").IsSpellInRange(C1NqzxY,T1gVrYq)==1 and UnitIsDead(T1gVrYq)==false then rb21L2=rb21L2+1 end end end end;rb21L2=rb21L2/100
+wUVm.t:SetColorTexture(1,rb21L2,F2tY,Dn1Xi)end
+local function rHLz2GD(qne5Stra)local FKLmmhnQ=false;for F82,wJ6tY_ in pairs(o_v255)do o_v255[F82]=nil end
+for TNg=1,30 do
+if UnitGUID(
+"nameplate"..TNg)~=nil and not
+UnitIsPlayer("nameplate"..TNg)then for wO9T,QMcSUqdi in pairs(o_v255)do
+if QMcSUqdi==UnitGUID(
+"nameplate"..TNg)then FKLmmhnQ=true end end;if FKLmmhnQ==false then
+o_v255["nameplate"..
+TNg]=UnitGUID("nameplate"..TNg)FKLmmhnQ=false end end;FKLmmhnQ=false end end
+local function BlW0RhJA(sKy2P9i,S,...)if S=="PLAYER_REGEN_ENABLED"then PlayerIsInCombat=false
+unitCombatFrame.t:SetColorTexture(1,1,1,Dn1Xi)end;if
+S=="PLAYER_REGEN_DISABLED"then PlayerIsInCombat=true
+unitCombatFrame.t:SetColorTexture(1,0,0,Dn1Xi)end end
+local function Uy(AD)under=math.floor(AD)upper=math.floor(AD)+1;underV=-
+(under-AD)upperV=upper-AD
 if(upperV>underV)then return under else return upper end end
-local function TKu()Ef=GetSpecialization()KfM=Ef and
-select(1,GetSpecializationInfo(Ef))or 0
-local ZNXs3Bwd={}AllSeven=false
-for Ginn=1,GetMaxTalentTier()do talenetSelected=false
-for h_pK=1,3 do
-local L=select(4,GetTalentInfo(Ginn,h_pK,1))
-if(L==true)then ZNXs3Bwd[Ginn]=h_pK/100;talenetSelected=true end
-if talenetSelected==false and h_pK==3 then ZNXs3Bwd[Ginn]=0 end end;if Ginn==7 then AllSeven=true end end;if not AllSeven then
-for vBKFXR3=GetMaxTalentTier(),7 do ZNXs3Bwd[vBKFXR3]=0 end end
-AI14eFhp[1].t:SetColorTexture(ZNXs3Bwd[1],ZNXs3Bwd[2],ZNXs3Bwd[3],_gGmBBE)
-AI14eFhp[2].t:SetColorTexture(ZNXs3Bwd[4],ZNXs3Bwd[5],ZNXs3Bwd[6],_gGmBBE)
-AI14eFhp[3].t:SetColorTexture(ZNXs3Bwd[7],oTYNsnP[select(2,UnitRace("player"))],0,_gGmBBE)
-AI14eFhp[4].t:SetColorTexture(I[KfM],0,0,_gGmBBE)end
-local function M6kL()if not UnitExists("target")then return end
-for FP3j,fe in pairs(PlayerBuffs)do
-local ggnA=GetSpellInfo(fe)
-local KaD2ExEO,FP3j,FP3j,FP3j,FP3j,FP3j,TpiFT,FP3j,FP3j,FP3j,JCH=UnitBuff("target",ggnA,nil,"PLAYER")
-if(KaD2ExEO==ggnA and TpiFT~=0)then local sJ05I=TpiFT-GetTime()-
+local function n()_k=GetSpecialization()Ef=_k and
+select(1,GetSpecializationInfo(_k))or 0
+local AkxLdb66={}AllSeven=false
+for aUR=1,GetMaxTalentTier()do talenetSelected=false
+for c4=1,3 do
+local ZNXs3Bwd=select(4,GetTalentInfo(aUR,c4,1))
+if(ZNXs3Bwd==true)then AkxLdb66[aUR]=c4/100;talenetSelected=true end
+if talenetSelected==false and c4 ==3 then AkxLdb66[aUR]=0 end end;if aUR==7 then AllSeven=true end end;if not AllSeven then
+for Ginn=GetMaxTalentTier(),7 do AkxLdb66[Ginn]=0 end end
+rIX4[1].t:SetColorTexture(AkxLdb66[1],AkxLdb66[2],AkxLdb66[3],Dn1Xi)
+rIX4[2].t:SetColorTexture(AkxLdb66[4],AkxLdb66[5],AkxLdb66[6],Dn1Xi)
+rIX4[3].t:SetColorTexture(AkxLdb66[7],VQ[select(2,UnitRace("player"))],0,Dn1Xi)
+rIX4[4].t:SetColorTexture(oTYNsnP[Ef],0,0,Dn1Xi)button3:Enable()cleaveText="AOE On"
+if IsHealer()then cleaveText="Damage"end
+if IsMelee()then button3:SetWidth(80)button3:Disable()
+cleaveText="Auto AOE"normalTexture3:SetColorTexture(0.8,0,0,1)end;button3:SetText(cleaveText)end
+local function TKu()if not UnitExists("target")then return end
+for h_pK,L in pairs(PlayerBuffs)do
+local vBKFXR3=GetSpellInfo(L)
+local FP3j,h_pK,h_pK,h_pK,h_pK,h_pK,fe,h_pK,h_pK,h_pK,ggnA=UnitBuff("target",vBKFXR3,nil,"PLAYER")
+if(FP3j==vBKFXR3 and fe~=0)then local KaD2ExEO=fe-GetTime()-
 select(4,GetNetStats())/1000
-sJ05I=xb6(sJ05I,1)local HrLCim,w=strsplit(".",sJ05I)
-local sUu7z=tonumber(HrLCim)/100;local M5oB=tonumber(w)/100;if(sUu7z>1)then sUu7z=1 end
-a31jEAS[fe].t:SetColorTexture(1,sUu7z,M5oB,_gGmBBE)a31jEAS[fe].t:SetAllPoints(false)else
-a31jEAS[fe].t:SetColorTexture(0,1,1,_gGmBBE)a31jEAS[fe].t:SetAllPoints(false)end end end
-local function M7o_()local xIyIKo=0;if IWQcC==2 then
-xIyIKo=UnitPower("player",SPELL_POWER_HOLY_POWER)end;if IWQcC==9 then
-xIyIKo=UnitPower("player",SPELL_POWER_SOUL_SHARDS)end;if IWQcC==8 then
-xIyIKo=UnitPower("player",SPELL_POWER_ARCANE_CHARGES)end;if IWQcC==4 then
-xIyIKo=UnitPower("player",SPELL_POWER_COMBO_POINTS)end;if IWQcC==11 then
-xIyIKo=UnitPower("player",SPELL_POWER_COMBO_POINTS)end
-if IWQcC==6 then
-local f2x=UnitPower("player",SPELL_POWER_RUNES)local Nwl=6;local Xpt_SQ=1;for Xpt_SQ=1,f2x do
-local Y=select(3,GetRuneCooldown(Xpt_SQ))if not Y then Nwl=Nwl-1 end end
-xIyIKo=Nwl end
-if IWQcC==10 then xIyIKo=UnitPower("player",SPELL_POWER_CHI)end;if xIyIKo~=OyHc5FEv then
-unitPowerFrame.t:SetColorTexture(0,xIyIKo/100,0,_gGmBBE)unitPowerFrame.t:SetAllPoints(false)
-OyHc5FEv=xIyIKo end end;local dk2X7J7=nil
-local function jv(SMa,Bo)local zF6ZPjQ=UnitExists("pet")
+KaD2ExEO=q(KaD2ExEO,1)local TpiFT,JCH=strsplit(".",KaD2ExEO)
+local sJ05I=tonumber(TpiFT)/100;local HrLCim=tonumber(JCH)/100;if(sJ05I>1)then sJ05I=1 end
+FFG[L].t:SetColorTexture(1,sJ05I,HrLCim,Dn1Xi)FFG[L].t:SetAllPoints(false)else
+FFG[L].t:SetColorTexture(0,1,1,Dn1Xi)FFG[L].t:SetAllPoints(false)end end end
+local function M6kL()local w=0
+if nbqmx==2 then w=UnitPower("player",SPELL_POWER_HOLY_POWER)end
+if nbqmx==9 then w=UnitPower("player",SPELL_POWER_SOUL_SHARDS)end;if nbqmx==8 then
+w=UnitPower("player",SPELL_POWER_ARCANE_CHARGES)end;if nbqmx==4 then
+w=UnitPower("player",SPELL_POWER_COMBO_POINTS)end;if nbqmx==11 then
+w=UnitPower("player",SPELL_POWER_COMBO_POINTS)end
+if nbqmx==6 then
+local sUu7z=UnitPower("player",SPELL_POWER_RUNES)local M5oB=6;local xIyIKo=1
+for xIyIKo=1,sUu7z do
+local f2x=select(3,GetRuneCooldown(xIyIKo))if not f2x then M5oB=M5oB-1 end end;w=M5oB end
+if nbqmx==10 then w=UnitPower("player",SPELL_POWER_CHI)end
+if w~=gQGq then
+unitPowerFrame.t:SetColorTexture(0,w/100,0,Dn1Xi)unitPowerFrame.t:SetAllPoints(false)gQGq=w end end;local M7o_=nil
+local function dk2X7J7(Nwl,Xpt_SQ)local Y=UnitExists("pet")
 if
-(zF6ZPjQ==false or UnitIsDead("pet"))then if(zF6ZPjQ~=dk2X7J7)then
-gFPRdEC.t:SetColorTexture(1,1,1,_gGmBBE)dk2X7J7=zF6ZPjQ end else if zF6ZPjQ~=dk2X7J7 and not
-UnitIsDead("player")then
-gFPRdEC.t:SetColorTexture(1,0,0,_gGmBBE)dk2X7J7=zF6ZPjQ end end end
-local function MW()if KfM==270 or KfM==65 or KfM==257 or KfM==256 or KfM==
-264 or KfM==105 then return
-true else return false end end
-local function E2OQ(nNQG3,yW)
-for efGM8UMy,KhH in pairs(SpellCooldowns)do local H4tXd,Nq6If,efGM8UMy=GetSpellCooldown(KhH)
-local II=(H4tXd+Nq6If-
-GetTime()-select(4,GetNetStats())/1000)if II<0 then II=0 end;local Y_tefq=GetSpellInfo(KhH)
-local i,a3u=IsUsableSpell(Y_tefq)
-if II~=0 then II=xb6(II,1)local nzhB,sTxVGmb=strsplit(".",II)
-local GSIcq=tonumber(nzhB)/100;local Go=tonumber(sTxVGmb)/100
-usLpLoaH[KhH].t:SetColorTexture(0,GSIcq,Go,_gGmBBE)usLpLoaH[KhH].t:SetAllPoints(false)else if(a3u and
-MW())then
-usLpLoaH[KhH].t:SetColorTexture(0,1,1,_gGmBBE)else
-usLpLoaH[KhH].t:SetColorTexture(1,1,1,_gGmBBE)end
-usLpLoaH[KhH].t:SetAllPoints(false)end end end
-local function SnbfLb6(DGf,kgRX7X)
-for JB,GGJhclKa in pairs(InventoryItems)do local KWahIz,X2kyW,JB=GetItemCooldown(GGJhclKa)local pVlvW=
-KWahIz+X2kyW-GetTime()local QcKn_=0;if pVlvW<0 then pVlvW=0 end
-local jiM=0;if IsEquippedItem(GGJhclKa)then jiM=1 else jiM=0 end;local YUdA=
-GetItemCount(GGJhclKa)/100;if YUdA>=100 then QcKn_=1 end;if pVlvW==0 or
-QcKn_==0 then
-LS4h[GGJhclKa].t:SetColorTexture(0,jiM,QcKn_,_gGmBBE)else
-LS4h[GGJhclKa].t:SetColorTexture(1,jiM,QcKn_,_gGmBBE)end end end
-local function ay(lx3cpJ,Yx9)
-for Mn,ut0 in pairs(SpellCooldowns)do charges,Mn,Mn,Mn=GetSpellCharges(ut0)if
-(ut0 ==205406 or
-ut0 ==115072 or ut0 ==101546)then charges=GetSpellCount(ut0)end;if(
-TI5[ut0]~=charges)then
-e7dv[ut0].t:SetColorTexture(0,charges/100,0,_gGmBBE)e7dv[ut0].t:SetAllPoints(false)
-TI5[ut0]=charges end end end
-local function W(ZFhlP6eg,ExUgDG)
-for jc4o42jz,jc in pairs(PlayerBuffs)do local Ojz_=GetSpellInfo(jc)if(Ojz_==nil)then print(
-'Unable to find aura (Buff) with Id: '..jc)
-return end
-local x,jc4o42jz,jc4o42jz,Xtecl,jc4o42jz,KVcYU,_,jc4o42jz,jc4o42jz,jc4o42jz,C=UnitBuff("player",Ojz_)
-if(jc==120694)and UnitBuff("player",Ojz_)then local CJeG=0
-for x6Ni=1,40 do
-local x,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,C,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz,jc4o42jz=UnitBuff("player",x6Ni)if C==120694 then CJeG=CJeG+1 end end;Xtecl=CJeG end
-if(x==Ojz_)then local F43eMG=GetTime()remainingTime=xb6(_-F43eMG,1)
-local mCzjh4,lU=strsplit(".",remainingTime)local epQue9=tonumber(mCzjh4)/100
-local cHUJrj=tonumber(lU)/100
-inx0[jc].t:SetColorTexture(Xtecl/100,epQue9,cHUJrj,_gGmBBE)inx0[jc].t:SetAllPoints(false)else
-inx0[jc].t:SetColorTexture(1,1,1,_gGmBBE)inx0[jc].t:SetAllPoints(false)end end end
-local function WzM(EI0x,E)
-for lacOdjf9,R2h4lP4l in pairs(PlayerDebuffs)do local Fh=GetSpellInfo(R2h4lP4l)
-if Fh==nil then
-if(FFG[R2h4lP4l]~=
-"DebuffOff")then
-xEq6TAF[R2h4lP4l].t:SetColorTexture(1,1,1,_gGmBBE)
-xEq6TAF[R2h4lP4l].t:SetAllPoints(false)FFG[R2h4lP4l]="DebuffOff"end;return end
-local a2e9fa,lacOdjf9,lacOdjf9,Rc9_ZID,lacOdjf9,H1HF2wD6,hBph,lacOdjf9,lacOdjf9,lacOdjf9,bxNo9h,lacOdjf9,lacOdjf9,lacOdjf9,lacOdjf9,lacOdjf9=UnitDebuff("target",Fh,nil,"PLAYER|HARMFUL")
-if R2h4lP4l==233490 and(a2e9fa==Fh)then local Khst=0
-for x6Ni=1,40 do
-name2,lacOdjf9,lacOdjf9,count2,lacOdjf9,H1HF2wD6,expirationTime2,lacOdjf9,lacOdjf9,lacOdjf9,spellId2,lacOdjf9,lacOdjf9,lacOdjf9,lacOdjf9,lacOdjf9=UnitDebuff("target",x6Ni,"PLAYER|HARMFUL")
+(Y==false or UnitIsDead("pet"))then
+if(Y~=M7o_)then XRfQ.t:SetColorTexture(1,1,1,Dn1Xi)M7o_=Y end else if Y~=M7o_ and not UnitIsDead("player")then
+XRfQ.t:SetColorTexture(1,0,0,Dn1Xi)M7o_=Y end end end;function IsHealer()
+if
+Ef==270 or Ef==65 or Ef==257 or Ef==256 or Ef==264 or Ef==105 then return true else return false end end
+function IsMelee()
 if
 
-spellId2 ==233490 or spellId2 ==233496 or spellId2 ==233497 or spellId2 ==233498 or spellId2 ==233499 then Khst=Khst+1 end end;Rc9_ZID=Khst end
-if(a2e9fa==Fh)then local pUT=GetTime()remainingTime=xb6(hBph-pUT,1)
+
+
+
+
+
+
+
+
+Ef==250 or Ef==
+251 or Ef==252 or Ef==577 or Ef==581 or Ef==103 or Ef==104 or Ef==255 or Ef==268 or Ef==269 or Ef==66 or Ef==70 or
+Ef==259 or
+Ef==260 or Ef==261 or Ef==263 or Ef==71 or Ef==72 or Ef==73 then return true else return false end end
+local function jv(SMa,Bo)
+for zF6ZPjQ,nNQG3 in pairs(SpellCooldowns)do local yW,efGM8UMy,zF6ZPjQ=GetSpellCooldown(nNQG3)
+local KhH=(
+yW+efGM8UMy-GetTime()-select(4,GetNetStats())/1000)if KhH<0 then KhH=0 end;local H4tXd=GetSpellInfo(nNQG3)
+local Nq6If,II=IsUsableSpell(H4tXd)
+if KhH~=0 then KhH=q(KhH,1)local Y_tefq,i=strsplit(".",KhH)
+local a3u=tonumber(Y_tefq)/100;local nzhB=tonumber(i)/100
+YcPea0vg[nNQG3].t:SetColorTexture(0,a3u,nzhB,Dn1Xi)
+YcPea0vg[nNQG3].t:SetAllPoints(false)else if(II and IsHealer())then
+YcPea0vg[nNQG3].t:SetColorTexture(0,1,1,Dn1Xi)else
+YcPea0vg[nNQG3].t:SetColorTexture(1,1,1,Dn1Xi)end
+YcPea0vg[nNQG3].t:SetAllPoints(false)end end end
+local function MW(sTxVGmb,GSIcq)
+for Go,DGf in pairs(InventoryItems)do local kgRX7X,JB,Go=GetItemCooldown(DGf)
+local GGJhclKa=kgRX7X+JB-GetTime()local KWahIz=0;if GGJhclKa<0 then GGJhclKa=0 end;local X2kyW=0;if IsEquippedItem(DGf)then X2kyW=1 else
+X2kyW=0 end;local pVlvW=GetItemCount(DGf)/100;if
+pVlvW>=100 then KWahIz=1 end;if GGJhclKa==0 or KWahIz==0 then
+a31jEAS[DGf].t:SetColorTexture(0,X2kyW,KWahIz,Dn1Xi)else
+a31jEAS[DGf].t:SetColorTexture(1,X2kyW,KWahIz,Dn1Xi)end end end
+local function E2OQ(QcKn_,jiM)
+for YUdA,lx3cpJ in pairs(SpellCooldowns)do charges,YUdA,YUdA,YUdA=GetSpellCharges(lx3cpJ)
 if
 (
-FFG[R2h4lP4l]~="DebuffOn"..Rc9_ZID..remainingTime)then local ISg1,Gh5UJya=strsplit(".",remainingTime)
-local k=tonumber(ISg1)/100;local Z8Ue=tonumber(Gh5UJya)/100;if bxNo9h==34914 then end
-xEq6TAF[R2h4lP4l].t:SetColorTexture(
-Rc9_ZID/100,k,Z8Ue,_gGmBBE)
-FFG[R2h4lP4l]="DebuffOn"..Rc9_ZID..remainingTime end else
-if(FFG[R2h4lP4l]~="DebuffOff")then
-xEq6TAF[R2h4lP4l].t:SetColorTexture(1,1,1,_gGmBBE)FFG[R2h4lP4l]="DebuffOff"end end end end;local PSx={}
-local function IwnA(TXbmx,r)
-for Pqgz415t,McNxKV in pairs(SpellCooldowns)do local WcwGYJh=0
-local gJt,Pqgz415t,Pqgz415t,Pqgz415t,Pqgz415t,Pqgz415t=GetSpellInfo(McNxKV)if(gJt==nil)then WcwGYJh=0 else
-WcwGYJh=LibStub("SpellRange-1.0").IsSpellInRange(McNxKV,"target")end
-if PSx[McNxKV]~=WcwGYJh then if(
-WcwGYJh==1)then
-UIjls[McNxKV].t:SetColorTexture(1,0,0,_gGmBBE)else
-UIjls[McNxKV].t:SetColorTexture(1,1,1,_gGmBBE)end
-UIjls[McNxKV].t:SetAllPoints(false)PSx[McNxKV]=WcwGYJh end end end
-local function cW()
+lx3cpJ==205406 or lx3cpJ==115072 or lx3cpJ==101546)then charges=GetSpellCount(lx3cpJ)end
+if(lw9gLt3[lx3cpJ]~=charges)then usLpLoaH[lx3cpJ].t:SetColorTexture(0,
+charges/100,0,Dn1Xi)
+usLpLoaH[lx3cpJ].t:SetAllPoints(false)lw9gLt3[lx3cpJ]=charges end end end
+local function SnbfLb6(Yx9,Mn)
+for ut0,ZFhlP6eg in pairs(PlayerBuffs)do local ExUgDG=GetSpellInfo(ZFhlP6eg)if(ExUgDG==nil)then
+print(
+'Unable to find aura (Buff) with Id: '..ZFhlP6eg)return end
+local jc4o42jz,ut0,ut0,jc,ut0,Ojz_,x,ut0,ut0,ut0,Xtecl=UnitBuff("player",ExUgDG)
+if(ZFhlP6eg==120694)and UnitBuff("player",ExUgDG)then
+local KVcYU=0
+for LMMNWLk=1,40 do
+local jc4o42jz,ut0,ut0,ut0,ut0,ut0,ut0,ut0,ut0,ut0,Xtecl,ut0,ut0,ut0,ut0,ut0=UnitBuff("player",LMMNWLk)if Xtecl==120694 then KVcYU=KVcYU+1 end end;jc=KVcYU end
+if(jc4o42jz==ExUgDG)then local _=GetTime()remainingTime=q(x-_,1)
+local C,CJeG=strsplit(".",remainingTime)local F43eMG=tonumber(C)/100;local mCzjh4=tonumber(CJeG)/100;e7dv[ZFhlP6eg].t:SetColorTexture(
+jc/100,F43eMG,mCzjh4,Dn1Xi)
+e7dv[ZFhlP6eg].t:SetAllPoints(false)else
+e7dv[ZFhlP6eg].t:SetColorTexture(1,1,1,Dn1Xi)e7dv[ZFhlP6eg].t:SetAllPoints(false)end end end
+local function ay(lU,epQue9)
+for cHUJrj,EI0x in pairs(PlayerDebuffs)do local E=GetSpellInfo(EI0x)
+if E==nil then if
+(s4[EI0x]~="DebuffOff")then
+hrVI4meU[EI0x].t:SetColorTexture(1,1,1,Dn1Xi)hrVI4meU[EI0x].t:SetAllPoints(false)
+s4[EI0x]="DebuffOff"end;return end
+local lacOdjf9,cHUJrj,cHUJrj,R2h4lP4l,cHUJrj,Fh,a2e9fa,cHUJrj,cHUJrj,cHUJrj,Rc9_ZID,cHUJrj,cHUJrj,cHUJrj,cHUJrj,cHUJrj=UnitDebuff("target",E,nil,"PLAYER|HARMFUL")
+if EI0x==233490 and(lacOdjf9 ==E)then local H1HF2wD6=0
+for LMMNWLk=1,40 do
+name2,cHUJrj,cHUJrj,count2,cHUJrj,Fh,expirationTime2,cHUJrj,cHUJrj,cHUJrj,spellId2,cHUJrj,cHUJrj,cHUJrj,cHUJrj,cHUJrj=UnitDebuff("target",LMMNWLk,"PLAYER|HARMFUL")
+if
+
+spellId2 ==233490 or spellId2 ==233496 or spellId2 ==233497 or spellId2 ==233498 or spellId2 ==233499 then H1HF2wD6=H1HF2wD6+1 end end;R2h4lP4l=H1HF2wD6 end
+if(lacOdjf9 ==E)then local hBph=GetTime()
+remainingTime=q(a2e9fa-hBph,1)
+if
+(s4[EI0x]~="DebuffOn"..R2h4lP4l..remainingTime)then local bxNo9h,Khst=strsplit(".",remainingTime)
+local pUT=tonumber(bxNo9h)/100;local ISg1=tonumber(Khst)/100;if Rc9_ZID==34914 then end
+hrVI4meU[EI0x].t:SetColorTexture(
+R2h4lP4l/100,pUT,ISg1,Dn1Xi)s4[EI0x]="DebuffOn"..R2h4lP4l..remainingTime end else if(s4[EI0x]~="DebuffOff")then
+hrVI4meU[EI0x].t:SetColorTexture(1,1,1,Dn1Xi)s4[EI0x]="DebuffOff"end end end end;local W={}
+local function WzM(Gh5UJya,k)
+for Z8Ue,TXbmx in pairs(SpellCooldowns)do local r=0
+local Pqgz415t,Z8Ue,Z8Ue,Z8Ue,Z8Ue,Z8Ue=GetSpellInfo(TXbmx)if(Pqgz415t==nil)then r=0 else
+r=LibStub("SpellRange-1.0").IsSpellInRange(TXbmx,"target")end
+if W[TXbmx]~=r then if(r==1)then
+xEq6TAF[TXbmx].t:SetColorTexture(1,0,0,Dn1Xi)else
+xEq6TAF[TXbmx].t:SetColorTexture(1,1,1,Dn1Xi)end
+xEq6TAF[TXbmx].t:SetAllPoints(false)W[TXbmx]=r end end end
+local function PSx()
 if GetUnitSpeed("Player")==0 then Movetime=GetTime()
-PlayerMovingFrame.t:SetColorTexture(1,1,1,_gGmBBE)else
-PlayerMovingFrame.t:SetColorTexture(1,0,0,_gGmBBE)end end
-local function cW()mountedplayer=0;moveTime=1;if IsMounted()then mountedplayer=.5 end;if
+PlayerMovingFrame.t:SetColorTexture(1,1,1,Dn1Xi)else
+PlayerMovingFrame.t:SetColorTexture(1,0,0,Dn1Xi)end end
+local function PSx()mountedplayer=0;moveTime=1;if IsMounted()then mountedplayer=.5 end;if
 GetUnitSpeed("Player")==0 then moveTime=0 end
-PlayerMovingFrame.t:SetColorTexture(moveTime,mountedplayer,1,_gGmBBE)end
-local function PHpCof2()if IsCurrentSpell(6603)then
-AutoAtackingFrame.t:SetColorTexture(1,0,0,_gGmBBE)else
-AutoAtackingFrame.t:SetColorTexture(1,1,1,_gGmBBE)end end
-local function bUPpn4T2()
+PlayerMovingFrame.t:SetColorTexture(moveTime,mountedplayer,1,Dn1Xi)end
+local function IwnA()if IsCurrentSpell(6603)then
+AutoAtackingFrame.t:SetColorTexture(1,0,0,Dn1Xi)else
+AutoAtackingFrame.t:SetColorTexture(1,1,1,Dn1Xi)end end
+local function cW()
 if UnitGUID("target")==UnitGUID("player")then
-targetIsPlayerFrame.t:SetColorTexture(1,0,0,_gGmBBE)else
-targetIsPlayerFrame.t:SetColorTexture(1,1,1,_gGmBBE)end end;local function sode()
+targetIsPlayerFrame.t:SetColorTexture(1,0,0,Dn1Xi)else
+targetIsPlayerFrame.t:SetColorTexture(1,1,1,Dn1Xi)end end;local function PHpCof2()
 if IsOutdoors()then
-YcPea0vg.t:SetColorTexture(1,0,0,_gGmBBE)else YcPea0vg.t:SetColorTexture(1,1,1,_gGmBBE)end end
-local G9zkKODk=0
-local function MGt(hCs8M,GkjCn_mq)local T9sySp=UnitLevel("player")local DL0mMXM=0;local o4Kvi75g=0;local ELb=0
-local FV5="0.0"..T9sySp;if(T9sySp>=10)then FV5="0."..T9sySp end
-o4Kvi75g=tonumber(FV5)
-if(T9sySp>100)then o4Kvi75g=0;T9sySp=T9sySp-100;local rUT="0.0"..T9sySp;if
-(T9sySp>=10)then rUT="0."..T9sySp end;ELb=tonumber(rUT)end;local sX=UnitHealth("player")local DH6mUlGB=UnitHealthMax("player")local A4ZRczp=ceil((
-sX/DH6mUlGB)*100)
+rrFLbCtj.t:SetColorTexture(1,0,0,Dn1Xi)else rrFLbCtj.t:SetColorTexture(1,1,1,Dn1Xi)end end
+local bUPpn4T2=0
+local function sode(McNxKV,WcwGYJh)local gJt=UnitLevel("player")local hCs8M=0;local GkjCn_mq=0;local T9sySp=0
+local DL0mMXM="0.0"..gJt;if(gJt>=10)then DL0mMXM="0."..gJt end
+GkjCn_mq=tonumber(DL0mMXM)
+if(gJt>100)then GkjCn_mq=0;gJt=gJt-100;local sX="0.0"..gJt;if(gJt>=10)then
+sX="0."..gJt end;T9sySp=tonumber(sX)end;local o4Kvi75g=UnitHealth("player")local ELb=UnitHealthMax("player")local FV5=ceil((
+o4Kvi75g/ELb)*100)
 if
-UnitIsDead("player")or UnitIsGhost("player")then A4ZRczp=0 end
-if(A4ZRczp~=G9zkKODk)then local g="0.0"..A4ZRczp;if(A4ZRczp>=10)then
-g="0."..A4ZRczp end;DL0mMXM=tonumber(g)
-if(A4ZRczp==100)then if
-(T9sySp==100)then nN.t:SetColorTexture(1,1,0,_gGmBBE)else
-nN.t:SetColorTexture(1,o4Kvi75g,ELb,_gGmBBE)end else
-nN.t:SetColorTexture(DL0mMXM,o4Kvi75g,ELb,_gGmBBE)end;G9zkKODk=A4ZRczp end end;local ld9GuG4t=0
-local function KpCCA(JPi,Kkl6fa)local t=UnitHealth("pet")local H=UnitHealthMax("pet")if H==nil then
-H=1 end;if H==0 then H=1 end;local glZrOuSo=ceil((t/H)*100)
+UnitIsDead("player")or UnitIsGhost("player")then FV5=0 end
+if(FV5 ~=bUPpn4T2)then local DH6mUlGB="0.0"..FV5
+if(FV5 >=10)then DH6mUlGB="0."..FV5 end;hCs8M=tonumber(DH6mUlGB)
+if(FV5 ==100)then
+if(gJt==100)then
+PSlD.t:SetColorTexture(1,1,0,Dn1Xi)else PSlD.t:SetColorTexture(1,GkjCn_mq,T9sySp,Dn1Xi)end else
+PSlD.t:SetColorTexture(hCs8M,GkjCn_mq,T9sySp,Dn1Xi)end;bUPpn4T2=FV5 end end;local G9zkKODk=0
+local function MGt(A4ZRczp,rUT)local g=UnitHealth("pet")local JPi=UnitHealthMax("pet")if
+JPi==nil then JPi=1 end;if JPi==0 then JPi=1 end
+local Kkl6fa=ceil((g/JPi)*100)
+if(G9zkKODk~=Kkl6fa)then local t=0;local H="0.0"..Kkl6fa;if(Kkl6fa>=10)then
+H="0."..Kkl6fa end;t=tonumber(H)if(Kkl6fa==100)then
+petHealthFrame.t:SetColorTexture(1,0,0,Dn1Xi)else
+petHealthFrame.t:SetColorTexture(t,0,0,Dn1Xi)end;G9zkKODk=Kkl6fa end end;local ld9GuG4t=0
+local function KpCCA(glZrOuSo,Zdzaj)local UxRGyO9e=UnitGUID("target")local fvj_L=0;local _CPU89l=100;local U=0
 if
-(ld9GuG4t~=glZrOuSo)then local Zdzaj=0;local UxRGyO9e="0.0"..glZrOuSo;if(glZrOuSo>=10)then
-UxRGyO9e="0."..glZrOuSo end;Zdzaj=tonumber(UxRGyO9e)if(glZrOuSo==100)then
-petHealthFrame.t:SetColorTexture(1,0,0,_gGmBBE)else
-petHealthFrame.t:SetColorTexture(Zdzaj,0,0,_gGmBBE)end
-ld9GuG4t=glZrOuSo end end;local H6=0
-local function hgsKvTz(fvj_L,_CPU89l)local U=UnitGUID("target")local Kwxn=0;local yp5DGSwX=100;local Sb1Mw7R=0;if(U~=nil)then
-Kwxn=UnitHealth("target")yp5DGSwX=UnitHealthMax("target")
-Sb1Mw7R=ceil((Kwxn/yp5DGSwX)*100)end
-if(Sb1Mw7R~=H6)then
-local fuF=0;local pA2="0.0"..Sb1Mw7R
-if(Sb1Mw7R>=10)then pA2="0."..Sb1Mw7R end;fuF=tonumber(pA2)if(Sb1Mw7R==100)then
-targetHealthFrame.t:SetColorTexture(1,0,0,_gGmBBE)else
-targetHealthFrame.t:SetColorTexture(fuF,0,0,_gGmBBE)end;H6=Sb1Mw7R end end
-local function zEt(M5lAedm,_uYRl2kj)local tbN=UnitPower("player")local x=UnitPowerMax("player")
-if
-(tbN~=_k)then _k=tbN
+(UxRGyO9e~=nil)then fvj_L=UnitHealth("target")
+_CPU89l=UnitHealthMax("target")U=ceil((fvj_L/_CPU89l)*100)end
+if(U~=ld9GuG4t)then local Kwxn=0;local yp5DGSwX="0.0"..U
+if(U>=10)then yp5DGSwX="0."..U end;Kwxn=tonumber(yp5DGSwX)if(U==100)then
+targetHealthFrame.t:SetColorTexture(1,0,0,Dn1Xi)else
+targetHealthFrame.t:SetColorTexture(Kwxn,0,0,Dn1Xi)end;ld9GuG4t=U end end
+local function H6(Sb1Mw7R,fuF)local pA2=UnitPower("player")local M5lAedm=UnitPowerMax("player")
+if(pA2 ~=
+EEpoeR)then EEpoeR=pA2
 if
 (
 
-(IWQcC==7 and KfM==264)or(IWQcC==2)or
-(IWQcC==5)or(IWQcC==8)or
-(IWQcC==9)or(IWQcC==10 and KfM==270)or(IWQcC==11 and KfM==102)or(IWQcC==11 and KfM==105))then tbN=ceil((tbN/x)*100)end;local m=0;local VVQ=0;local Jb="0.0"..tbN;if(tbN>=10)then Jb="0."..tbN end
-m=tonumber(Jb)
-if(tbN>100)then m=0;tbN=tbN-100;local qcpea="0.0"..tbN;if(tbN>=10)then
-qcpea="0."..tbN end;VVQ=tonumber(qcpea)end;if(tbN==100)then
-powerFrame.t:SetColorTexture(1,0,0,_gGmBBE)else
-powerFrame.t:SetColorTexture(m,VVQ,0,_gGmBBE)end end end;local Wjojpvg=0
-local function l2PqbWw()local tjDBv=math.floor(GetHaste())local vmn7v=0;if lasthaste==tjDBv then
-return end;lastehaste=tjDBv;local Au1mzs=0;if tjDBv==math.abs(tjDBv)then
-Au1mzs=1 else Au1mzs=0 end
-if(tjDBv>=100)then
-vmn7v=math.floor(tjDBv/100)tjDBv=tjDBv- (vmn7v*100)end
-local u39i=math.abs(tonumber(strsub(tostring(tjDBv),1,2))/100)
-qccJ5b.t:SetColorTexture(Au1mzs,vmn7v,u39i,_gGmBBE)end;local EJTH9=true
-local function qTB82(Fdg7p,GD3AP)isFriend=UnitIsFriend("player","target")
+(nbqmx==7 and Ef==264)or(nbqmx==2)or(nbqmx==5)or(nbqmx==8)or(nbqmx==9)or
+(nbqmx==10 and Ef==270)or
+(nbqmx==11 and Ef==102)or(nbqmx==11 and
+Ef==105))then pA2=ceil((pA2/M5lAedm)*100)end;local _uYRl2kj=0;local tbN=0;local x="0.0"..pA2;if(pA2 >=10)then x="0."..pA2 end
+_uYRl2kj=tonumber(x)
+if(pA2 >100)then _uYRl2kj=0;pA2=pA2-100;local m="0.0"..pA2;if(pA2 >=10)then
+m="0."..pA2 end;tbN=tonumber(m)end;if(pA2 ==100)then
+powerFrame.t:SetColorTexture(1,0,0,Dn1Xi)else
+powerFrame.t:SetColorTexture(_uYRl2kj,tbN,0,Dn1Xi)end end end;local hgsKvTz=0
+local function zEt()local VVQ=math.floor(GetHaste())local Jb=0
+if lasthaste==VVQ then return end;lastehaste=VVQ;local qcpea=0
+if VVQ==math.abs(VVQ)then qcpea=1 else qcpea=0 end
+if(VVQ>=100)then Jb=math.floor(VVQ/100)VVQ=VVQ- (Jb*100)end
+local tjDBv=math.abs(tonumber(strsub(tostring(VVQ),1,2))/100)z.t:SetColorTexture(qcpea,Jb,tjDBv,Dn1Xi)end;local Wjojpvg=true
+local function l2PqbWw(vmn7v,Au1mzs)isFriend=UnitIsFriend("player","target")
 if
-(isFriend~=EJTH9)then
-if(isFriend==true)then
-g3Qeqnr.t:SetColorTexture(0,1,0,_gGmBBE)else g3Qeqnr.t:SetColorTexture(0,0,1,_gGmBBE)end;EJTH9=isFriend end end;local KL=""
-local function EATFLbgY()local jph00k=UnitGUID("target")
-local wE_4o=LibStub("LibBossIDs-1.0")local F=UnitIsDead("target")local bUO1NvT=UnitLevel("player")
+(isFriend~=Wjojpvg)then if(isFriend==true)then A.t:SetColorTexture(0,1,0,Dn1Xi)else
+A.t:SetColorTexture(0,0,1,Dn1Xi)end;Wjojpvg=isFriend end end;local EJTH9=""
+local function qTB82()local u39i=UnitGUID("target")
+local Fdg7p=LibStub("LibBossIDs-1.0")local GD3AP=UnitIsDead("target")local jph00k=UnitLevel("player")
 if
-(jph00k~=KL)then
-if jph00k==nil then qHpY64.t:SetColorTexture(0,0,0,_gGmBBE)else
+(u39i~=EJTH9)then
+if u39i==nil then g3Qeqnr.t:SetColorTexture(0,0,0,Dn1Xi)else
 if
-jph00k~=nil then
-local KRQG,tVwI_N,tVwI_N,tVwI_N,tVwI_N,Jkp2lGXG=strsplit(" - ",UnitGUID("target"))
-if wE_4o.BossIDs[tonumber(Jkp2lGXG)]then
-qHpY64.t:SetColorTexture(0,0,1,_gGmBBE)elseif KRQG=="Player"then
-qHpY64.t:SetColorTexture(1,0,0,_gGmBBE)elseif not wE_4o.BossIDs[tonumber(Jkp2lGXG)]then
-if Jkp2lGXG~=nil then
+u39i~=nil then local wE_4o,F,F,F,F,bUO1NvT=strsplit(" - ",UnitGUID("target"))
+if
+Fdg7p.BossIDs[tonumber(bUO1NvT)]then g3Qeqnr.t:SetColorTexture(0,0,1,Dn1Xi)elseif
+wE_4o=="Player"then g3Qeqnr.t:SetColorTexture(1,0,0,Dn1Xi)elseif not
+Fdg7p.BossIDs[tonumber(bUO1NvT)]then
+if bUO1NvT~=nil then
 if
 
 
-
-
-tonumber(Jkp2lGXG)==114631 or tonumber(Jkp2lGXG)==114822 or tonumber(Jkp2lGXG)==90463 or tonumber(Jkp2lGXG)==90418 or tonumber(Jkp2lGXG)==90431 then qHpY64.t:SetColorTexture(0,0,0,_gGmBBE)else
-qHpY64.t:SetColorTexture(1,0,0,_gGmBBE)end end elseif(jph00k~=nil and F==true)then
-qHpY64.t:SetColorTexture(0,0,0,_gGmBBE)end end end;KL=jph00k end end;local FF=0;local rh=""
-local function YcCR(ifcyuS,V03W)spell,_,_,_,_,_,_,castID,_=UnitCastingInfo("player")
+tonumber(bUO1NvT)==114631 or
+tonumber(bUO1NvT)==114822 or tonumber(bUO1NvT)==90463 or tonumber(bUO1NvT)==90418 or tonumber(bUO1NvT)==90431 then g3Qeqnr.t:SetColorTexture(0,0,0,Dn1Xi)else
+g3Qeqnr.t:SetColorTexture(1,0,0,Dn1Xi)end end elseif(u39i~=nil and GD3AP==true)then
+g3Qeqnr.t:SetColorTexture(0,0,0,Dn1Xi)end end end;EJTH9=u39i end end;local KL=0;local EATFLbgY=""
+local function FF(K,RQG)spell,_,_,_,_,_,_,castID,_=UnitCastingInfo("player")
 name,_,text,_,_,_,_,_=UnitChannelInfo("player")
-if castID~=nil then if castID~=FF then
-ARuba.t:SetColorTexture(1,0,0,_gGmBBE)FF=castID end else if castID~=FF then
-ARuba.t:SetColorTexture(1,1,1,_gGmBBE)FF=castID end end
-if name~=nil then if text~=rh then
-ARuba.t:SetColorTexture(0,1,0,_gGmBBE)rh=text end else if text~=rh then
-ARuba.t:SetColorTexture(1,1,1,_gGmBBE)rh=text end end end;local function G3p2Yn(R,X6_)return
-math.abs(X6_-GetTime()*1000)/math.abs(X6_-R)end
-local function _jkkD9(tN5u,Yqc0GWr)
+if castID~=nil then if castID~=KL then
+qccJ5b.t:SetColorTexture(1,0,0,Dn1Xi)KL=castID end else if castID~=KL then
+qccJ5b.t:SetColorTexture(1,1,1,Dn1Xi)KL=castID end end
+if name~=nil then if text~=EATFLbgY then
+qccJ5b.t:SetColorTexture(0,1,0,Dn1Xi)EATFLbgY=text end else if text~=EATFLbgY then
+qccJ5b.t:SetColorTexture(1,1,1,Dn1Xi)EATFLbgY=text end end end
+local function rh(tVwI_N,Jkp2lGXG)return math.abs(Jkp2lGXG-GetTime()*1000)/
+math.abs(Jkp2lGXG-tVwI_N)end
+local function YcCR(ifcyuS,V03W)
 spell,_,_,_,startTime,endTime,_,_,notInterrupt=UnitCastingInfo("target")if(spell==nil)then
 spell,_,_,_,startTime,endTime,_,notInterrupt=UnitChannelInfo("target")end
-if spell~=nil then
-if notInterrupt==false then
-Wo53nZ.t:SetColorTexture(1,G3p2Yn(startTime,endTime),1,_gGmBBE)else
-Wo53nZ.t:SetColorTexture(0,G3p2Yn(startTime,endTime),1,_gGmBBE)end else
-if spell==nil then Wo53nZ.t:SetColorTexture(0,0,0,_gGmBBE)end end end
-local function D()wilds=tonumber("0.0"..cvRh)
-dreadstalkers=tonumber("0.0"..W9yaJm)J.t:SetColorTexture(wilds,0,dreadstalkers,_gGmBBE)end;local DMn=nil
-local function GBzFRjVV(UC7,WbvvcjER)local rOLxXC=UnitIsVisible("target")
-if rOLxXC==nil then if(rOLxXC~=DMn)then
-XRfQ.t:SetColorTexture(1,1,1,_gGmBBE)DMn=rOLxXC end else if rOLxXC~=DMn then
-XRfQ.t:SetColorTexture(1,0,0,_gGmBBE)DMn=rOLxXC end end end
-local function pG4C8fDK(w762p7sZ,_7jt,...)if(_7jt=="UNIT_SPELLCAST_SUCCEEDED")then
-UpdateCastingFrame("player",EEpoeR,...)end end
-local function LLFUU()UpdateCastingFrame("target",Oynw)end
-local function kdmQtj6()UpdateCastingFrame("arena1",QBO)end
-local function Hc35_()UpdateCastingFrame("arena2",s4ggux)end
-local function ubP()UpdateCastingFrame("arena3",hrVI4meU)end
-local function eN0UMW(ORXyFQ,OL1oV)
-for Q,HQvT5 in pairs(PlayerBuffs)do local dN=GetSpellInfo(HQvT5)
-if dN==nil then
+if spell~=nil then if notInterrupt==false then
+ARuba.t:SetColorTexture(1,rh(startTime,endTime),1,Dn1Xi)else
+ARuba.t:SetColorTexture(0,rh(startTime,endTime),1,Dn1Xi)end else
 if
-(s4[HQvT5]~="BuffOff")then
-B7SHDx7h[HQvT5].t:SetColorTexture(1,1,1,_gGmBBE)
-B7SHDx7h[HQvT5].t:SetAllPoints(false)s4[HQvT5]="BuffOff"end;return end;local B35igHj,Q,Q,o8pPC2,Q,Q,f7nUIW,Q,Q,Q,Q=UnitBuff("pet",dN)
-if(B35igHj==dN)then
-local bDgD=GetTime()remainingTime=xb6(f7nUIW-bDgD,1)
-if(s4[HQvT5]~="BuffOn"..
-o8pPC2 ..remainingTime)then
-local Kg8PhSq,Tcv_=strsplit(".",remainingTime)local lygY=tonumber(Kg8PhSq)/100
-local HG=tonumber(Tcv_)/100
-B7SHDx7h[HQvT5].t:SetColorTexture(o8pPC2/100,lygY,HG,_gGmBBE)
-B7SHDx7h[HQvT5].t:SetAllPoints(false)end else
-if(s4[HQvT5]~="BuffOff")then
-B7SHDx7h[HQvT5].t:SetColorTexture(1,1,1,_gGmBBE)
-B7SHDx7h[HQvT5].t:SetAllPoints(false)s4[HQvT5]="BuffOff"end end end end
-local function lAG(u,m9i)
-for EqPMP,JR in pairs(PlayerDebuffs)do local G1Cl6="UnitDebuff"local h=GetSpellInfo(JR)
-if h==nil then if(Vd[JR]~=
-"DebuffOff")then
-A5k5yt[JR].t:SetColorTexture(1,1,1,_gGmBBE)A5k5yt[JR].t:SetAllPoints(false)
-Vd[JR]="DebuffOff"end;return end
-local fYUikw,EqPMP,EqPMP,W9qTCm,EqPMP,EqPMP,YlaSjEKp,EqPMP,EqPMP,EqPMP,u_ogp8,EqPMP,EqPMP,EqPMP,EqPMP,EqPMP=UnitDebuff("player",h,nil,"PLAYER|HARMFUL")
-if(fYUikw==h)then local Kob=GetTime()
-local a3=math.floor(YlaSjEKp-Kob+0.5)
-if(Vd[JR]~="DebuffOn"..W9qTCm..a3)then Vd[JR]="DebuffOn"..
-W9qTCm..a3
-a3=string.format("%00.2f",tostring(a3))
-local MvWxr=tonumber(strsub(tostring(a3),1,2))/100
-local HgY6=tonumber(strsub(tostring(a3),-2,-1))/100
-A5k5yt[JR].t:SetColorTexture(W9qTCm/100,MvWxr,HgY6,_gGmBBE)A5k5yt[JR].t:SetAllPoints(false)end else if(Vd[JR]~="DebuffOff")then
-A5k5yt[JR].t:SetColorTexture(1,1,1,_gGmBBE)A5k5yt[JR].t:SetAllPoints(false)
-Vd[JR]="DebuffOff"end end end end
-local function AvEtR8Y(Wc,eQ5)
-for kvR,So in pairs(SpellCooldowns)do
-if IsSpellOverlayed(So)then
-rIX4[So].t:SetColorTexture(1,0,0,_gGmBBE)rIX4[So].t:SetAllPoints(false)else
-rIX4[So].t:SetColorTexture(1,1,1,_gGmBBE)rIX4[So].t:SetAllPoints(false)end end end
-local function rl3MMqfm(Wi)
-for X1WM,OVBAVy in pairs(dispel)do local Jos=GetSpellInfo(OVBAVy)if Jos==nil then return 0 end
-local NF0,X1WM,X1WM,OeF,X1WM,sawaLtSr,KWeL,X1WM,X1WM,X1WM,OVBAVy,X1WM,X1WM,X1WM,X1WM,X1WM=UnitDebuff(Wi,Jos,
-nil,"HARMFUL")if(NF0 ==Jos)then return 1 end end;return 0 end;local nQj=""
-local function Eq8jDq()if MW()==false then return end
-local Krvhod9t,bfx5oN=IsActiveBattlefieldArena()local XDKTNXw=IsInRaid()and"raid"or"party"
-local RyTb=GetNumGroupMembers()if(nQj~=XDKTNXw)then SetupKeybinds()
-if RyTb==0 then XDKTNXw="solo"end;nQj=XDKTNXw end
-local ImqF1v="0.0"..RyTb;if(RyTb>=10)then ImqF1v="0."..RyTb end
-if(IsInRaid())then
-inGame.t:SetColorTexture(tonumber(ImqF1v),1,1,_gGmBBE)else if Krvhod9t==1 then
-inGame.t:SetColorTexture(tonumber(ImqF1v),1,0.5,_gGmBBE)else
-inGame.t:SetColorTexture(tonumber(ImqF1v),1,0,_gGmBBE)end end
-if(RyTb==0)then health=UnitHealth("player")
+spell==nil then ARuba.t:SetColorTexture(0,0,0,Dn1Xi)end end end
+local function G3p2Yn()wilds=tonumber("0.0"..IWQcC)
+dreadstalkers=tonumber("0.0"..cvRh)nN.t:SetColorTexture(wilds,0,dreadstalkers,Dn1Xi)end;local _jkkD9=nil
+local function D(R,X6_)local tN5u=UnitIsVisible("target")
+if tN5u==nil then if(tN5u~=_jkkD9)then
+Wo53nZ.t:SetColorTexture(1,1,1,Dn1Xi)_jkkD9=tN5u end else if tN5u~=_jkkD9 then
+Wo53nZ.t:SetColorTexture(1,0,0,Dn1Xi)_jkkD9=tN5u end end end
+local function DMn(Yqc0GWr,UC7,...)if(UC7 =="UNIT_SPELLCAST_SUCCEEDED")then
+UpdateCastingFrame("player",B7SHDx7h,...)end end;local function GBzFRjVV()UpdateCastingFrame("target",Vd)end;local function pG4C8fDK()
+UpdateCastingFrame("arena1",Oynw)end;local function LLFUU()
+UpdateCastingFrame("arena2",QBO)end;local function kdmQtj6()
+UpdateCastingFrame("arena3",s4ggux)end
+local function Hc35_(WbvvcjER,rOLxXC)
+for w762p7sZ,_7jt in pairs(PlayerBuffs)do
+local ORXyFQ=GetSpellInfo(_7jt)
+if ORXyFQ==nil then if(JmE[_7jt]~="BuffOff")then
+A5k5yt[_7jt].t:SetColorTexture(1,1,1,Dn1Xi)A5k5yt[_7jt].t:SetAllPoints(false)
+JmE[_7jt]="BuffOff"end;return end
+local OL1oV,w762p7sZ,w762p7sZ,Q,w762p7sZ,w762p7sZ,HQvT5,w762p7sZ,w762p7sZ,w762p7sZ,w762p7sZ=UnitBuff("pet",ORXyFQ)
+if(OL1oV==ORXyFQ)then local dN=GetTime()remainingTime=q(HQvT5-dN,1)
+if(
+JmE[_7jt]~="BuffOn"..Q..remainingTime)then
+local B35igHj,o8pPC2=strsplit(".",remainingTime)local f7nUIW=tonumber(B35igHj)/100
+local bDgD=tonumber(o8pPC2)/100
+A5k5yt[_7jt].t:SetColorTexture(Q/100,f7nUIW,bDgD,Dn1Xi)A5k5yt[_7jt].t:SetAllPoints(false)end else if(JmE[_7jt]~="BuffOff")then
+A5k5yt[_7jt].t:SetColorTexture(1,1,1,Dn1Xi)A5k5yt[_7jt].t:SetAllPoints(false)
+JmE[_7jt]="BuffOff"end end end end
+local function ubP(Kg8PhSq,Tcv_)
+for lygY,HG in pairs(PlayerDebuffs)do local u="UnitDebuff"local m9i=GetSpellInfo(HG)
+if m9i==nil then if(
+KfM[HG]~="DebuffOff")then
+inx0[HG].t:SetColorTexture(1,1,1,Dn1Xi)inx0[HG].t:SetAllPoints(false)
+KfM[HG]="DebuffOff"end;return end
+local EqPMP,lygY,lygY,JR,lygY,lygY,G1Cl6,lygY,lygY,lygY,h,lygY,lygY,lygY,lygY,lygY=UnitDebuff("player",m9i,nil,"PLAYER|HARMFUL")
+if(EqPMP==m9i)then local fYUikw=GetTime()
+local W9qTCm=math.floor(G1Cl6-fYUikw+0.5)
+if(KfM[HG]~="DebuffOn"..JR..W9qTCm)then KfM[HG]="DebuffOn"..JR..
+W9qTCm
+W9qTCm=string.format("%00.2f",tostring(W9qTCm))
+local YlaSjEKp=tonumber(strsub(tostring(W9qTCm),1,2))/100
+local u_ogp8=tonumber(strsub(tostring(W9qTCm),-2,-1))/100
+inx0[HG].t:SetColorTexture(JR/100,YlaSjEKp,u_ogp8,Dn1Xi)inx0[HG].t:SetAllPoints(false)end else if(KfM[HG]~="DebuffOff")then
+inx0[HG].t:SetColorTexture(1,1,1,Dn1Xi)inx0[HG].t:SetAllPoints(false)
+KfM[HG]="DebuffOff"end end end end
+local function eN0UMW(K,ob)
+for a3,MvWxr in pairs(SpellCooldowns)do
+if IsSpellOverlayed(MvWxr)then
+_gGmBBE[MvWxr].t:SetColorTexture(1,0,0,Dn1Xi)_gGmBBE[MvWxr].t:SetAllPoints(false)else
+_gGmBBE[MvWxr].t:SetColorTexture(1,1,1,Dn1Xi)_gGmBBE[MvWxr].t:SetAllPoints(false)end end end
+local function lAG(HgY6)
+for Wc,eQ5 in pairs(dispel)do local kvR=GetSpellInfo(eQ5)if kvR==nil then return 0 end;local So,Wc,Wc,Wi,Wc,X1WM,OVBAVy,Wc,Wc,Wc,eQ5,Wc,Wc,Wc,Wc,Wc=UnitDebuff(HgY6,kvR,
+nil,"HARMFUL")if
+(So==kvR)then return 1 end end;return 0 end;local AvEtR8Y=""
+local function rl3MMqfm()if IsHealer()==false then return end
+local Jos,NF0=IsActiveBattlefieldArena()local OeF=IsInRaid()and"raid"or"party"
+local sawaLtSr=GetNumGroupMembers()if(AvEtR8Y~=OeF)then SetupKeybinds()
+if sawaLtSr==0 then OeF="solo"end;AvEtR8Y=OeF end
+local KWeL="0.0"..sawaLtSr;if(sawaLtSr>=10)then KWeL="0."..sawaLtSr end
+if
+(IsInRaid())then
+inGame.t:SetColorTexture(tonumber(KWeL),1,1,Dn1Xi)else if Jos==1 then
+inGame.t:SetColorTexture(tonumber(KWeL),1,0.5,Dn1Xi)else
+inGame.t:SetColorTexture(tonumber(KWeL),1,0,Dn1Xi)end end
+if(sawaLtSr==0)then health=UnitHealth("player")
 maxHealth=UnitHealthMax("player")
-percHealth=ceil((health/maxHealth)*100)needToDispel=rl3MMqfm("player")local KRu="0.0"..percHealth;if
-(percHealth>=10)then KRu="0."..percHealth end;red=tonumber(KRu)
-for Vy5qF=1,5 do if(
-percHealth==100)then
-iW2O[Vy5qF].t:SetColorTexture(1,needToDispel,0,_gGmBBE)else
-iW2O[Vy5qF].t:SetColorTexture(red,needToDispel,0,_gGmBBE)end end;return end
-for rokDhenZ=1,RyTb do local td8OL=0;local WCS=0
-if(XDKTNXw=="party")then
-if(rokDhenZ==1)then
+percHealth=ceil((health/maxHealth)*100)needToDispel=lAG("player")local K="0.0"..percHealth;if
+(percHealth>=10)then K="0."..percHealth end;red=tonumber(K)
+for rvhod9t=1,5 do
+if
+(percHealth==100)then
+AI14eFhp[rvhod9t].t:SetColorTexture(1,needToDispel,0,Dn1Xi)else
+AI14eFhp[rvhod9t].t:SetColorTexture(red,needToDispel,0,Dn1Xi)end end;return end
+for bfx5oN=1,sawaLtSr do local XDKTNXw=0;local RyTb=0
+if(OeF=="party")then
+if(bfx5oN==1)then
 health=UnitHealth("player")maxHealth=UnitHealthMax("player")
-td8OL=ceil((health/maxHealth)*100)WCS=rl3MMqfm("player")else
-health=UnitHealth(XDKTNXw.. (rokDhenZ-1))
-maxHealth=UnitHealthMax(XDKTNXw.. (rokDhenZ-1))td8OL=ceil((health/maxHealth)*100)WCS=rl3MMqfm(
-XDKTNXw.. (rokDhenZ-1))
-local v2VylMn,Oi=LMMNWLk:GetRange(
-XDKTNXw.. (rokDhenZ-1))if(Oi==nil)then Oi=41 end
+XDKTNXw=ceil((health/maxHealth)*100)RyTb=lAG("player")else
+health=UnitHealth(OeF.. (bfx5oN-1))maxHealth=UnitHealthMax(OeF.. (bfx5oN-1))XDKTNXw=ceil((
+health/maxHealth)*100)RyTb=lAG(OeF.. (
+bfx5oN-1))
+local K,Ru=oJ1ec:GetRange(OeF.. (bfx5oN-1))if(Ru==nil)then Ru=41 end
 if
 
 
-
-UnitIsDead(XDKTNXw.. (rokDhenZ-1))or UnitIsGhost(XDKTNXw.. (rokDhenZ-1))or
-UnitIsConnected(XDKTNXw.. (rokDhenZ-1))==false or UnitInPhase(XDKTNXw..
-(rokDhenZ-1))==false or Oi>40 then td8OL=100;WCS=0 end end end
-if(XDKTNXw=="raid")then
-health=UnitHealth(XDKTNXw..rokDhenZ)maxHealth=UnitHealthMax(XDKTNXw..rokDhenZ)td8OL=ceil((health/
-maxHealth)*100)WCS=rl3MMqfm(XDKTNXw..
-rokDhenZ)
-local KwcrRu,bgFJ=LMMNWLk:GetRange(XDKTNXw..rokDhenZ)if(bgFJ==nil)then bgFJ=41 end
+UnitIsDead(OeF.. (bfx5oN-1))or UnitIsGhost(
+OeF.. (bfx5oN-1))or UnitIsConnected(
+OeF.. (bfx5oN-1))==false or UnitInPhase(OeF.. (bfx5oN-1))==false or Ru>40 then XDKTNXw=100;RyTb=0 end end end
+if(OeF=="raid")then health=UnitHealth(OeF..bfx5oN)maxHealth=UnitHealthMax(OeF..
+bfx5oN)
+XDKTNXw=ceil((health/maxHealth)*100)RyTb=lAG(OeF..bfx5oN)
+local Vy5qF,rokDhenZ=oJ1ec:GetRange(OeF..bfx5oN)if(rokDhenZ==nil)then rokDhenZ=41 end
 if
 
-
-UnitIsDead(XDKTNXw..rokDhenZ)or UnitIsGhost(
-XDKTNXw..rokDhenZ)or
-UnitIsConnected(XDKTNXw..rokDhenZ)==false or UnitInPhase(XDKTNXw..rokDhenZ)==false or bgFJ>40 then td8OL=100;WCS=0 end end;local i="0.0"..td8OL;if(td8OL>=10)then i="0."..td8OL end
-red=tonumber(i)if(td8OL==100)then
-iW2O[rokDhenZ].t:SetColorTexture(1,WCS,0,_gGmBBE)else
-iW2O[rokDhenZ].t:SetColorTexture(red,WCS,0,_gGmBBE)end
-iW2O[rokDhenZ].t:SetAllPoints(false)end end;inGame=CreateFrame("frame","",parent)
+UnitIsDead(OeF..bfx5oN)or UnitIsGhost(
+OeF..bfx5oN)or
+UnitIsConnected(OeF..bfx5oN)==false or
+UnitInPhase(OeF..bfx5oN)==false or rokDhenZ>40 then XDKTNXw=100;RyTb=0 end end;local ImqF1v="0.0"..XDKTNXw
+if(XDKTNXw>=10)then ImqF1v="0."..XDKTNXw end;red=tonumber(ImqF1v)if(XDKTNXw==100)then
+AI14eFhp[bfx5oN].t:SetColorTexture(1,RyTb,0,Dn1Xi)else
+AI14eFhp[bfx5oN].t:SetColorTexture(red,RyTb,0,Dn1Xi)end
+AI14eFhp[bfx5oN].t:SetAllPoints(false)end end;inGame=CreateFrame("frame","",parent)
 inGame:SetSize(1,1)inGame:SetPoint("TOPLEFT",30,0)
-inGame.t=inGame:CreateTexture()inGame.t:SetColorTexture(0,1,0,_gGmBBE)
+inGame.t=inGame:CreateTexture()inGame.t:SetColorTexture(0,1,0,Dn1Xi)
 inGame.t:SetAllPoints(inGame)inGame:Show()
 startStopFrame=CreateFrame("frame","",parent)startStopFrame:SetSize(1,1)
 startStopFrame:SetPoint("TOPLEFT",29,0)startStopFrame.t=startStopFrame:CreateTexture()
-startStopFrame.t:SetColorTexture(0,0,0,_gGmBBE)
+startStopFrame.t:SetColorTexture(0,0,0,Dn1Xi)
 startStopFrame.t:SetAllPoints(startStopFrame)startStopFrame:Show()
 rangeToTargetFrame=CreateFrame("frame","",parent)rangeToTargetFrame:SetSize(1,1)
 rangeToTargetFrame:SetPoint("TOPLEFT",28,0)
 rangeToTargetFrame.t=rangeToTargetFrame:CreateTexture()
-rangeToTargetFrame.t:SetColorTexture(0,0,0,_gGmBBE)
-rangeToTargetFrame.t:SetAllPoints(rangeToTargetFrame)rangeToTargetFrame:Show()local function LnQUN()Eq8jDq()end
-local function Gm1()
-local fqGD1rfW,K0=LMMNWLk:GetRange("target")if K0 ==nil then K0=100 end;local fqGD1rfW,_1To2=LMMNWLk:GetRange("pet")if
-_1To2 ==nil then _1To2=100 end;local lkzs="0.0".._1To2;if(_1To2 >=10)then lkzs="0."..
-_1To2 end;green=tonumber(lkzs)
-local Hhwf3oO="0.0"..K0;if(K0 >=10)then Hhwf3oO="0."..K0 end;red=tonumber(Hhwf3oO)if(
-_1To2 >=100)then green=1 end;if(K0 >=100)then red=1 end;blue=0;if
-(UnitExists("Focus"))then blue=1 end
-rangeToTargetFrame.t:SetColorTexture(red,green,blue,_gGmBBE)end;function UpdateHealthFrame(Oh5,LgQF)local emGbhJGH=yK(Oh5)
-LgQF.t:SetColorTexture(emGbhJGH,0,0,_gGmBBE)end
-function UpdateDebuffFrame(e_Ev8OQ,zBMvU6)
-for ZmbDgbg,hMxy in
-pairs(PlayerDebuffs)do local hj3=GetSpellInfo(hMxy)if hj3 ==nil then
-sh[hMxy].t:SetColorTexture(0,0,0,_gGmBBE)return end
-local M7q3pa8,ZmbDgbg,ZmbDgbg,guEhw,ZmbDgbg,sll,BzNBgGvD,ZmbDgbg,ZmbDgbg,ZmbDgbg,KIQCH,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg=UnitDebuff(e_Ev8OQ,hj3,nil,"PLAYER|HARMFUL")
-if hMxy==233490 and(M7q3pa8 ==hj3)then local L4bw=0
-for x6Ni=1,40 do
-ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,spellId2,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg,ZmbDgbg=UnitDebuff(e_Ev8OQ,x6Ni,"PLAYER|HARMFUL")
+rangeToTargetFrame.t:SetColorTexture(0,0,0,Dn1Xi)
+rangeToTargetFrame.t:SetAllPoints(rangeToTargetFrame)rangeToTargetFrame:Show()
+local function nQj()rl3MMqfm()end
+local function Eq8jDq()local td8OL,WCS=oJ1ec:GetRange("target")if WCS==nil then WCS=100 end
+local td8OL,i=oJ1ec:GetRange("pet")if i==nil then i=100 end;local v2VylMn="0.0"..i
+if(i>=10)then v2VylMn="0."..i end;green=tonumber(v2VylMn)local Oi="0.0"..WCS
+if(WCS>=10)then Oi="0."..WCS end;red=tonumber(Oi)if(i>=100)then green=1 end
+if(WCS>=100)then red=1 end;blue=0;if(UnitExists("Focus"))then blue=1 end
+rangeToTargetFrame.t:SetColorTexture(red,green,blue,Dn1Xi)end;function UpdateHealthFrame(KwcrRu,bgFJ)local fqGD1rfW=xb6(KwcrRu)
+bgFJ.t:SetColorTexture(fqGD1rfW,0,0,Dn1Xi)end
+function UpdateDebuffFrame(K0,_1To2)
+for lkzs,Hhwf3oO in
+pairs(PlayerDebuffs)do local Oh5=GetSpellInfo(Hhwf3oO)if Oh5 ==nil then
+DfbW[Hhwf3oO].t:SetColorTexture(0,0,0,Dn1Xi)return end
+local LgQF,lkzs,lkzs,emGbhJGH,lkzs,e_Ev8OQ,zBMvU6,lkzs,lkzs,lkzs,ZmbDgbg,lkzs,lkzs,lkzs,lkzs,lkzs=UnitDebuff(K0,Oh5,nil,"PLAYER|HARMFUL")
+if Hhwf3oO==233490 and(LgQF==Oh5)then local hMxy=0
+for LMMNWLk=1,40 do
+lkzs,lkzs,lkzs,lkzs,lkzs,lkzs,lkzs,lkzs,lkzs,lkzs,spellId2,lkzs,lkzs,lkzs,lkzs,lkzs=UnitDebuff(K0,LMMNWLk,"PLAYER|HARMFUL")
 if
 
-spellId2 ==233490 or spellId2 ==233496 or spellId2 ==233497 or spellId2 ==233498 or spellId2 ==233499 then L4bw=L4bw+1 end end;guEhw=L4bw end
-if(M7q3pa8 ==hj3)then local XhBEPD=GetTime()
-remainingTime=xb6(BzNBgGvD-XhBEPD,1)local Uq,RmyiI_D=strsplit(".",remainingTime)
-local w_2iiJwx=tonumber(Uq)/100;local RRESd=tonumber(RmyiI_D)/100
-zBMvU6[hMxy].t:SetColorTexture(1,w_2iiJwx,RRESd,_gGmBBE)else
-zBMvU6[hMxy].t:SetColorTexture(0,0,0,_gGmBBE)end end end
-function UpdateCastingFrame(S1qoVmFR,f2,...)if not UnitExists(S1qoVmFR)then return end
-local O3rHR=select(10,UnitCastingInfo(S1qoVmFR))
-if O3rHR==nil then local lqxbMC,lqxbMC,lqxbMC,lqxbMC,qOk5Jm=...O3rHR=qOk5Jm end
-if O3rHR==nil then for tpSe2fs=1,2 do
-f2[tpSe2fs].t:SetColorTexture(0,0,0,_gGmBBE)end;return end;local YU80=""local ARnO_0E=""local Qh=""
-for AuVgc7=1,2 do
-if(AuVgc7 ==1)then strRedTemp=strsub(O3rHR,1,1)
-if(
-strRedTemp=="")then YU80=1 else YU80="0."..strRedTemp end;strGreenTemp=strsub(O3rHR,2,2)if(strGreenTemp=="")then Qh=1 else
-Qh="0."..strGreenTemp end;strBlueTemp=strsub(O3rHR,3,3)if
-(strBlueTemp=="")then ARnO_0E=1 else ARnO_0E="0."..strBlueTemp end end
-if(AuVgc7 ==2)then strRedTemp=strsub(O3rHR,4,4)if(strRedTemp=="")then YU80=1 else YU80=
-"0."..strRedTemp end
-strGreenTemp=strsub(O3rHR,5,5)
-if(strGreenTemp=="")then Qh=1 else Qh="0."..strGreenTemp end;strBlueTemp=strsub(O3rHR,6,6)if(strBlueTemp=="")then ARnO_0E=1 else ARnO_0E="0."..
-strBlueTemp end end;local vxnB=tonumber(YU80)local ZQOXXXd=tonumber(Qh)
-local cyBmTv=tonumber(ARnO_0E)
-f2[AuVgc7].t:SetColorTexture(vxnB,ZQOXXXd,cyBmTv,_gGmBBE)end end
-function FocusPulse()UpdateHealthFrame("focus",DfbW)
-UpdateDebuffFrame("focus",sh)UpdateCastingFrame("focus",rrFLbCtj)end;local Jp=0
-function update(_TKd0F,Z)Jp=Jp+Z;if Jp>=0.2 then Gm1()LnQUN()if(UnitExists("Focus"))then
-FocusPulse()end;Jp=0 end end
-local function NwBqNl3C()local Dw=0;nN=CreateFrame("frame","",parent)nN:SetSize(1,1)
-nN:SetPoint("TOPLEFT",0,0)nN.t=nN:CreateTexture()
-nN.t:SetColorTexture(1,1,1,_gGmBBE)nN.t:SetAllPoints(nN)nN:Show()
-nN:RegisterEvent("PLAYER_ENTERING_WORLD")nN:RegisterEvent("PLAYER_REGEN_ENABLED")
-nN:RegisterEvent("PLAYER_REGEN_DISABLED")nN:RegisterUnitEvent("UNIT_HEALTH","player")
-nN:RegisterEvent("PLAYER_TARGET_CHANGED")nN:SetScript("OnEvent",MGt)
+spellId2 ==233490 or spellId2 ==233496 or spellId2 ==233497 or spellId2 ==233498 or spellId2 ==233499 then hMxy=hMxy+1 end end;emGbhJGH=hMxy end
+if(LgQF==Oh5)then local hj3=GetTime()remainingTime=q(zBMvU6-hj3,1)
+local M7q3pa8,guEhw=strsplit(".",remainingTime)local sll=tonumber(M7q3pa8)/100
+local BzNBgGvD=tonumber(guEhw)/100
+_1To2[Hhwf3oO].t:SetColorTexture(1,sll,BzNBgGvD,Dn1Xi)else
+_1To2[Hhwf3oO].t:SetColorTexture(0,0,0,Dn1Xi)end end end
+function UpdateCastingFrame(KIQCH,L4bw,...)if not UnitExists(KIQCH)then return end
+local XhBEPD=select(10,UnitCastingInfo(KIQCH))
+if XhBEPD==nil then local RRESd,RRESd,RRESd,RRESd,S1qoVmFR=...XhBEPD=S1qoVmFR end;if XhBEPD==nil then for f2=1,2 do
+L4bw[f2].t:SetColorTexture(0,0,0,Dn1Xi)end;return end
+local Uq=""local RmyiI_D=""local w_2iiJwx=""
+for O3rHR=1,2 do
+if(O3rHR==1)then strRedTemp=strsub(XhBEPD,1,1)if
+(strRedTemp=="")then Uq=1 else Uq="0."..strRedTemp end
+strGreenTemp=strsub(XhBEPD,2,2)
+if(strGreenTemp=="")then w_2iiJwx=1 else w_2iiJwx="0."..strGreenTemp end;strBlueTemp=strsub(XhBEPD,3,3)if(strBlueTemp=="")then RmyiI_D=1 else RmyiI_D="0."..
+strBlueTemp end end
+if(O3rHR==2)then strRedTemp=strsub(XhBEPD,4,4)if(strRedTemp=="")then Uq=1 else Uq="0."..
+strRedTemp end
+strGreenTemp=strsub(XhBEPD,5,5)
+if(strGreenTemp=="")then w_2iiJwx=1 else w_2iiJwx="0."..strGreenTemp end;strBlueTemp=strsub(XhBEPD,6,6)if(strBlueTemp=="")then RmyiI_D=1 else RmyiI_D="0."..
+strBlueTemp end end;local YU80=tonumber(Uq)local ARnO_0E=tonumber(w_2iiJwx)
+local Qh=tonumber(RmyiI_D)
+L4bw[O3rHR].t:SetColorTexture(YU80,ARnO_0E,Qh,Dn1Xi)end end
+function FocusPulse()UpdateHealthFrame("focus",LmR5gwW)
+UpdateDebuffFrame("focus",DfbW)UpdateCastingFrame("focus",sh)end;local LnQUN=0;function update(lqxbMC,qOk5Jm)LnQUN=LnQUN+qOk5Jm
+if LnQUN>=0.2 then Eq8jDq()nQj()if
+(UnitExists("Focus"))then FocusPulse()end;LnQUN=0 end end
+local function Gm1()
+local tpSe2fs=0;PSlD=CreateFrame("frame","",parent)PSlD:SetSize(1,1)
+PSlD:SetPoint("TOPLEFT",0,0)PSlD.t=PSlD:CreateTexture()
+PSlD.t:SetColorTexture(1,1,1,Dn1Xi)PSlD.t:SetAllPoints(PSlD)PSlD:Show()
+PSlD:RegisterEvent("PLAYER_ENTERING_WORLD")PSlD:RegisterEvent("PLAYER_REGEN_ENABLED")
+PSlD:RegisterEvent("PLAYER_REGEN_DISABLED")PSlD:RegisterUnitEvent("UNIT_HEALTH","player")
+PSlD:RegisterEvent("PLAYER_TARGET_CHANGED")PSlD:SetScript("OnEvent",sode)
 powerFrame=CreateFrame("frame","",parent)powerFrame:SetSize(1,1)
 powerFrame:SetPoint("TOPLEFT",1,0)powerFrame.t=powerFrame:CreateTexture()
-powerFrame.t:SetColorTexture(1,1,1,_gGmBBE)powerFrame.t:SetAllPoints(powerFrame)
+powerFrame.t:SetColorTexture(1,1,1,Dn1Xi)powerFrame.t:SetAllPoints(powerFrame)
 powerFrame:Show()
 powerFrame:RegisterEvent("PLAYER_ENTERING_WORLD")
 powerFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 powerFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
-powerFrame:RegisterUnitEvent("UNIT_POWER","player")powerFrame:SetScript("OnEvent",zEt)
+powerFrame:RegisterUnitEvent("UNIT_POWER","player")powerFrame:SetScript("OnEvent",H6)
 targetHealthFrame=CreateFrame("frame","",parent)targetHealthFrame:SetSize(1,1)
 targetHealthFrame:SetPoint("TOPLEFT",2,0)
 targetHealthFrame.t=targetHealthFrame:CreateTexture()
-targetHealthFrame.t:SetColorTexture(1,1,1,_gGmBBE)
+targetHealthFrame.t:SetColorTexture(1,1,1,Dn1Xi)
 targetHealthFrame.t:SetAllPoints(targetHealthFrame)targetHealthFrame:Show()
 targetHealthFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
 targetHealthFrame:RegisterEvent("PLAYER_REGEN_DISABLED")
 targetHealthFrame:RegisterEvent("UNIT_HEALTH","target")
 targetHealthFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 targetHealthFrame:RegisterEvent("PLAYER_ENTER_COMBAT")
-targetHealthFrame:RegisterEvent("PLAYER_LEAVE_COMBAT")
-targetHealthFrame:SetScript("OnEvent",hgsKvTz)unitCombatFrame=CreateFrame("frame","",parent)
-unitCombatFrame:SetSize(1,1)unitCombatFrame:SetPoint("TOPLEFT",3,0)
+targetHealthFrame:RegisterEvent("PLAYER_LEAVE_COMBAT")targetHealthFrame:SetScript("OnEvent",KpCCA)
+unitCombatFrame=CreateFrame("frame","",parent)unitCombatFrame:SetSize(1,1)
+unitCombatFrame:SetPoint("TOPLEFT",3,0)
 unitCombatFrame.t=unitCombatFrame:CreateTexture()
-unitCombatFrame.t:SetColorTexture(1,1,1,_gGmBBE)
+unitCombatFrame.t:SetColorTexture(1,1,1,Dn1Xi)
 unitCombatFrame.t:SetAllPoints(unitCombatFrame)unitCombatFrame:Show()
 unitCombatFrame:RegisterEvent("PLAYER_REGEN_ENABLED")
-unitCombatFrame:RegisterEvent("PLAYER_REGEN_DISABLED")unitCombatFrame:SetScript("OnEvent",Uy)
+unitCombatFrame:RegisterEvent("PLAYER_REGEN_DISABLED")unitCombatFrame:SetScript("OnEvent",BlW0RhJA)
 unitPowerFrame=CreateFrame("frame","",parent)unitPowerFrame:SetSize(1,1)
 unitPowerFrame:SetPoint("TOPLEFT",4,0)unitPowerFrame.t=unitPowerFrame:CreateTexture()
-unitPowerFrame.t:SetColorTexture(0,0,0,_gGmBBE)
+unitPowerFrame.t:SetColorTexture(0,0,0,Dn1Xi)
 unitPowerFrame.t:SetAllPoints(unitPowerFrame)unitPowerFrame:Show()
-unitPowerFrame:SetScript("OnUpdate",M7o_)g3Qeqnr=CreateFrame("frame","",parent)
-g3Qeqnr:SetSize(1,1)g3Qeqnr:SetPoint("TOPLEFT",5,0)
-g3Qeqnr.t=g3Qeqnr:CreateTexture()g3Qeqnr.t:SetColorTexture(0,1,0,_gGmBBE)
+unitPowerFrame:SetScript("OnUpdate",M6kL)A=CreateFrame("frame","",parent)A:SetSize(1,1)
+A:SetPoint("TOPLEFT",5,0)A.t=A:CreateTexture()
+A.t:SetColorTexture(0,1,0,Dn1Xi)A.t:SetAllPoints(A)A:Show()
+A:RegisterEvent("PLAYER_REGEN_ENABLED")A:RegisterEvent("PLAYER_REGEN_DISABLED")
+A:RegisterEvent("UNIT_HEALTH","target")A:RegisterEvent("PLAYER_TARGET_CHANGED")
+A:RegisterEvent("PLAYER_ENTER_COMBAT")A:RegisterEvent("PLAYER_LEAVE_COMBAT")
+A:SetScript("OnEvent",l2PqbWw)g3Qeqnr=CreateFrame("frame","",parent)
+g3Qeqnr:SetSize(1,1)g3Qeqnr:SetPoint("TOPLEFT",6,0)
+g3Qeqnr.t=g3Qeqnr:CreateTexture()g3Qeqnr.t:SetColorTexture(0,1,0,Dn1Xi)
 g3Qeqnr.t:SetAllPoints(g3Qeqnr)g3Qeqnr:Show()
-g3Qeqnr:RegisterEvent("PLAYER_REGEN_ENABLED")g3Qeqnr:RegisterEvent("PLAYER_REGEN_DISABLED")
-g3Qeqnr:RegisterEvent("UNIT_HEALTH","target")g3Qeqnr:RegisterEvent("PLAYER_TARGET_CHANGED")
-g3Qeqnr:RegisterEvent("PLAYER_ENTER_COMBAT")g3Qeqnr:RegisterEvent("PLAYER_LEAVE_COMBAT")
-g3Qeqnr:SetScript("OnEvent",qTB82)qHpY64=CreateFrame("frame","",parent)
-qHpY64:SetSize(1,1)qHpY64:SetPoint("TOPLEFT",6,0)
-qHpY64.t=qHpY64:CreateTexture()qHpY64.t:SetColorTexture(0,1,0,_gGmBBE)
-qHpY64.t:SetAllPoints(qHpY64)qHpY64:Show()
-qHpY64:RegisterEvent("PLAYER_TARGET_CHANGED")qHpY64:RegisterEvent("PLAYER_ENTER_COMBAT")
-qHpY64:RegisterEvent("PLAYER_LEAVE_COMBAT")qHpY64:SetScript("OnEvent",EATFLbgY)
-ARuba=CreateFrame("frame","",parent)ARuba:SetSize(1,1)ARuba:SetPoint("TOPLEFT",7,0)
-ARuba.t=ARuba:CreateTexture()ARuba.t:SetColorTexture(1,1,1,_gGmBBE)
+g3Qeqnr:RegisterEvent("PLAYER_TARGET_CHANGED")g3Qeqnr:RegisterEvent("PLAYER_ENTER_COMBAT")
+g3Qeqnr:RegisterEvent("PLAYER_LEAVE_COMBAT")g3Qeqnr:SetScript("OnEvent",qTB82)
+qccJ5b=CreateFrame("frame","",parent)qccJ5b:SetSize(1,1)
+qccJ5b:SetPoint("TOPLEFT",7,0)qccJ5b.t=qccJ5b:CreateTexture()
+qccJ5b.t:SetColorTexture(1,1,1,Dn1Xi)qccJ5b.t:SetAllPoints(qccJ5b)qccJ5b:Show()
+qccJ5b:SetScript("OnUpdate",FF)ARuba=CreateFrame("frame","",parent)
+ARuba:SetSize(1,1)ARuba:SetPoint("TOPLEFT",8,0)
+ARuba.t=ARuba:CreateTexture()ARuba.t:SetColorTexture(1,1,1,Dn1Xi)
 ARuba.t:SetAllPoints(ARuba)ARuba:Show()ARuba:SetScript("OnUpdate",YcCR)
+z=CreateFrame("frame","",parent)z:SetSize(1,1)z:SetPoint("TOPLEFT",9,0)
+z.t=z:CreateTexture()z.t:SetColorTexture(1,1,1,Dn1Xi)
+z.t:SetAllPoints(z)z:Show()z:RegisterEvent("PLAYER_ENTERING_WORLD")
+z:RegisterUnitEvent("UNIT_SPELL_HASTE","player")z:SetScript("OnUpdate",zEt)
 Wo53nZ=CreateFrame("frame","",parent)Wo53nZ:SetSize(1,1)
-Wo53nZ:SetPoint("TOPLEFT",8,0)Wo53nZ.t=Wo53nZ:CreateTexture()
-Wo53nZ.t:SetColorTexture(1,1,1,_gGmBBE)Wo53nZ.t:SetAllPoints(Wo53nZ)Wo53nZ:Show()
-Wo53nZ:SetScript("OnUpdate",_jkkD9)qccJ5b=CreateFrame("frame","",parent)
-qccJ5b:SetSize(1,1)qccJ5b:SetPoint("TOPLEFT",9,0)
-qccJ5b.t=qccJ5b:CreateTexture()qccJ5b.t:SetColorTexture(1,1,1,_gGmBBE)
-qccJ5b.t:SetAllPoints(qccJ5b)qccJ5b:Show()
-qccJ5b:RegisterEvent("PLAYER_ENTERING_WORLD")
-qccJ5b:RegisterUnitEvent("UNIT_SPELL_HASTE","player")qccJ5b:SetScript("OnUpdate",l2PqbWw)
-XRfQ=CreateFrame("frame","",parent)XRfQ:SetSize(1,1)XRfQ:SetPoint("TOPLEFT",10,0)
-XRfQ.t=XRfQ:CreateTexture()XRfQ.t:SetColorTexture(0,1,0,_gGmBBE)
-XRfQ.t:SetAllPoints(XRfQ)XRfQ:Show()XRfQ:SetScript("OnUpdate",GBzFRjVV)
+Wo53nZ:SetPoint("TOPLEFT",10,0)Wo53nZ.t=Wo53nZ:CreateTexture()
+Wo53nZ.t:SetColorTexture(0,1,0,Dn1Xi)Wo53nZ.t:SetAllPoints(Wo53nZ)Wo53nZ:Show()
+Wo53nZ:SetScript("OnUpdate",D)
 if(
-IWQcC==6 or IWQcC==3 or IWQcC==9 or IWQcC==8 or
-IWQcC==7)then
-gFPRdEC=CreateFrame("frame","",parent)gFPRdEC:SetSize(1,1)
-gFPRdEC:SetPoint("TOPLEFT",11,0)gFPRdEC.t=gFPRdEC:CreateTexture()
-gFPRdEC.t:SetColorTexture(0,1,0,_gGmBBE)gFPRdEC.t:SetAllPoints(gFPRdEC)
-gFPRdEC:Show()gFPRdEC:SetScript("OnUpdate",jv)
+nbqmx==6 or nbqmx==3 or nbqmx==9 or nbqmx==8 or nbqmx==7)then
+XRfQ=CreateFrame("frame","",parent)XRfQ:SetSize(1,1)XRfQ:SetPoint("TOPLEFT",11,0)
+XRfQ.t=XRfQ:CreateTexture()XRfQ.t:SetColorTexture(0,1,0,Dn1Xi)
+XRfQ.t:SetAllPoints(XRfQ)XRfQ:Show()XRfQ:SetScript("OnUpdate",dk2X7J7)
 petHealthFrame=CreateFrame("frame","",parent)petHealthFrame:SetSize(1,1)
 petHealthFrame:SetPoint("TOPLEFT",12,0)petHealthFrame.t=petHealthFrame:CreateTexture()
-petHealthFrame.t:SetColorTexture(1,1,1,_gGmBBE)
+petHealthFrame.t:SetColorTexture(1,1,1,Dn1Xi)
 petHealthFrame.t:SetAllPoints(petHealthFrame)petHealthFrame:Show()
-petHealthFrame:RegisterEvent("UNIT_HEALTH","pet")petHealthFrame:SetScript("OnEvent",KpCCA)
-J=CreateFrame("frame","",parent)J:SetSize(1,1)J:SetPoint("TOPLEFT",13,0)
-J.t=J:CreateTexture()J.t:SetColorTexture(0,1,0,_gGmBBE)
-J.t:SetAllPoints(J)J:Show()J:SetScript("OnUpdate",D)local Dw=0
-for bsFpM,h in pairs(PlayerBuffs)do
-B7SHDx7h[h]=CreateFrame("frame","",parent)B7SHDx7h[h]:SetSize(1,1)
-B7SHDx7h[h]:SetPoint("TOPLEFT",Dw,-9)B7SHDx7h[h].t=B7SHDx7h[h]:CreateTexture()
-B7SHDx7h[h].t:SetColorTexture(1,1,1,_gGmBBE)
-B7SHDx7h[h].t:SetAllPoints(B7SHDx7h[h])B7SHDx7h[h]:Show()Dw=Dw+1 end
-B7SHDx7h[table.maxn(B7SHDx7h)]:SetScript("OnUpdate",eN0UMW)end;Dw=0
-for doBTofya,rNP in pairs(SpellCooldowns)do
-usLpLoaH[rNP]=CreateFrame("frame","",parent)usLpLoaH[rNP]:SetSize(1,1)usLpLoaH[rNP]:SetPoint("TOPLEFT",Dw,
+petHealthFrame:RegisterEvent("UNIT_HEALTH","pet")petHealthFrame:SetScript("OnEvent",MGt)
+nN=CreateFrame("frame","",parent)nN:SetSize(1,1)nN:SetPoint("TOPLEFT",13,0)
+nN.t=nN:CreateTexture()nN.t:SetColorTexture(0,1,0,Dn1Xi)
+nN.t:SetAllPoints(nN)nN:Show()nN:SetScript("OnUpdate",G3p2Yn)local tpSe2fs=0
+for AuVgc7,vxnB in
+pairs(PlayerBuffs)do A5k5yt[vxnB]=CreateFrame("frame","",parent)
+A5k5yt[vxnB]:SetSize(1,1)A5k5yt[vxnB]:SetPoint("TOPLEFT",tpSe2fs,-9)
+A5k5yt[vxnB].t=A5k5yt[vxnB]:CreateTexture()
+A5k5yt[vxnB].t:SetColorTexture(1,1,1,Dn1Xi)
+A5k5yt[vxnB].t:SetAllPoints(A5k5yt[vxnB])A5k5yt[vxnB]:Show()tpSe2fs=tpSe2fs+1 end
+A5k5yt[table.maxn(A5k5yt)]:SetScript("OnUpdate",Hc35_)end;tpSe2fs=0
+for ZQOXXXd,cyBmTv in pairs(SpellCooldowns)do
+YcPea0vg[cyBmTv]=CreateFrame("frame","",parent)YcPea0vg[cyBmTv]:SetSize(1,1)YcPea0vg[cyBmTv]:SetPoint("TOPLEFT",tpSe2fs,
 -1)
-usLpLoaH[rNP].t=usLpLoaH[rNP]:CreateTexture()
-usLpLoaH[rNP].t:SetColorTexture(1,1,1,_gGmBBE)
-usLpLoaH[rNP].t:SetAllPoints(usLpLoaH[rNP])usLpLoaH[rNP]:Show()Dw=Dw+1 end
-usLpLoaH[table.maxn(usLpLoaH)]:SetScript("OnUpdate",E2OQ)Dw=0
-for TL,Tzgj_W in pairs(SpellCooldowns)do
-UIjls[Tzgj_W]=CreateFrame("frame","",parent)UIjls[Tzgj_W]:SetSize(1,1)UIjls[Tzgj_W]:SetPoint("TOPLEFT",Dw,
--2)
-UIjls[Tzgj_W].t=UIjls[Tzgj_W]:CreateTexture()
-UIjls[Tzgj_W].t:SetColorTexture(1,1,1,_gGmBBE)
-UIjls[Tzgj_W].t:SetAllPoints(UIjls[Tzgj_W])UIjls[Tzgj_W]:Show()Dw=Dw+1 end
-UIjls[table.maxn(UIjls)]:SetScript("OnUpdate",IwnA)Dw=0
-for g0AS39,t2 in pairs(PlayerDebuffs)do
-xEq6TAF[t2]=CreateFrame("frame","",parent)xEq6TAF[t2]:SetSize(1,1)
-xEq6TAF[t2]:SetPoint("TOPLEFT",Dw,-3)xEq6TAF[t2].t=xEq6TAF[t2]:CreateTexture()
-xEq6TAF[t2].t:SetColorTexture(1,1,1,_gGmBBE)
-xEq6TAF[t2].t:SetAllPoints(xEq6TAF[t2])xEq6TAF[t2]:Show()Dw=Dw+1 end
-xEq6TAF[table.maxn(xEq6TAF)]:SetScript("OnUpdate",WzM)Dw=0
-for PDewNmM,GFlD in pairs(SpellCooldowns)do
-e7dv[GFlD]=CreateFrame("frame","",parent)e7dv[GFlD]:SetSize(1,1)
-e7dv[GFlD]:SetPoint("TOPLEFT",Dw,-4)e7dv[GFlD].t=e7dv[GFlD]:CreateTexture()
-e7dv[GFlD].t:SetColorTexture(1,1,1,_gGmBBE)e7dv[GFlD].t:SetAllPoints(e7dv[GFlD])
-e7dv[GFlD]:Show()Dw=Dw+1 end
-e7dv[table.maxn(e7dv)]:RegisterEvent("ACTIONBAR_UPDATE_STATE")
-e7dv[table.maxn(e7dv)]:SetScript("OnEvent",ay)Dw=0
-for y3owm5E,psHOEe2 in pairs(PlayerBuffs)do
-a31jEAS[psHOEe2]=CreateFrame("frame","",parent)a31jEAS[psHOEe2]:SetSize(1,1)a31jEAS[psHOEe2]:SetPoint("TOPLEFT",Dw,
--5)
-a31jEAS[psHOEe2].t=a31jEAS[psHOEe2]:CreateTexture()
-a31jEAS[psHOEe2].t:SetColorTexture(0,1,1,_gGmBBE)
-a31jEAS[psHOEe2].t:SetAllPoints(a31jEAS[psHOEe2])a31jEAS[psHOEe2]:Show()Dw=Dw+1 end
-a31jEAS[table.maxn(a31jEAS)]:SetScript("OnUpdate",M6kL)PlayerMovingFrame=CreateFrame("frame","",parent)
+YcPea0vg[cyBmTv].t=YcPea0vg[cyBmTv]:CreateTexture()
+YcPea0vg[cyBmTv].t:SetColorTexture(1,1,1,Dn1Xi)
+YcPea0vg[cyBmTv].t:SetAllPoints(YcPea0vg[cyBmTv])YcPea0vg[cyBmTv]:Show()tpSe2fs=tpSe2fs+1 end
+YcPea0vg[table.maxn(YcPea0vg)]:SetScript("OnUpdate",jv)tpSe2fs=0
+for _TKd0F,Z in pairs(SpellCooldowns)do
+xEq6TAF[Z]=CreateFrame("frame","",parent)xEq6TAF[Z]:SetSize(1,1)
+xEq6TAF[Z]:SetPoint("TOPLEFT",tpSe2fs,-2)xEq6TAF[Z].t=xEq6TAF[Z]:CreateTexture()
+xEq6TAF[Z].t:SetColorTexture(1,1,1,Dn1Xi)xEq6TAF[Z].t:SetAllPoints(xEq6TAF[Z])
+xEq6TAF[Z]:Show()tpSe2fs=tpSe2fs+1 end
+xEq6TAF[table.maxn(xEq6TAF)]:SetScript("OnUpdate",WzM)tpSe2fs=0
+for Dw,bsFpM in pairs(PlayerDebuffs)do
+hrVI4meU[bsFpM]=CreateFrame("frame","",parent)hrVI4meU[bsFpM]:SetSize(1,1)hrVI4meU[bsFpM]:SetPoint("TOPLEFT",tpSe2fs,
+-3)
+hrVI4meU[bsFpM].t=hrVI4meU[bsFpM]:CreateTexture()
+hrVI4meU[bsFpM].t:SetColorTexture(1,1,1,Dn1Xi)
+hrVI4meU[bsFpM].t:SetAllPoints(hrVI4meU[bsFpM])hrVI4meU[bsFpM]:Show()tpSe2fs=tpSe2fs+1 end
+hrVI4meU[table.maxn(hrVI4meU)]:SetScript("OnUpdate",ay)tpSe2fs=0
+for h,doBTofya in pairs(SpellCooldowns)do
+usLpLoaH[doBTofya]=CreateFrame("frame","",parent)usLpLoaH[doBTofya]:SetSize(1,1)usLpLoaH[doBTofya]:SetPoint("TOPLEFT",tpSe2fs,
+-4)
+usLpLoaH[doBTofya].t=usLpLoaH[doBTofya]:CreateTexture()
+usLpLoaH[doBTofya].t:SetColorTexture(1,1,1,Dn1Xi)
+usLpLoaH[doBTofya].t:SetAllPoints(usLpLoaH[doBTofya])usLpLoaH[doBTofya]:Show()tpSe2fs=tpSe2fs+1 end
+usLpLoaH[table.maxn(usLpLoaH)]:RegisterEvent("ACTIONBAR_UPDATE_STATE")
+usLpLoaH[table.maxn(usLpLoaH)]:SetScript("OnEvent",E2OQ)tpSe2fs=0
+for rNP,TL in pairs(PlayerBuffs)do
+FFG[TL]=CreateFrame("frame","",parent)FFG[TL]:SetSize(1,1)
+FFG[TL]:SetPoint("TOPLEFT",tpSe2fs,-5)FFG[TL].t=FFG[TL]:CreateTexture()
+FFG[TL].t:SetColorTexture(0,1,1,Dn1Xi)FFG[TL].t:SetAllPoints(FFG[TL])
+FFG[TL]:Show()tpSe2fs=tpSe2fs+1 end
+FFG[table.maxn(FFG)]:SetScript("OnUpdate",TKu)PlayerMovingFrame=CreateFrame("frame","",parent)
 PlayerMovingFrame:SetSize(1,1)PlayerMovingFrame:SetPoint("TOPLEFT",0,-6)
 PlayerMovingFrame.t=PlayerMovingFrame:CreateTexture()
-PlayerMovingFrame.t:SetColorTexture(1,1,1,_gGmBBE)
+PlayerMovingFrame.t:SetColorTexture(1,1,1,Dn1Xi)
 PlayerMovingFrame.t:SetAllPoints(PlayerMovingFrame)PlayerMovingFrame:Show()
-PlayerMovingFrame:SetScript("OnUpdate",cW)AutoAtackingFrame=CreateFrame("frame","",parent)
+PlayerMovingFrame:SetScript("OnUpdate",PSx)AutoAtackingFrame=CreateFrame("frame","",parent)
 AutoAtackingFrame:SetSize(1,1)AutoAtackingFrame:SetPoint("TOPLEFT",1,-6)
 AutoAtackingFrame.t=AutoAtackingFrame:CreateTexture()
-AutoAtackingFrame.t:SetColorTexture(1,1,1,_gGmBBE)
+AutoAtackingFrame.t:SetColorTexture(1,1,1,Dn1Xi)
 AutoAtackingFrame.t:SetAllPoints(AutoAtackingFrame)AutoAtackingFrame:Show()
 AutoAtackingFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
 AutoAtackingFrame:RegisterEvent("PLAYER_ENTER_COMBAT")
-AutoAtackingFrame:RegisterEvent("PLAYER_LEAVE_COMBAT")
-AutoAtackingFrame:SetScript("OnEvent",PHpCof2)targetIsPlayerFrame=CreateFrame("frame","",parent)
-targetIsPlayerFrame:SetSize(1,1)targetIsPlayerFrame:SetPoint("TOPLEFT",2,-6)
+AutoAtackingFrame:RegisterEvent("PLAYER_LEAVE_COMBAT")AutoAtackingFrame:SetScript("OnEvent",IwnA)
+targetIsPlayerFrame=CreateFrame("frame","",parent)targetIsPlayerFrame:SetSize(1,1)targetIsPlayerFrame:SetPoint("TOPLEFT",2,
+-6)
 targetIsPlayerFrame.t=targetIsPlayerFrame:CreateTexture()
-targetIsPlayerFrame.t:SetColorTexture(1,1,1,_gGmBBE)
+targetIsPlayerFrame.t:SetColorTexture(1,1,1,Dn1Xi)
 targetIsPlayerFrame.t:SetAllPoints(targetIsPlayerFrame)targetIsPlayerFrame:Show()
-targetIsPlayerFrame:RegisterEvent("PLAYER_TARGET_CHANGED")
-targetIsPlayerFrame:SetScript("OnEvent",bUPpn4T2)YcPea0vg=CreateFrame("frame","",parent)
-YcPea0vg:SetSize(1,1)YcPea0vg:SetPoint("TOPLEFT",3,-6)
-YcPea0vg.t=YcPea0vg:CreateTexture()YcPea0vg.t:SetColorTexture(1,1,1,_gGmBBE)
-YcPea0vg.t:SetAllPoints(YcPea0vg)YcPea0vg:Show()
-YcPea0vg:SetScript("OnUpdate",sode)end
-function GetKeyBinding(R1zT)local J2Df
-if R1zT<=24 or R1zT>72 then J2Df="ACTIONBUTTON"..
-(((R1zT-1)%12)+1)elseif R1zT<=36 then
-J2Df="MULTIACTIONBAR3BUTTON".. (R1zT-24)elseif R1zT<=48 then J2Df="MULTIACTIONBAR4BUTTON".. (R1zT-36)elseif
-R1zT<=60 then J2Df="MULTIACTIONBAR2BUTTON".. (R1zT-48)else J2Df=
-"MULTIACTIONBAR1BUTTON".. (R1zT-60)end;local YyS=J2Df and GetBindingKey(J2Df)
-if
-YyS and strlen(YyS)>4 then YyS=strupper(YyS)YyS=gsub(YyS,"%s+","")
-YyS=gsub(YyS,"ALT%-","A|")YyS=gsub(YyS,"CTRL%-","C|")YyS=gsub(YyS,"SHIFT%-","S|")
-YyS=gsub(YyS,"NUMPAD","N")YyS=gsub(YyS,"PLUS","+")YyS=gsub(YyS,"MINUS","-")
-YyS=gsub(YyS,"MULTIPLY","*")YyS=gsub(YyS,"DIVIDE","/")end
-if YyS~=nil then else
+targetIsPlayerFrame:RegisterEvent("PLAYER_TARGET_CHANGED")targetIsPlayerFrame:SetScript("OnEvent",cW)
+rrFLbCtj=CreateFrame("frame","",parent)rrFLbCtj:SetSize(1,1)
+rrFLbCtj:SetPoint("TOPLEFT",3,-6)rrFLbCtj.t=rrFLbCtj:CreateTexture()
+rrFLbCtj.t:SetColorTexture(1,1,1,Dn1Xi)rrFLbCtj.t:SetAllPoints(rrFLbCtj)
+rrFLbCtj:Show()rrFLbCtj:SetScript("OnUpdate",PHpCof2)end
+function GetKeyBinding(Tzgj_W)local g0AS39
+if Tzgj_W<=24 or Tzgj_W>72 then g0AS39="ACTIONBUTTON".. (
+((Tzgj_W-1)%12)+1)elseif Tzgj_W<=36 then g0AS39=
+"MULTIACTIONBAR3BUTTON".. (Tzgj_W-24)elseif Tzgj_W<=48 then g0AS39=
+"MULTIACTIONBAR4BUTTON".. (Tzgj_W-36)elseif Tzgj_W<=60 then g0AS39=
+"MULTIACTIONBAR2BUTTON".. (Tzgj_W-48)else g0AS39="MULTIACTIONBAR1BUTTON"..
+(Tzgj_W-60)end;local t2=g0AS39 and GetBindingKey(g0AS39)
+if t2 and
+strlen(t2)>4 then t2=strupper(t2)t2=gsub(t2,"%s+","")
+t2=gsub(t2,"ALT%-","A|")t2=gsub(t2,"CTRL%-","C|")t2=gsub(t2,"SHIFT%-","S|")
+t2=gsub(t2,"NUMPAD","N")t2=gsub(t2,"PLUS","+")t2=gsub(t2,"MINUS","-")
+t2=gsub(t2,"MULTIPLY","*")t2=gsub(t2,"DIVIDE","/")end
+if t2 ~=nil then else
 if Bartender4 then
-J2Df="CLICK BT4Button"..R1zT..":LeftButton"YyS=J2Df and GetBindingKey(J2Df)
+g0AS39="CLICK BT4Button"..Tzgj_W..":LeftButton"t2=g0AS39 and GetBindingKey(g0AS39)
 if
-YyS and strlen(YyS)>4 then YyS=strupper(YyS)YyS=gsub(YyS,"%s+","")
-YyS=gsub(YyS,"ALT%-","A|")YyS=gsub(YyS,"CTRL%-","C|")YyS=gsub(YyS,"SHIFT%-","S|")
-YyS=gsub(YyS,"NUMPAD","N")YyS=gsub(YyS,"PLUS","+")YyS=gsub(YyS,"MINUS","-")
-YyS=gsub(YyS,"MULTIPLY","*")YyS=gsub(YyS,"DIVIDE","/")end end end;return YyS end
-function KeyModifierColor(o)local MY16y=strfind(o,"|")
-if(MY16y~=nil)then
-local ZBUghmX=strsub(o,1,MY16y-1)if(ZBUghmX=="S")then return 0.01 end
-if(ZBUghmX=="C")then return 0.02 end;if(ZBUghmX=="A")then return 0.03 end end;return 1 end
-function KeyBindColor(ncK)local Deq=strfind(ncK,"|")
-if(Deq~=nil)then ncK=strsub(ncK,Deq+1)end
-if ncK=="\\"then return 0.01 elseif ncK=="["then return 0.02 elseif ncK=="]"then return 0.03 elseif ncK==";"then return 0.04 elseif ncK=="'"then return 0.05 elseif ncK==
-","then return 0.06 elseif ncK=="."then return 0.07 elseif ncK=="/"then return 0.08 elseif ncK=="`"then return 0.09 elseif ncK=="-"then return 0.10 elseif
-ncK=="="then return 0.11 elseif ncK=="F1"then return 0.12 elseif ncK=="F2"then return 0.13 elseif ncK=="F3"then return 0.14 elseif ncK=="F4"then return 0.15 elseif
-ncK=="F5"then return 0.16 elseif ncK=="F6"then return 0.17 elseif ncK=="F7"then return 0.18 elseif ncK=="F8"then return 0.19 elseif ncK=="F9"then return 0.20 elseif
-ncK=="F10"then return 0.21 elseif ncK=="F11"then return 0.22 elseif ncK=="F12"then return 0.23 elseif ncK=="1"then return 0.24 elseif ncK=="2"then return 0.25 elseif
-ncK=="3"then return 0.26 elseif ncK=="4"then return 0.27 elseif ncK=="5"then return 0.28 elseif ncK=="6"then return 0.29 elseif ncK=="7"then return 0.30 elseif ncK=="8"then
-return 0.31 elseif ncK=="9"then return 0.32 elseif ncK=="0"then return 0.33 elseif ncK=="Q"then return 0.34 elseif ncK=="W"then return 0.35 elseif ncK=="E"then return 0.36 elseif ncK==
-"R"then return 0.37 elseif ncK=="T"then return 0.38 elseif ncK=="Y"then return 0.39 elseif ncK=="U"then return 0.40 elseif ncK=="I"then return 0.41 elseif
-ncK=="O"then return 0.42 elseif ncK=="P"then return 0.43 elseif ncK=="A"then return 0.44 elseif ncK=="S"then return 0.45 elseif ncK=="D"then return 0.46 elseif ncK=="F"then
-return 0.47 elseif ncK=="G"then return 0.48 elseif ncK=="H"then return 0.49 elseif ncK=="J"then return 0.50 elseif ncK=="K"then return 0.51 elseif ncK=="L"then return 0.52 elseif ncK==
-"Z"then return 0.53 elseif ncK=="X"then return 0.54 elseif ncK=="C"then return 0.55 elseif ncK=="V"then return 0.56 elseif ncK=="B"then return 0.57 elseif
-ncK=="N"then return 0.58 elseif ncK=="M"then return 0.59 elseif ncK=="N1"then return 0.60 elseif ncK=="N2"then return 0.61 elseif ncK=="N3"then return 0.62 elseif
-ncK=="N4"then return 0.63 elseif ncK=="N5"then return 0.64 elseif ncK=="N6"then return 0.65 elseif ncK=="N7"then return 0.66 elseif ncK=="N8"then return 0.67 elseif
-ncK=="N9"then return 0.68 elseif ncK=="N0"then return 0.69 end;return 1 end
-function fixSlots(GH3wE)if(GH3wE<10)then return'00'..GH3wE end;if(GH3wE>=10)then return
-'0'..GH3wE end;return''..GH3wE end;printKeybinds=0
+t2 and strlen(t2)>4 then t2=strupper(t2)t2=gsub(t2,"%s+","")
+t2=gsub(t2,"ALT%-","A|")t2=gsub(t2,"CTRL%-","C|")t2=gsub(t2,"SHIFT%-","S|")
+t2=gsub(t2,"NUMPAD","N")t2=gsub(t2,"PLUS","+")t2=gsub(t2,"MINUS","-")
+t2=gsub(t2,"MULTIPLY","*")t2=gsub(t2,"DIVIDE","/")end end end;return t2 end
+function KeyModifierColor(PDewNmM)local GFlD=strfind(PDewNmM,"|")
+if(GFlD~=nil)then
+local y3owm5E=strsub(PDewNmM,1,GFlD-1)if(y3owm5E=="S")then return 0.01 end
+if(y3owm5E=="C")then return 0.02 end;if(y3owm5E=="A")then return 0.03 end end;return 1 end
+function KeyBindColor(psHOEe2)local R1zT=strfind(psHOEe2,"|")if(R1zT~=nil)then
+psHOEe2=strsub(psHOEe2,R1zT+1)end
+if psHOEe2 =="\\"then return 0.01 elseif psHOEe2 =="["then return 0.02 elseif
+psHOEe2 =="]"then return 0.03 elseif psHOEe2 ==";"then return 0.04 elseif psHOEe2 =="'"then return 0.05 elseif psHOEe2 ==","then return 0.06 elseif
+psHOEe2 =="."then return 0.07 elseif psHOEe2 =="/"then return 0.08 elseif psHOEe2 =="`"then return 0.09 elseif psHOEe2 =="-"then return 0.10 elseif
+psHOEe2 =="="then return 0.11 elseif psHOEe2 =="F1"then return 0.12 elseif psHOEe2 =="F2"then return 0.13 elseif psHOEe2 =="F3"then return 0.14 elseif
+psHOEe2 =="F4"then return 0.15 elseif psHOEe2 =="F5"then return 0.16 elseif psHOEe2 =="F6"then return 0.17 elseif psHOEe2 =="F7"then return 0.18 elseif
+psHOEe2 =="F8"then return 0.19 elseif psHOEe2 =="F9"then return 0.20 elseif psHOEe2 =="F10"then return 0.21 elseif psHOEe2 =="F11"then return 0.22 elseif psHOEe2 ==
+"F12"then return 0.23 elseif psHOEe2 =="1"then return 0.24 elseif psHOEe2 =="2"then return 0.25 elseif psHOEe2 =="3"then return 0.26 elseif
+psHOEe2 =="4"then return 0.27 elseif psHOEe2 =="5"then return 0.28 elseif psHOEe2 =="6"then return 0.29 elseif psHOEe2 =="7"then return 0.30 elseif
+psHOEe2 =="8"then return 0.31 elseif psHOEe2 =="9"then return 0.32 elseif psHOEe2 =="0"then return 0.33 elseif psHOEe2 =="Q"then return 0.34 elseif
+psHOEe2 =="W"then return 0.35 elseif psHOEe2 =="E"then return 0.36 elseif psHOEe2 =="R"then return 0.37 elseif psHOEe2 =="T"then return 0.38 elseif
+psHOEe2 =="Y"then return 0.39 elseif psHOEe2 =="U"then return 0.40 elseif psHOEe2 =="I"then return 0.41 elseif psHOEe2 =="O"then return 0.42 elseif
+psHOEe2 =="P"then return 0.43 elseif psHOEe2 =="A"then return 0.44 elseif psHOEe2 =="S"then return 0.45 elseif psHOEe2 =="D"then return 0.46 elseif
+psHOEe2 =="F"then return 0.47 elseif psHOEe2 =="G"then return 0.48 elseif psHOEe2 =="H"then return 0.49 elseif psHOEe2 =="J"then return 0.50 elseif
+psHOEe2 =="K"then return 0.51 elseif psHOEe2 =="L"then return 0.52 elseif psHOEe2 =="Z"then return 0.53 elseif psHOEe2 =="X"then return 0.54 elseif
+psHOEe2 =="C"then return 0.55 elseif psHOEe2 =="V"then return 0.56 elseif psHOEe2 =="B"then return 0.57 elseif psHOEe2 =="N"then return 0.58 elseif
+psHOEe2 =="M"then return 0.59 elseif psHOEe2 =="N1"then return 0.60 elseif psHOEe2 =="N2"then return 0.61 elseif psHOEe2 =="N3"then
+return 0.62 elseif psHOEe2 =="N4"then return 0.63 elseif psHOEe2 =="N5"then return 0.64 elseif psHOEe2 =="N6"then return 0.65 elseif psHOEe2 =="N7"then
+return 0.66 elseif psHOEe2 =="N8"then return 0.67 elseif psHOEe2 =="N9"then return 0.68 elseif psHOEe2 =="N0"then return 0.69 end;return 1 end
+function fixSlots(J2Df)if(J2Df<10)then return'00'..J2Df end;if(J2Df>=10)then
+return'0'..J2Df end;return''..J2Df end;printKeybinds=0
 function RefreshKeyBinds()
 if(printKeybinds==1)then
 ChatFrame1:Clear()if Bartender4 then print('Bartender4 detected')end end
-for xZFv,bc0w4j in pairs(SpellCooldowns)do local OGMxal0=GetSpellInfo(bc0w4j)bindFound=false
-for QlewVjkq=1,120 do
-local Q,yI,EDE3=GetActionInfo(QlewVjkq)
-if Q=="spell"then local FpWG11U=GetKeyBinding(QlewVjkq)
-if FpWG11U~=nil then
-if
-(bc0w4j==yI)then
-oJ1ec[bc0w4j].t:SetColorTexture(KeyBindColor(FpWG11U),KeyModifierColor(FpWG11U),0,_gGmBBE)
+for YyS,o in pairs(SpellCooldowns)do local MY16y=GetSpellInfo(o)bindFound=false
+for ZBUghmX=1,120 do
+local ncK,Deq,GH3wE=GetActionInfo(ZBUghmX)
+if ncK=="spell"then local xZFv=GetKeyBinding(ZBUghmX)
+if xZFv~=nil then
+if(o==Deq)then
+W9yaJm[o].t:SetColorTexture(KeyBindColor(xZFv),KeyModifierColor(xZFv),0,Dn1Xi)
 if(printKeybinds==1)then
-print('Slot: '..
-fixSlots(QlewVjkq)..' '..
-GetSpellLink(bc0w4j)..','..
-KeyBindColor(FpWG11U)..
-','..KeyModifierColor(FpWG11U)..','..FpWG11U)end;bindFound=true;break end end end
-if Q=="macro"then actionText=GetActionText(QlewVjkq)
-name,rank,id=GetMacroSpell(actionText)local kRY46C=GetKeyBinding(QlewVjkq)
-if kRY46C~=nil then
-if(bc0w4j==id)then
-oJ1ec[bc0w4j].t:SetColorTexture(KeyBindColor(kRY46C),KeyModifierColor(kRY46C),0,_gGmBBE)
-if(printKeybinds==1)then
-print('Slot: '..
-fixSlots(QlewVjkq)..' '..
-GetSpellLink(bc0w4j)..','..
+print('Slot: '..fixSlots(ZBUghmX)..
+' '..GetSpellLink(o)..','..
 
-KeyBindColor(kRY46C)..','..KeyModifierColor(kRY46C)..','..kRY46C)end;bindFound=true;break end end end end
-if bindFound==false and(printKeybinds==1)then if
-(GetSpellLink(bc0w4j))~=nil then
-print(GetSpellLink(bc0w4j)..',not bound')else
-print('Spell Id: '..bc0w4j..',NOT FOUND')end end end;printKeybinds=0 end
-local function XuqjvYPF()i=0
-for rVj9z4,mWkmCx in pairs(SpellCooldowns)do
-oJ1ec[mWkmCx]=CreateFrame("frame","",parent)oJ1ec[mWkmCx]:SetSize(1,1)oJ1ec[mWkmCx]:SetPoint("TOPLEFT",i,
--14)
-oJ1ec[mWkmCx].t=oJ1ec[mWkmCx]:CreateTexture()
-oJ1ec[mWkmCx].t:SetColorTexture(0,0,0,_gGmBBE)
-oJ1ec[mWkmCx].t:SetAllPoints(oJ1ec[mWkmCx])oJ1ec[mWkmCx]:Show()i=i+1 end
-oJ1ec[table.maxn(oJ1ec)]:RegisterEvent("SPELL_PUSHED_TO_ACTIONBAR")
-oJ1ec[table.maxn(oJ1ec)]:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
-oJ1ec[table.maxn(oJ1ec)]:RegisterEvent("SPELLS_CHANGED")
-oJ1ec[table.maxn(oJ1ec)]:RegisterEvent("PLAYER_ENTERING_WORLD")
-oJ1ec[table.maxn(oJ1ec)]:RegisterEvent("UNIT_MODEL_CHANGED")
-oJ1ec[table.maxn(oJ1ec)]:SetScript("OnEvent",RefreshKeyBinds)local MvOaiq=0
-for MvOaiq=1,2 do EEpoeR[MvOaiq]=CreateFrame("FRAME","",parent)
-EEpoeR[MvOaiq]:SetSize(1,1)
-EEpoeR[MvOaiq]:SetPoint("TOPLEFT",(MvOaiq+3),-6)
-EEpoeR[MvOaiq].t=EEpoeR[MvOaiq]:CreateTexture()
-EEpoeR[MvOaiq].t:SetColorTexture(0,0,0,_gGmBBE)
-EEpoeR[MvOaiq].t:SetAllPoints(EEpoeR[MvOaiq])EEpoeR[MvOaiq]:Show()end
-EEpoeR[table.maxn(EEpoeR)]:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
-EEpoeR[table.maxn(EEpoeR)]:SetScript("OnEvent",pG4C8fDK)
-for MvOaiq=1,2 do Oynw[MvOaiq]=CreateFrame("FRAME","",parent)
-Oynw[MvOaiq]:SetSize(1,1)
-Oynw[MvOaiq]:SetPoint("TOPLEFT",(MvOaiq+5),-6)
-Oynw[MvOaiq].t=Oynw[MvOaiq]:CreateTexture()
-Oynw[MvOaiq].t:SetColorTexture(0,0,0,_gGmBBE)
-Oynw[MvOaiq].t:SetAllPoints(Oynw[MvOaiq])Oynw[MvOaiq]:Show()end
-Oynw[table.maxn(Oynw)]:SetScript("OnUpdate",LLFUU)
-for MvOaiq=1,2 do QBO[MvOaiq]=CreateFrame("FRAME","",parent)
-QBO[MvOaiq]:SetSize(1,1)
-QBO[MvOaiq]:SetPoint("TOPLEFT",(MvOaiq+7),-6)QBO[MvOaiq].t=QBO[MvOaiq]:CreateTexture()
-QBO[MvOaiq].t:SetColorTexture(0,0,0,_gGmBBE)
-QBO[MvOaiq].t:SetAllPoints(QBO[MvOaiq])QBO[MvOaiq]:Show()end
-QBO[table.maxn(QBO)]:SetScript("OnUpdate",kdmQtj6)
-for MvOaiq=1,2 do s4ggux[MvOaiq]=CreateFrame("FRAME","",parent)
-s4ggux[MvOaiq]:SetSize(1,1)
-s4ggux[MvOaiq]:SetPoint("TOPLEFT",(MvOaiq+9),-6)
-s4ggux[MvOaiq].t=s4ggux[MvOaiq]:CreateTexture()
-s4ggux[MvOaiq].t:SetColorTexture(0,0,0,_gGmBBE)
-s4ggux[MvOaiq].t:SetAllPoints(s4ggux[MvOaiq])s4ggux[MvOaiq]:Show()end
-s4ggux[table.maxn(s4ggux)]:SetScript("OnUpdate",Hc35_)
-for MvOaiq=1,2 do hrVI4meU[MvOaiq]=CreateFrame("FRAME","",parent)
-hrVI4meU[MvOaiq]:SetSize(1,1)
-hrVI4meU[MvOaiq]:SetPoint("TOPLEFT",(MvOaiq+11),-6)
-hrVI4meU[MvOaiq].t=hrVI4meU[MvOaiq]:CreateTexture()
-hrVI4meU[MvOaiq].t:SetColorTexture(0,0,0,_gGmBBE)
-hrVI4meU[MvOaiq].t:SetAllPoints(hrVI4meU[MvOaiq])hrVI4meU[MvOaiq]:Show()end
-hrVI4meU[table.maxn(hrVI4meU)]:SetScript("OnUpdate",ubP)MvOaiq=0
-for qQpo,qXKzBXo0 in pairs(PlayerBuffs)do
-inx0[qXKzBXo0]=CreateFrame("frame","",parent)inx0[qXKzBXo0]:SetSize(1,1)inx0[qXKzBXo0]:SetPoint("TOPLEFT",MvOaiq,
+KeyBindColor(xZFv)..','..KeyModifierColor(xZFv)..','..xZFv)end;bindFound=true;break end end end
+if ncK=="macro"then actionText=GetActionText(ZBUghmX)
+name,rank,id=GetMacroSpell(actionText)local bc0w4j=GetKeyBinding(ZBUghmX)
+if bc0w4j~=nil then
+if(o==id)then
+W9yaJm[o].t:SetColorTexture(KeyBindColor(bc0w4j),KeyModifierColor(bc0w4j),0,Dn1Xi)
+if(printKeybinds==1)then
+print('Slot: '..
+fixSlots(ZBUghmX)..' '..
+GetSpellLink(o)..','..
+
+KeyBindColor(bc0w4j)..','..KeyModifierColor(bc0w4j)..','..bc0w4j)end;bindFound=true;break end end end end
+if bindFound==false and(printKeybinds==1)then
+if
+(GetSpellLink(o))~=nil then
+print(GetSpellLink(o)..',not bound')else print('Spell Id: '..o..',NOT FOUND')end end end;printKeybinds=0 end
+local function Jp()i=0
+for Q,yI in pairs(SpellCooldowns)do
+W9yaJm[yI]=CreateFrame("frame","",parent)W9yaJm[yI]:SetSize(1,1)
+W9yaJm[yI]:SetPoint("TOPLEFT",i,-14)W9yaJm[yI].t=W9yaJm[yI]:CreateTexture()
+W9yaJm[yI].t:SetColorTexture(0,0,0,Dn1Xi)W9yaJm[yI].t:SetAllPoints(W9yaJm[yI])
+W9yaJm[yI]:Show()i=i+1 end
+W9yaJm[table.maxn(W9yaJm)]:RegisterEvent("SPELL_PUSHED_TO_ACTIONBAR")
+W9yaJm[table.maxn(W9yaJm)]:RegisterEvent("PLAYER_SPECIALIZATION_CHANGED")
+W9yaJm[table.maxn(W9yaJm)]:RegisterEvent("SPELLS_CHANGED")
+W9yaJm[table.maxn(W9yaJm)]:RegisterEvent("PLAYER_ENTERING_WORLD")
+W9yaJm[table.maxn(W9yaJm)]:RegisterEvent("UNIT_MODEL_CHANGED")
+W9yaJm[table.maxn(W9yaJm)]:SetScript("OnEvent",RefreshKeyBinds)local OGMxal0=0
+for OGMxal0=1,2 do
+B7SHDx7h[OGMxal0]=CreateFrame("FRAME","",parent)B7SHDx7h[OGMxal0]:SetSize(1,1)B7SHDx7h[OGMxal0]:SetPoint("TOPLEFT",(
+OGMxal0+3),-6)
+B7SHDx7h[OGMxal0].t=B7SHDx7h[OGMxal0]:CreateTexture()
+B7SHDx7h[OGMxal0].t:SetColorTexture(0,0,0,Dn1Xi)
+B7SHDx7h[OGMxal0].t:SetAllPoints(B7SHDx7h[OGMxal0])B7SHDx7h[OGMxal0]:Show()end
+B7SHDx7h[table.maxn(B7SHDx7h)]:RegisterEvent("UNIT_SPELLCAST_SUCCEEDED")
+B7SHDx7h[table.maxn(B7SHDx7h)]:SetScript("OnEvent",DMn)
+for OGMxal0=1,2 do Vd[OGMxal0]=CreateFrame("FRAME","",parent)
+Vd[OGMxal0]:SetSize(1,1)
+Vd[OGMxal0]:SetPoint("TOPLEFT",(OGMxal0+5),-6)Vd[OGMxal0].t=Vd[OGMxal0]:CreateTexture()
+Vd[OGMxal0].t:SetColorTexture(0,0,0,Dn1Xi)
+Vd[OGMxal0].t:SetAllPoints(Vd[OGMxal0])Vd[OGMxal0]:Show()end
+Vd[table.maxn(Vd)]:SetScript("OnUpdate",GBzFRjVV)
+for OGMxal0=1,2 do Oynw[OGMxal0]=CreateFrame("FRAME","",parent)
+Oynw[OGMxal0]:SetSize(1,1)
+Oynw[OGMxal0]:SetPoint("TOPLEFT",(OGMxal0+7),-6)
+Oynw[OGMxal0].t=Oynw[OGMxal0]:CreateTexture()
+Oynw[OGMxal0].t:SetColorTexture(0,0,0,Dn1Xi)
+Oynw[OGMxal0].t:SetAllPoints(Oynw[OGMxal0])Oynw[OGMxal0]:Show()end
+Oynw[table.maxn(Oynw)]:SetScript("OnUpdate",pG4C8fDK)
+for OGMxal0=1,2 do QBO[OGMxal0]=CreateFrame("FRAME","",parent)
+QBO[OGMxal0]:SetSize(1,1)
+QBO[OGMxal0]:SetPoint("TOPLEFT",(OGMxal0+9),-6)
+QBO[OGMxal0].t=QBO[OGMxal0]:CreateTexture()
+QBO[OGMxal0].t:SetColorTexture(0,0,0,Dn1Xi)
+QBO[OGMxal0].t:SetAllPoints(QBO[OGMxal0])QBO[OGMxal0]:Show()end
+QBO[table.maxn(QBO)]:SetScript("OnUpdate",LLFUU)
+for OGMxal0=1,2 do s4ggux[OGMxal0]=CreateFrame("FRAME","",parent)
+s4ggux[OGMxal0]:SetSize(1,1)
+s4ggux[OGMxal0]:SetPoint("TOPLEFT",(OGMxal0+11),-6)
+s4ggux[OGMxal0].t=s4ggux[OGMxal0]:CreateTexture()
+s4ggux[OGMxal0].t:SetColorTexture(0,0,0,Dn1Xi)
+s4ggux[OGMxal0].t:SetAllPoints(s4ggux[OGMxal0])s4ggux[OGMxal0]:Show()end
+s4ggux[table.maxn(s4ggux)]:SetScript("OnUpdate",kdmQtj6)OGMxal0=0
+for EDE3,FpWG11U in pairs(PlayerBuffs)do
+e7dv[FpWG11U]=CreateFrame("frame","",parent)e7dv[FpWG11U]:SetSize(1,1)e7dv[FpWG11U]:SetPoint("TOPLEFT",OGMxal0,
 -7)
-inx0[qXKzBXo0].t=inx0[qXKzBXo0]:CreateTexture()
-inx0[qXKzBXo0].t:SetColorTexture(1,1,1,_gGmBBE)
-inx0[qXKzBXo0].t:SetAllPoints(inx0[qXKzBXo0])inx0[qXKzBXo0]:Show()MvOaiq=MvOaiq+1 end
-inx0[table.maxn(inx0)]:SetScript("OnUpdate",W)MvOaiq=0
-for cJ,HI4G3oH in pairs(InventoryItems)do
-LS4h[HI4G3oH]=CreateFrame("frame","",parent)LS4h[HI4G3oH]:SetSize(1,1)LS4h[HI4G3oH]:SetPoint("TOPLEFT",MvOaiq,
+e7dv[FpWG11U].t=e7dv[FpWG11U]:CreateTexture()
+e7dv[FpWG11U].t:SetColorTexture(1,1,1,Dn1Xi)
+e7dv[FpWG11U].t:SetAllPoints(e7dv[FpWG11U])e7dv[FpWG11U]:Show()OGMxal0=OGMxal0+1 end
+e7dv[table.maxn(e7dv)]:SetScript("OnUpdate",SnbfLb6)OGMxal0=0
+for kRY46C,MvOaiq in pairs(InventoryItems)do
+a31jEAS[MvOaiq]=CreateFrame("frame","",parent)a31jEAS[MvOaiq]:SetSize(1,1)a31jEAS[MvOaiq]:SetPoint("TOPLEFT",OGMxal0,
 -8)
-LS4h[HI4G3oH].t=LS4h[HI4G3oH]:CreateTexture()
-LS4h[HI4G3oH].t:SetColorTexture(1,1,1,_gGmBBE)
-LS4h[HI4G3oH].t:SetAllPoints(LS4h[HI4G3oH])LS4h[HI4G3oH]:Show()MvOaiq=MvOaiq+1 end;if(table.getn(InventoryItems)~=0)then
-LS4h[table.maxn(LS4h)]:SetScript("OnUpdate",SnbfLb6)end;MvOaiq=0
-for ncWw,kdS in pairs(PlayerDebuffs)do
-A5k5yt[kdS]=CreateFrame("frame","",parent)A5k5yt[kdS]:SetSize(1,1)
-A5k5yt[kdS]:SetPoint("TOPLEFT",MvOaiq,-10)A5k5yt[kdS].t=A5k5yt[kdS]:CreateTexture()
-A5k5yt[kdS].t:SetColorTexture(1,1,1,_gGmBBE)
-A5k5yt[kdS].t:SetAllPoints(A5k5yt[kdS])A5k5yt[kdS]:Show()
-A5k5yt[kdS]:SetScript("OnUpdate",lAG)MvOaiq=MvOaiq+1 end
-A5k5yt[table.maxn(A5k5yt)]:SetScript("OnUpdate",lAG)MvOaiq=0
-for OS60,dl in pairs(SpellCooldowns)do
-rIX4[dl]=CreateFrame("frame","",parent)rIX4[dl]:SetSize(1,1)
-rIX4[dl]:SetPoint("TOPLEFT",MvOaiq,-11)rIX4[dl].t=rIX4[dl]:CreateTexture()
-rIX4[dl].t:SetColorTexture(1,1,1,_gGmBBE)rIX4[dl].t:SetAllPoints(rIX4[dl])
-rIX4[dl]:Show()MvOaiq=MvOaiq+1 end;if(table.getn(SpellCooldowns)~=0)then
-rIX4[table.maxn(rIX4)]:SetScript("OnUpdate",AvEtR8Y)end
-for MvOaiq=1,4 do
-AI14eFhp[MvOaiq]=CreateFrame("frame","",parent)AI14eFhp[MvOaiq]:SetSize(1,1)AI14eFhp[MvOaiq]:SetPoint("TOPLEFT",(MvOaiq),
+a31jEAS[MvOaiq].t=a31jEAS[MvOaiq]:CreateTexture()
+a31jEAS[MvOaiq].t:SetColorTexture(1,1,1,Dn1Xi)
+a31jEAS[MvOaiq].t:SetAllPoints(a31jEAS[MvOaiq])a31jEAS[MvOaiq]:Show()OGMxal0=OGMxal0+1 end;if(table.getn(InventoryItems)~=0)then
+a31jEAS[table.maxn(a31jEAS)]:SetScript("OnUpdate",MW)end;OGMxal0=0
+for DUic_1K,rVj9z4 in pairs(PlayerDebuffs)do
+inx0[rVj9z4]=CreateFrame("frame","",parent)inx0[rVj9z4]:SetSize(1,1)inx0[rVj9z4]:SetPoint("TOPLEFT",OGMxal0,
+-10)
+inx0[rVj9z4].t=inx0[rVj9z4]:CreateTexture()
+inx0[rVj9z4].t:SetColorTexture(1,1,1,Dn1Xi)
+inx0[rVj9z4].t:SetAllPoints(inx0[rVj9z4])inx0[rVj9z4]:Show()
+inx0[rVj9z4]:SetScript("OnUpdate",ubP)OGMxal0=OGMxal0+1 end
+inx0[table.maxn(inx0)]:SetScript("OnUpdate",ubP)OGMxal0=0
+for mWkmCx,qQpo in pairs(SpellCooldowns)do
+_gGmBBE[qQpo]=CreateFrame("frame","",parent)_gGmBBE[qQpo]:SetSize(1,1)_gGmBBE[qQpo]:SetPoint("TOPLEFT",OGMxal0,
+-11)
+_gGmBBE[qQpo].t=_gGmBBE[qQpo]:CreateTexture()
+_gGmBBE[qQpo].t:SetColorTexture(1,1,1,Dn1Xi)
+_gGmBBE[qQpo].t:SetAllPoints(_gGmBBE[qQpo])_gGmBBE[qQpo]:Show()OGMxal0=OGMxal0+1 end;if(table.getn(SpellCooldowns)~=0)then
+_gGmBBE[table.maxn(_gGmBBE)]:SetScript("OnUpdate",eN0UMW)end
+for OGMxal0=1,4 do
+rIX4[OGMxal0]=CreateFrame("frame","",parent)rIX4[OGMxal0]:SetSize(1,1)rIX4[OGMxal0]:SetPoint("TOPLEFT",(OGMxal0),
 -12)
-AI14eFhp[MvOaiq].t=AI14eFhp[MvOaiq]:CreateTexture()
-AI14eFhp[MvOaiq].t:SetColorTexture(1,1,1,_gGmBBE)
-AI14eFhp[MvOaiq].t:SetAllPoints(AI14eFhp[MvOaiq])AI14eFhp[MvOaiq]:Show()end
-AI14eFhp[table.maxn(AI14eFhp)]:RegisterEvent("PLAYER_ENTERING_WORLD")
-AI14eFhp[table.maxn(AI14eFhp)]:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
-AI14eFhp[table.maxn(AI14eFhp)]:RegisterEvent("PLAYER_REGEN_DISABLED")
-AI14eFhp[table.maxn(AI14eFhp)]:SetScript("OnEvent",TKu)VQ=CreateFrame("frame","",parent)VQ:SetSize(1,1)VQ:SetPoint("TOPLEFT",0,
--22)VQ.t=VQ:CreateTexture()
-VQ.t:SetColorTexture(1,1,1,_gGmBBE)VQ.t:SetAllPoints(VQ)VQ:Show()
-VQ:SetScript("OnUpdate",rHLz2GD)local DUic_1K=IsInRaid()and"raid"or"party"MvOaiq=0
-for b2UK=1,30 do
-iW2O[b2UK]=CreateFrame("frame","",parent)iW2O[b2UK]:SetSize(1,1)
-iW2O[b2UK]:SetPoint("TOPLEFT",MvOaiq,-13)iW2O[b2UK].t=iW2O[b2UK]:CreateTexture()
-iW2O[b2UK].t:SetColorTexture(0,0,0,_gGmBBE)iW2O[b2UK].t:SetAllPoints(iW2O[b2UK])
-iW2O[b2UK]:Show()MvOaiq=MvOaiq+1 end;DfbW=CreateFrame("frame","",parent)DfbW:SetSize(1,1)DfbW:SetPoint("TOPLEFT",0,
--19)DfbW.t=DfbW:CreateTexture()
-DfbW.t:SetColorTexture(0,0,0,_gGmBBE)DfbW.t:SetAllPoints(DfbW)DfbW:Show()MvOaiq=0
-for FC0yhp,lL30T in
-pairs(PlayerDebuffs)do sh[lL30T]=CreateFrame("frame","",parent)
-sh[lL30T]:SetSize(1,1)sh[lL30T]:SetPoint("TOPLEFT",MvOaiq,-20)
-sh[lL30T].t=sh[lL30T]:CreateTexture()sh[lL30T].t:SetColorTexture(0,0,0,_gGmBBE)
-sh[lL30T].t:SetAllPoints(sh[lL30T])sh[lL30T]:Show()MvOaiq=MvOaiq+1 end
-for MvOaiq=1,2 do rrFLbCtj[MvOaiq]=CreateFrame("FRAME","",parent)
-rrFLbCtj[MvOaiq]:SetSize(1,1)
-rrFLbCtj[MvOaiq]:SetPoint("TOPLEFT",MvOaiq,-19)
-rrFLbCtj[MvOaiq].t=rrFLbCtj[MvOaiq]:CreateTexture()
-rrFLbCtj[MvOaiq].t:SetColorTexture(0,0,0,_gGmBBE)
-rrFLbCtj[MvOaiq].t:SetAllPoints(rrFLbCtj[MvOaiq])rrFLbCtj[MvOaiq]:Show()end end;local function Trh()cvRh=0 end;local function K()W9yaJm=0 end
-local function uK(zt,Ofgm3g,...)local z6WE21dc=...if Ofgm3g=="ADDON_LOADED"then
-if(
-z6WE21dc=="[Frozen]")then NwBqNl3C()XuqjvYPF()end end;if Ofgm3g=="NAME_PLATE_UNIT_ADDED"then
-BlW0RhJA(select(1,...))rHLz2GD()end
+rIX4[OGMxal0].t=rIX4[OGMxal0]:CreateTexture()
+rIX4[OGMxal0].t:SetColorTexture(1,1,1,Dn1Xi)
+rIX4[OGMxal0].t:SetAllPoints(rIX4[OGMxal0])rIX4[OGMxal0]:Show()end
+rIX4[table.maxn(rIX4)]:RegisterEvent("PLAYER_ENTERING_WORLD")
+rIX4[table.maxn(rIX4)]:RegisterEvent("PLAYER_EQUIPMENT_CHANGED")
+rIX4[table.maxn(rIX4)]:RegisterEvent("PLAYER_REGEN_DISABLED")
+rIX4[table.maxn(rIX4)]:SetScript("OnEvent",n)wUVm=CreateFrame("frame","",parent)wUVm:SetSize(1,1)wUVm:SetPoint("TOPLEFT",0,
+-22)wUVm.t=wUVm:CreateTexture()
+wUVm.t:SetColorTexture(1,1,1,Dn1Xi)wUVm.t:SetAllPoints(wUVm)wUVm:Show()
+wUVm:SetScript("OnUpdate",yK)local QlewVjkq=IsInRaid()and"raid"or"party"OGMxal0=0
+for qXKzBXo0=1,30 do
+AI14eFhp[qXKzBXo0]=CreateFrame("frame","",parent)AI14eFhp[qXKzBXo0]:SetSize(1,1)AI14eFhp[qXKzBXo0]:SetPoint("TOPLEFT",OGMxal0,
+-13)
+AI14eFhp[qXKzBXo0].t=AI14eFhp[qXKzBXo0]:CreateTexture()
+AI14eFhp[qXKzBXo0].t:SetColorTexture(0,0,0,Dn1Xi)
+AI14eFhp[qXKzBXo0].t:SetAllPoints(AI14eFhp[qXKzBXo0])AI14eFhp[qXKzBXo0]:Show()OGMxal0=OGMxal0+1 end;LmR5gwW=CreateFrame("frame","",parent)
+LmR5gwW:SetSize(1,1)LmR5gwW:SetPoint("TOPLEFT",0,-19)
+LmR5gwW.t=LmR5gwW:CreateTexture()LmR5gwW.t:SetColorTexture(0,0,0,Dn1Xi)
+LmR5gwW.t:SetAllPoints(LmR5gwW)LmR5gwW:Show()OGMxal0=0
+for cJ,HI4G3oH in pairs(PlayerDebuffs)do
+DfbW[HI4G3oH]=CreateFrame("frame","",parent)DfbW[HI4G3oH]:SetSize(1,1)DfbW[HI4G3oH]:SetPoint("TOPLEFT",OGMxal0,
+-20)
+DfbW[HI4G3oH].t=DfbW[HI4G3oH]:CreateTexture()
+DfbW[HI4G3oH].t:SetColorTexture(0,0,0,Dn1Xi)
+DfbW[HI4G3oH].t:SetAllPoints(DfbW[HI4G3oH])DfbW[HI4G3oH]:Show()OGMxal0=OGMxal0+1 end
+for OGMxal0=1,2 do sh[OGMxal0]=CreateFrame("FRAME","",parent)
+sh[OGMxal0]:SetSize(1,1)sh[OGMxal0]:SetPoint("TOPLEFT",OGMxal0,-19)
+sh[OGMxal0].t=sh[OGMxal0]:CreateTexture()
+sh[OGMxal0].t:SetColorTexture(0,0,0,Dn1Xi)
+sh[OGMxal0].t:SetAllPoints(sh[OGMxal0])sh[OGMxal0]:Show()end end;local function NwBqNl3C()IWQcC=0 end;local function XuqjvYPF()cvRh=0 end
+local function Trh(ncWw,kdS,...)local OS60=...
+if kdS=="ADDON_LOADED"then if(
+OS60 =="[Frozen]")then Gm1()Jp()end end
+if kdS=="NAME_PLATE_UNIT_ADDED"then rHLz2GD(select(1,...))yK()end
+if kdS=="PLAYER_ENTERING_WORLD"then IWQcC=0;cvRh=0;_k=GetSpecialization()Ef=_k and
+select(1,GetSpecializationInfo(_k))or 0
 if
-Ofgm3g=="PLAYER_ENTERING_WORLD"then cvRh=0;W9yaJm=0;Ef=GetSpecialization()KfM=Ef and
-select(1,GetSpecializationInfo(Ef))or 0
-if
-GetCVar("nameplateShowEnemies")=="0"then SetCVar("nameplateShowEnemies","1")end;rb21L2=1 end;if Ofgm3g=="PLAYER_REGEN_DISABLED"then rHLz2GD()end;if Ofgm3g==
-"PLAYER_REGEN_ENABLED"then rHLz2GD()end
-if
-Ofgm3g=="COMBAT_LOG_EVENT_UNFILTERED"then local rJg9H,sNyznm3W,UU,YBciOAz2,wJvNH,dOvZoN,IP01vP,DIoX3,sjXYan,KxB8fW,M=...
-if
-YBciOAz2 ==UnitGUID('player')then
-if sNyznm3W=="SPELL_SUMMON"then
-local JmyAd,JmyAd,JmyAd,JmyAd,JmyAd,JmyAd,JmyAd,L,JmyAd=DIoX3:find('(%S+)-(%d+)-(%d+)-(%d+)-(%d+)-(%d+)-(%S+)')L=tonumber(L)if(L==55659)then cvRh=cvRh+1
-C_Timer.After(12,Trh)end;if(L==98035)then W9yaJm=W9yaJm+1
-C_Timer.After(12,K)end;return end end end end;parent:SetScript("OnEvent",uK)
+GetCVar("nameplateShowEnemies")=="0"then SetCVar("nameplateShowEnemies","1")end;F2tY=1 end;if kdS=="PLAYER_REGEN_DISABLED"then yK()end;if
+kdS=="PLAYER_REGEN_ENABLED"then yK()end
+if kdS=="COMBAT_LOG_EVENT_UNFILTERED"then
+local dl,b2UK,FC0yhp,lL30T,zt,Ofgm3g,z6WE21dc,rJg9H,sNyznm3W,UU,YBciOAz2=...
+if lL30T==UnitGUID('player')then
+if b2UK=="SPELL_SUMMON"then
+local wJvNH,wJvNH,wJvNH,wJvNH,wJvNH,wJvNH,wJvNH,dOvZoN,wJvNH=rJg9H:find('(%S+)-(%d+)-(%d+)-(%d+)-(%d+)-(%d+)-(%S+)')dOvZoN=tonumber(dOvZoN)if(dOvZoN==55659)then IWQcC=IWQcC+1
+C_Timer.After(12,NwBqNl3C)end;if(dOvZoN==98035)then cvRh=cvRh+1
+C_Timer.After(12,XuqjvYPF)end;return end end end end;parent:SetScript("OnEvent",Trh)
 parent:SetScript("OnUpdate",update)
