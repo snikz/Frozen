@@ -26,43 +26,97 @@ namespace Frozen.Rotation
         public override void Pulse()
         {
             if (!WoW.HasTarget || !WoW.TargetIsEnemy || !WoW.IsSpellInRange("Throw Glaive")) return;
-            
-            WoW.CastSpell("Metamorphasis", WoW.PlayerHealthPercent < 30 && !WoW.IsSpellOnCooldown("Metamorphasis") && UseCooldowns, false);
-            WoW.CastSpell("Sever", WoW.PlayerHasBuff("Metamorphasis"));
-            WoW.CastSpell("Soul Cleave", WoW.PlayerHasBuff("Metamorphasis") && WoW.PlayerHasBuff("Soul Fragments") && WoW.PlayerBuffStacks("Soul Fragments") >= 5 && WoW.Pain >= 50);
-            WoW.CastSpell("Throw Glaive", !WoW.IsSpellInRange("Soul Carver") && !WoW.IsSpellOnCooldown("Throw Glaive"));
+
+            if (WoW.PlayerHealthPercent < 30 && !WoW.IsSpellOnCooldown("Metamorphasis") && UseCooldowns && WoW.CanCast("Metamorphasis"))
+            {
+                WoW.CastSpell("Metamorphasis");                
+            }
+            if (WoW.PlayerHasBuff("Metamorphasis") && WoW.CanCast("Sever"))
+            {
+                WoW.CastSpell("Sever");
+                return;
+            }
+            if (WoW.PlayerHasBuff("Metamorphasis") && WoW.PlayerHasBuff("Soul Fragments") && WoW.PlayerBuffStacks("Soul Fragments") >= 5 && WoW.Pain >= 50 && WoW.CanCast("Soul Cleave"))
+            {
+                WoW.CastSpell("Soul Cleave");
+                return;
+            }
+            if (!WoW.IsSpellInRange("Soul Carver") && !WoW.IsSpellOnCooldown("Throw Glaive") && WoW.CanCast("Throw Glaive"))
+            {
+                WoW.CastSpell("Throw Glaive");
+                return;
+            }
 
             if (!WoW.IsSpellInRange("Soul Carver")) return; // If we are out of melee range return
             
             if (WoW.TargetIsCastingAndSpellIsInterruptible && WoW.TargetPercentCast > Random.Next(50, 70))
             {
-                if (!WoW.IsSpellOnCooldown("Sigil of Silence"))
+                if (!WoW.IsSpellOnCooldown("Sigil of Silence") && WoW.CanCast("Sigil of Silence"))
                 {
                     Log.Write("Interrupting spell");
-                    WoW.CastSpell("Sigil of Silence", true);
+                    WoW.CastSpell("Sigil of Silence");
+                    return;
                 }
 
-                if (!WoW.IsSpellOnCooldown("Arcane Torrent"))
+                if (!WoW.IsSpellOnCooldown("Arcane Torrent") && WoW.CanCast("Arcane Torrent"))
                 {
                     Log.Write("Interrupting spell");
-                    WoW.CastSpell("Arcane Torrent", true);
+                    WoW.CastSpell("Arcane Torrent");
+                    return;
                 }
 
-                if (!WoW.IsSpellOnCooldown("Consume Magic"))
+                if (!WoW.IsSpellOnCooldown("Consume Magic") && WoW.CanCast("Consume Magic"))
                 {
                     Log.Write("Interrupting spell");
-                    WoW.CastSpell("Consume Magic", true);
+                    WoW.CastSpell("Consume Magic");
+                    return;
                 }
             }
 
-            WoW.CastSpell("Fiery Brand", !WoW.TargetHasDebuff("Fiery Demise") && !WoW.IsSpellOnCooldown("Fiery Brand"));
-            WoW.CastSpell("Demon Spikes", !WoW.PlayerHasBuff("Demon Spikes") && WoW.Pain > 20 && !WoW.PlayerHasBuff("Magnum Opus"));
-            WoW.CastSpell("Soul Carver", true);
-            WoW.CastSpell("Fel Devastation", WoW.Pain >= 30);
-            WoW.CastSpell("Soul Cleave", WoW.Pain >= 50);
-            WoW.CastSpell("Immolation Aura", true);
-            WoW.CastSpell("Sigil of Flame", !WoW.TargetHasDebuff("Sigil of Flame"));
-            WoW.CastSpell("Shear", true); // Pain Generator
+            if (!WoW.TargetHasDebuff("Fiery Demise") && !WoW.IsSpellOnCooldown("Fiery Brand") && WoW.CanCast("Fiery Brand"))
+            {
+                WoW.CastSpell("Fiery Brand");
+                return;
+            }
+
+            if (!WoW.PlayerHasBuff("Demon Spikes") && WoW.Pain > 20 && !WoW.PlayerHasBuff("Magnum Opus") && WoW.CanCast("Demon Spikes"))
+            {
+                WoW.CastSpell("Demon Spikes");
+                return;
+            }
+
+            if (WoW.CanCast("Soul Carver"))
+            {
+                WoW.CastSpell("Soul Carver");
+                return;
+            }
+
+            if (WoW.Pain >= 30 && WoW.CanCast("Fel Devastation"))
+            {
+                WoW.CastSpell("Fel Devastation");
+                return;
+            }
+
+            if (WoW.Pain >= 50 && WoW.CanCast("Soul Cleave"))
+            {
+                WoW.CastSpell("Soul Cleave");
+                return;
+            }
+
+            if (WoW.CanCast("Immolation Aura"))
+            {
+                WoW.CastSpell("Immolation Aura");
+                return;
+            }
+
+            if (!WoW.TargetHasDebuff("Sigil of Flame") && WoW.CanCast("Sigil of Flame"))
+            {
+                WoW.CastSpell("Sigil of Flame");
+                return;
+            }
+
+            if (WoW.CanCast("Shear"))            
+                WoW.CastSpell("Shear"); // Pain Generator
         }
 
         public override void OutOfCombatPulse()
