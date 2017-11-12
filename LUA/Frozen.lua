@@ -29,12 +29,13 @@ KfM=Ef and
 select(1,GetSpecializationInfo(GetSpecialization()))or 0;o_v255=0;local P5G=LmR5gwW[KfM]
 for JC,PDA in pairs(wUVm)do
 if PDA~=nil then
-if(KfM==581 or KfM==70 or
-KfM==261)then
-local Kqne5Stra,FKLmmhnQ=LMMNWLk:GetRange(JC)if FKLmmhnQ==nil then FKLmmhnQ=100 end;local F82=8
-if(KfM==261)then F82=10 end
-if UnitCanAttack("player",JC)and FKLmmhnQ<=F82 and
-UnitIsDead(JC)==false then o_v255=o_v255+1 end else if UnitCanAttack("player",JC)and
+if
+(
+KfM==581 or KfM==70 or
+KfM==261 or KfM==269 or KfM==263 or KfM==270)then local Kqne5Stra,FKLmmhnQ=LMMNWLk:GetRange(JC)
+if FKLmmhnQ==nil then FKLmmhnQ=100 end;local F82=8;if(KfM==261)then F82=10 end;if
+UnitCanAttack("player",JC)and FKLmmhnQ<=F82 and UnitIsDead(JC)==false then
+o_v255=o_v255+1 end else if UnitCanAttack("player",JC)and
 LibStub("SpellRange-1.0").IsSpellInRange(P5G,JC)==1 and
 UnitIsDead(JC)==false then
 o_v255=o_v255+1 end end end end;o_v255=o_v255/100
