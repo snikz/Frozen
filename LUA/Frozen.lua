@@ -37,7 +37,9 @@ if
 
 
 
-Ef==581 or Ef==70 or Ef==261 or Ef==269 or Ef==263 or Ef==71 or Ef==72 or Ef==73 or Ef==66 or Ef==259 or Ef==250 or Ef==251 or Ef==252 or Ef==255 or Ef==268 or Ef==270)then local JC,PDA=oJ1ec:GetRange(T1gVrYq)if PDA==nil then PDA=100 end;local K=8
+
+
+Ef==581 or Ef==70 or Ef==261 or Ef==269 or Ef==263 or Ef==71 or Ef==72 or Ef==73 or Ef==103 or Ef==104 or Ef==66 or Ef==259 or Ef==250 or Ef==251 or Ef==252 or Ef==255 or Ef==268 or Ef==270)then local JC,PDA=oJ1ec:GetRange(T1gVrYq)if PDA==nil then PDA=100 end;local K=8
 if(
 Ef==261 or Ef==250 or Ef==259)then K=10 end
 if UnitCanAttack("player",T1gVrYq)and PDA<=K and UnitIsDead(T1gVrYq)==
