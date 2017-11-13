@@ -5,20 +5,21 @@ AddonName=Sucstobeyou
 WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,589,SWPain,1
-Spell,205385,ShadowCrash,7
-Spell,34914,Vampiric Touch,5
-Spell,205065,Void Torrent,9
-Spell,15407,Mind Flay,4
-Spell,8092,Mind Blast,C
-Spell,205448,Void Bolt,V
-Spell,228260,Void Eruption,V
-Spell,193223,Surrender,F
-Spell,200174,Mindbender,Q
-Spell,32379,SWDeath,2
-Spell,34433,Shadowfiend,5
-Spell,232698,Shadowform,B
-Spell,15487,Silence,D2
-Spell,47585,Dispersion,None
+Spell,205385,ShadowCrash,2
+Spell,34914,Vampiric Touch,3
+Spell,205065,Void Torrent,4
+Spell,15407,Mind Flay,5
+Spell,8092,Mind Blast,6
+Spell,5512,Healthstone,7
+Spell,205448,Void Bolt,8
+Spell,228260,Void Eruption,9
+Spell,193223,Surrender,10
+Spell,200174,Mindbender,11
+Spell,32379,SWDeath,12
+Spell,15487,Silence,16
+Spell,34433,Shadowfiend,13
+Spell,232698,Shadowform,14
+Spell,47585,Dispersion,16
 Aura,232698,Shadowform
 Aura,34914,Vampiric Touch
 Aura,589,SWPain
@@ -28,4 +29,5 @@ Aura,197937,Lingering Insanity
 Aura,194249,Voidform
 Aura,236430,ForesightMovement
 Aura,17,Power Word: Shield
+Item,5512,Healthstone
 */
