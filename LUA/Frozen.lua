@@ -77,10 +77,7 @@ for Ginn=GetMaxTalentTier(),7 do AkxLdb66[Ginn]=0 end end
 rIX4[1].t:SetColorTexture(AkxLdb66[1],AkxLdb66[2],AkxLdb66[3],Dn1Xi)
 rIX4[2].t:SetColorTexture(AkxLdb66[4],AkxLdb66[5],AkxLdb66[6],Dn1Xi)
 rIX4[3].t:SetColorTexture(AkxLdb66[7],VQ[select(2,UnitRace("player"))],0,Dn1Xi)
-rIX4[4].t:SetColorTexture(oTYNsnP[Ef],0,0,Dn1Xi)button3:Enable()cleaveText="AOE On"
-if IsHealer()then cleaveText="Damage"end
-if IsMelee()then button3:SetWidth(80)button3:Disable()
-cleaveText="Auto AOE"normalTexture3:SetColorTexture(0.8,0,0,1)end;button3:SetText(cleaveText)end
+rIX4[4].t:SetColorTexture(oTYNsnP[Ef],0,0,Dn1Xi)if aoeOn~=1 then button4:Click('LeftButton')end end
 local function TKu()if not UnitExists("target")then return end
 for h_pK,L in pairs(PlayerBuffs)do
 local vBKFXR3=GetSpellInfo(L)
