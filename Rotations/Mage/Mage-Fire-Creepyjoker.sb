@@ -6,11 +6,11 @@ WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,108853,Fire Blast,D1
 Spell,194466,Phoenix,D2
-Spell,31661,Breath,C
 Spell,133,Fireball,D3
 Spell,11366,Pyroblast,D4
 Spell,116011,Rune of Power,D5
 Spell,153561,Meteor,D6
+Spell,31661,Breath,C
 Spell,44457,LivingBomb,D8
 Spell,2120,Flamestrike,D9
 Spell,2948,Scorch,F5
@@ -28,4 +28,6 @@ Aura,48108,HotStreak
 Aura,12654,Ignite
 Aura,45438,Ice Block
 Aura,209450,LegendaryBracers
+Item,132454,BeltLegendary
+Item,132863,BreathLegendary
 */
