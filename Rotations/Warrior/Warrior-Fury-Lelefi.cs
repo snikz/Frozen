@@ -118,11 +118,16 @@ namespace Frozen.Rotation
 
             if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
             if (WoW.PlayerIsChanneling) return;
+			if (WoW.PlayerHasBuff("Bladestorm")) return;
 
 			// buff stuff
             if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat)
-            {
-                if (WoW.CanCast("BattleCry") && UseCooldowns && level >= 60)
+            {	
+				if (WoW.CanCast("DragonRoar") && UseCooldowns && level >= 100 && WoW.Talent(7) == 3)
+				{
+					WoW.CastSpell("DragonRoar");
+				}
+                if (WoW.CanCast("BattleCry") && UseCooldowns && level >= 60 && WoW.Talent(7) != 3 || WoW.CanCast("BattleCry") && WoW.Talent(7) == 3 && WoW.PlayerHasBuff("DragonRoarBuff"))
                 {
                     WoW.CastSpell("BattleCry");
                 }
@@ -130,7 +135,6 @@ namespace Frozen.Rotation
                 if (WoW.CanCast("Avatar") && WoW.Talent(3) == 3 && WoW.PlayerHasBuff("BattleCryBuff"))
                 {
                     WoW.CastSpell("Avatar");
-                    return;
                 }
 
                 //if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.IsSpellOnCooldown("Raging Blow") && WoW.PlayerHasBuff("BattleCryBuff") && !WoW.IsSpellOnGCD("Raging Blow") 
@@ -154,7 +158,13 @@ namespace Frozen.Rotation
 			//AutoAoE
 			if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && WoW.HasTarget &&
 				WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat) 
-            {    
+            {
+				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
+				{
+					WoW.CastSpell("Bladestorm");
+					return;
+				}
+
 				if (WoW.CanCast("Bloodthirst") && !WoW.PlayerHasBuff("Enrage") || WoW.CanCast("Bloodthirst") && WoW.Rage <= 90)
 				{
 					WoW.CastSpell("Bloodthirst");
@@ -481,8 +491,15 @@ namespace Frozen.Rotation
             }
 
 			// Aoe stuff
-            if (combatRoutine.Type == RotationType.AOE && WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat) 
+            if (combatRoutine.Type == RotationType.AOE && WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat &&
+				!ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")) 
 			{	
+				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
+				{
+					WoW.CastSpell("Bladestorm");
+					return;
+				}
+
 				if (WoW.CanCast("Bloodthirst") && !WoW.PlayerHasBuff("Enrage") || WoW.CanCast("Bloodthirst") && WoW.Rage <= 90)
 				{
 					WoW.CastSpell("Bloodthirst");
@@ -559,7 +576,8 @@ Spell,205545,OdynsFury,
 Spell,18499,Berserker Rage,
 Spell,253109,Mount,
 Spell,97462,Commanding Shout,
-Spell,184364,Enraged Regeneration
+Spell,184364,Enraged Regeneration,
+Spell,46924,Bladestorm,
 Aura,206333,TasteForBlood
 Aura,184364,Enraged Regeneration
 Aura,118000,DragonRoarBuff
@@ -575,4 +593,5 @@ Aura,251341,Fear
 Aura,107574,AvatarBuff
 Aura,207776,Furjeda
 Aura,225947,Ayala
+Aura,46924,Bladestorm
 */
