@@ -1,0 +1,33 @@
+/*
+[AddonDetails.db]
+AddonAuthor=SpeedySaky
+AddonName=SpeedySaky
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,85256,Templar's Verdict
+Spell,96231,Rebuke
+Spell,184662,Shield of Vengeance
+Spell,31884,Avenging Wrath
+Spell,190784,Divine Steed
+Spell,184575,Blade of Justice
+Spell,53385,Divine Storm
+Spell,205273,Wake of Ashes
+Spell,19750,Flash of Light
+Spell,35395,Crusader Strike
+Spell,20271,Judgement
+Spell,217020,Zeal
+Spell,231895,Crusade
+Spell,642,Divine Shield
+Spell,633,Lay on Hands
+Spell,215661,Justicar's Vengeance
+Spell,203539,Greater Blessing of Wisdom
+Spell,203538,Greater Blessing of Kings
+Aura,203538,Greater Blessing of Kings
+Aura,203539,Greater Blessing of Wisdom
+Aura,20271,Judgement
+Aura,231895,Crusade
+Spell,210220,HolyWrath
+Spell,115750,BlindingLight
+Spell,205191,EyeforanEye
+Spell,210191,WordofGlory
+*/
