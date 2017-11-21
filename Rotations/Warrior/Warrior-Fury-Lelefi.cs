@@ -163,22 +163,22 @@ namespace Frozen.Rotation
 					WoW.CastSpell("Bladestorm");
 					return;
 				}
-
-				if (WoW.CanCast("Bloodthirst") && !WoW.PlayerHasBuff("Enrage") || WoW.CanCast("Bloodthirst") && WoW.Rage <= 90)
+				
+				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.CountEnemyNPCsInRange < 4)
 				{
-					WoW.CastSpell("Bloodthirst");
+					WoW.CastSpell("Execute");
 					return;
 				}
 
 				if (WoW.CanCast("Whirlwind") && !WoW.PlayerHasBuff("Meat-Cleaver") && level >= 28 || WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1 
-					&& level >= 45)
+					&& level >= 45 || WoW.CanCast("Whirlwind") && WoW.SpellCooldownTimeRemaining("Bloodthirst") >= 1000)
                 {
                     WoW.CastSpell("Whirlwind");
                     return;
                 }
 
                 if (WoW.CanCast("Rampage") && WoW.Rage == 100 && WoW.PlayerHasBuff("Meat-Cleaver") && level >= 18 || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Meat-Cleaver") &&
-					level >= 18 && WoW.PlayerHasBuff("Massacre"))
+					level >= 18 && WoW.Rage == 100 || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") && WoW.PlayerHasBuff("Meat-Cleaver"))
                 {
                     WoW.CastSpell("Rampage");
                     return;
@@ -190,7 +190,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-                if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.CountEnemyNPCsInRange < 8 && WoW.PlayerHasBuff("Meat-Cleaver") && !WoW.PlayerHasBuff("Enrage") && level >= 10)
+                if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.PlayerHasBuff("Meat-Cleaver") && !WoW.PlayerHasBuff("Enrage") && level >= 10)
                 {
                     WoW.CastSpell("Bloodthirst");
                     return;
@@ -326,7 +326,14 @@ namespace Frozen.Rotation
 					WoW.CastSpell("Rampage");
 					return;
 				}
-				
+
+				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.SpellCooldownTimeRemaining("Raging Blow") > 1000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") &&
+					WoW.PlayerHasBuff("Massacre"))
+				{
+					WoW.CastSpell("Execute");
+					return;
+				}
+
 				if (WoW.CanCast("Bloodthirst") && EnrageTime <= 1000)
 				{
 					WoW.CastSpell("Bloodthirst");
@@ -386,8 +393,8 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2000 || WoW.CanCast("Execute") &&
-					WoW.SpellCooldownTimeRemaining("BattleCry") < 5000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala"))
+				if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") && WoW.Rage >= 25 || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2000 && WoW.Rage >= 25 
+					|| WoW.CanCast("Execute") && WoW.SpellCooldownTimeRemaining("BattleCry") < 5000 && WoW.Rage >= 25 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala"))
 				{
 					WoW.CastSpell("Execute");
 					return;
