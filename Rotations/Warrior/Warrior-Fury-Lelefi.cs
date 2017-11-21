@@ -13,9 +13,9 @@ namespace Frozen.Rotation
 			set { }
 		}
 
-        //private bool validtargetmelee;
         private int level = 0;
 		private Settings settingsForm;
+		private bool validtargetmelee;
 
 		private bool Autokick
 		{
@@ -110,18 +110,18 @@ namespace Frozen.Rotation
 
         public override void Pulse()
         {
-            //validtargetmelee = WoW.HasTarget && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.RangeToTarget < 6;
-			
 			var TasteForBloodTime = WoW.PlayerBuffTimeRemaining("TasteForBlood");
 			var EnrageTime = WoW.PlayerBuffTimeRemaining("Enrage");
 			var FurjedaTime = WoW.PlayerBuffTimeRemaining("Furjeda");
+			
+			validtargetmelee = WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible;
 
             if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
             if (WoW.PlayerIsChanneling) return;
 			if (WoW.PlayerHasBuff("Bladestorm")) return;
 
 			// buff stuff
-            if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat)
+            if (validtargetmelee)
             {	
 				if (WoW.CanCast("DragonRoar") && UseCooldowns && level >= 100 && WoW.Talent(7) == 3)
 				{
@@ -147,8 +147,8 @@ namespace Frozen.Rotation
             }
 
 			//Autokick
-			if (WoW.CanCast("Pummel") && WoW.TargetPercentCast >= 40 && WoW.TargetIsCasting && WoW.TargetIsCastingAndSpellIsInterruptible && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Autokick"))
+			if (WoW.CanCast("Pummel") && WoW.TargetPercentCast >= 40 && WoW.TargetIsCasting && WoW.TargetIsCastingAndSpellIsInterruptible && 
+				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Autokick") && validtargetmelee)
 			    {
 					WoW.CastSpell("Pummel");
 					Log.Write("Pummel", Color.Blue);
@@ -156,8 +156,7 @@ namespace Frozen.Rotation
                 }
 
 			//AutoAoE
-			if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && WoW.HasTarget &&
-				WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat) 
+			if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && validtargetmelee) 
             {
 				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
 				{
@@ -213,8 +212,7 @@ namespace Frozen.Rotation
 			//}
 			
 			//Heal stuff
-            if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRegeneration") &&
-				level >= 36 && WoW.PlayerHealthPercent <= 20 && WoW.TargetIsVisible) 
+            if (validtargetmelee && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRegeneration") && level >= 36 && WoW.PlayerHealthPercent <= 20) 
             {	
 				if (WoW.CanCast("Enraged Regeneration"))
                 {
@@ -265,8 +263,7 @@ namespace Frozen.Rotation
             }
 
 			// Do Single Target Unbuffed Stuff here
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat) 
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee) 
 			{
 				if (WoW.CanCast("Bloodthirst") && WoW.PlayerHasBuff("Furjeda") && FurjedaTime < 2000)
 				{
@@ -320,8 +317,7 @@ namespace Frozen.Rotation
             }
 
 			// Do Single Target Buffed Stuff here
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible)
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee)
 			{
 				
 				
@@ -382,8 +378,7 @@ namespace Frozen.Rotation
             }
 
 			// Do Single Target Execute Stuff here
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible)
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && validtargetmelee)
             {
 				if (WoW.CanCast("Bloodthirst") && WoW.PlayerHasBuff("Furjeda") && FurjedaTime < 2000)
 				{
@@ -404,7 +399,7 @@ namespace Frozen.Rotation
 					return;
 				}
 				
-				if (WoW.CanCast("Execute") && WoW.Rage >= 25 )
+				if (WoW.CanCast("Execute") && WoW.Rage >= 25 && WoW.Talent(6) != 3 || WoW.CanCast("Execute") && WoW.Rage >= 100 && WoW.Talent(6) == 3 )
 				{
 					WoW.CastSpell("Execute");
 					return;
@@ -443,8 +438,7 @@ namespace Frozen.Rotation
             }
 
 			//leveling
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59 && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible) 
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59 && validtargetmelee) 
             {
 				if (WoW.CanCast("Execute") && WoW.Rage >= 25 && level >= 8)
 				{
@@ -473,8 +467,7 @@ namespace Frozen.Rotation
 
             }
 
-            if (combatRoutine.Type == RotationType.SingleTarget && level <= 9 && WoW.PlayerClassSpec == "Warrior-Arms" && WoW.HasTarget && WoW.TargetIsEnemy &&
-				WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && WoW.TargetIsVisible)
+            if (combatRoutine.Type == RotationType.SingleTarget && level <= 9 && WoW.PlayerClassSpec == "Warrior-Arms" && validtargetmelee)
             {
                 if (WoW.CanCast("Slam") && WoW.IsSpellOnCooldown("Mortal Strike") && WoW.Rage >= 20)
                 {
@@ -491,18 +484,11 @@ namespace Frozen.Rotation
             }
 
 			// Aoe stuff
-            if (combatRoutine.Type == RotationType.AOE && WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat &&
-				!ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")) 
+            if (combatRoutine.Type == RotationType.AOE && validtargetmelee && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")) 
 			{	
 				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
 				{
 					WoW.CastSpell("Bladestorm");
-					return;
-				}
-
-				if (WoW.CanCast("Bloodthirst") && !WoW.PlayerHasBuff("Enrage") || WoW.CanCast("Bloodthirst") && WoW.Rage <= 90)
-				{
-					WoW.CastSpell("Bloodthirst");
 					return;
 				}
 				
@@ -513,14 +499,14 @@ namespace Frozen.Rotation
 				}
 
 				if (WoW.CanCast("Whirlwind") && !WoW.PlayerHasBuff("Meat-Cleaver") && level >= 28 || WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1 
-					&& level >= 45)
+					&& level >= 45 || WoW.CanCast("Whirlwind") && WoW.SpellCooldownTimeRemaining("Bloodthirst") >= 1000)
                 {
                     WoW.CastSpell("Whirlwind");
                     return;
                 }
 
                 if (WoW.CanCast("Rampage") && WoW.Rage == 100 && WoW.PlayerHasBuff("Meat-Cleaver") && level >= 18 || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Meat-Cleaver") &&
-					level >= 18 && WoW.PlayerHasBuff("Massacre"))
+					level >= 18 && WoW.Rage == 100 || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") && WoW.PlayerHasBuff("Meat-Cleaver"))
                 {
                     WoW.CastSpell("Rampage");
                     return;
@@ -532,7 +518,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-                if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.CountEnemyNPCsInRange < 4 && WoW.PlayerHasBuff("Meat-Cleaver") && !WoW.PlayerHasBuff("Enrage") && level >= 10)
+                if (WoW.CanCast("Bloodthirst") && WoW.Rage < 100 && WoW.PlayerHasBuff("Meat-Cleaver") && !WoW.PlayerHasBuff("Enrage") && level >= 10)
                 {
                     WoW.CastSpell("Bloodthirst");
                     return;
