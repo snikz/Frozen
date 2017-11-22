@@ -33,6 +33,21 @@ Spell,198590,Drain Soul,26
 Spell,196098,Soul Harvest,27
 Spell,157757,Summon Doomguard,28
 Spell,157898,Summon Infernal,29
+Spell,80240,Havoc,30
+Spell,999997,FocusHavoc,31
+Spell,348,Immolate,32
+Spell,17962,Conflagrate,33
+Spell,29722,Incinerate,34
+Spell,116858,ChaosBolt,35
+Spell,999999,CursorRainOfFire,36
+Spell,1122,Infernal,37
+Spell,999998,CursorInfernal,38
+Spell,196586,DimensionalRift,39
+Spell,17877,Shadowburn,40
+Spell,196447,ChannelDemonfire,41
+Spell,152108,Cataclysm,42
+Spell,111859,Grimoire: Imp,43
+Spell,5740,RainOfFire,44
 Aura,2825,Bloodlust
 Aura,32182,Heroism
 Aura,80353,Time Warp
@@ -51,4 +66,9 @@ Aura,63106,Siphon Life
 Aura,233490,UA
 Aura,216708,Deadwind Harvester
 Aura,216695,Tormented Souls
+Aura,157736,Immolate
+Aura,235156,EmpoweredLifeTap
+Aura,196414,Eradication
+Aura,80240,Havoc
+Item,151649,Soul of the Netherlord
 */
