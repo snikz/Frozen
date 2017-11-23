@@ -22,7 +22,11 @@ Spell,55233,VampiricBlood,None
 Spell,47528,MindFreeze,None
 Spell,50613,ArcaneTorrent,None
 Aura,195181,BoneShield
+Aura,81256,DancingRuneWeapon
 Aura,55078,BloodPlaque
 Aura,81141,CrimsonScourge
 Aura,194679,RuneTap
+Aura,188290,DeathandDecay
+Aura,235559,Haemostasis
+Aura,240558,BloodShield
 */
