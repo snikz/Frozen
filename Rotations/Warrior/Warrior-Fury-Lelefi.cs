@@ -127,6 +127,7 @@ namespace Frozen.Rotation
 				{
 					WoW.CastSpell("DragonRoar");
 				}
+
                 if (WoW.CanCast("BattleCry") && UseCooldowns && level >= 60 && WoW.Talent(7) != 3 || WoW.CanCast("BattleCry") && WoW.Talent(7) == 3 && WoW.PlayerHasBuff("DragonRoarBuff"))
                 {
                     WoW.CastSpell("BattleCry");
@@ -163,7 +164,7 @@ namespace Frozen.Rotation
 					WoW.CastSpell("Bladestorm");
 					return;
 				}
-				
+
 				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.CountEnemyNPCsInRange < 4)
 				{
 					WoW.CastSpell("Execute");
@@ -276,7 +277,7 @@ namespace Frozen.Rotation
 					WoW.CastSpell("Raging Blow");
 					return;
 				}
-				
+
 				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.SpellCooldownTimeRemaining("Raging Blow") > 1000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") &&
 					WoW.PlayerHasBuff("Massacre"))
 				{
@@ -319,8 +320,6 @@ namespace Frozen.Rotation
 			// Do Single Target Buffed Stuff here
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee)
 			{
-				
-				
 				if (WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") && EnrageTime <= 1000)
 				{
 					WoW.CastSpell("Rampage");
@@ -334,19 +333,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Bloodthirst") && EnrageTime <= 1000)
-				{
-					WoW.CastSpell("Bloodthirst");
-					return;
-				}
-
-				if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.SpellCooldownTimeRemaining("Raging Blow") > 0 && WoW.PlayerHasBuff("Enrage"))
-                {
-                    WoW.CastSpell("OdynsFury");
-                    return;
-                }
-
-				if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage"))
+				if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing"))
 				{
 					WoW.CastSpell("Raging Blow");
 					return;
@@ -355,6 +342,24 @@ namespace Frozen.Rotation
 				if (WoW.CanCast("Rampage") && WoW.Rage == 100)
 				{
 					WoW.CastSpell("Rampage");
+					return;
+				}
+
+				if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.SpellCooldownTimeRemaining("Raging Blow") > 0 && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing"))
+                {
+                    WoW.CastSpell("OdynsFury");
+                    return;
+                }
+
+				if (WoW.CanCast("Bloodthirst") && EnrageTime <= 1000)
+				{
+					WoW.CastSpell("Bloodthirst");
+					return;
+				}
+
+				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball"))
+				{
+					WoW.CastSpell("Whirlwind");
 					return;
 				}
 
@@ -367,12 +372,6 @@ namespace Frozen.Rotation
 				if (WoW.CanCast("Bloodthirst"))
 				{
 					WoW.CastSpell("Bloodthirst");
-					return;
-				}
-
-				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball"))
-				{
-					WoW.CastSpell("Whirlwind");
 					return;
 				}
 
