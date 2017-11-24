@@ -72,7 +72,7 @@ namespace Frozen.Rotation
 			}
 			
 			// Guardian Spirit Logic
-			if (lowest <= 20 && WoW.CanCast("Guardian Spirit") && !WoW.IsSpellOnCooldown("Guardian Spirit") && WoW.TankId == currentTargetId)
+			if (lowest <= 20 && WoW.CanCast("Guardian Spirit") && !WoW.IsSpellOnCooldown("Guardian Spirit"))
             {
                 WoW.CastSpell("Guardian Spirit");
                 return;
@@ -100,21 +100,21 @@ namespace Frozen.Rotation
             }
 			
 			// Holy Word: Serenity Logic
-			if (lowest <= 50 && WoW.CanCast("Holy Word Serenity") && !WoW.IsSpellOnCooldown("Holy Word Serenity"))
+			if (lowest <= 60 && WoW.CanCast("Holy Word Serenity") && !WoW.IsSpellOnCooldown("Holy Word Serenity"))
             { 
                 WoW.CastSpell("Holy Word Serenity");
                 return;
             }
 			
 			// Flash Heal Logic
-            if (lowest <= 50 && WoW.CanCast("Flash Heal") && !WoW.IsMoving)
+            if (lowest <= 70 && WoW.CanCast("Flash Heal") && !WoW.IsMoving)
             {
                 WoW.CastSpell("Flash Heal");
                 return;
             }
 			
 			// Heal Logic
-            if (lowest <= 80 && WoW.CanCast("Heal") && !WoW.IsMoving)
+            if (lowest <= 85 && WoW.CanCast("Heal") && !WoW.IsMoving)
             {
                 WoW.CastSpell("Heal");
                 return;
@@ -128,7 +128,7 @@ namespace Frozen.Rotation
             }
 			
 			// Renew Logic
-			if (lowest <= 90 && WoW.CanCast("Renew") && WoW.IsMoving && !WoW.TargetHasBuff("Renew"))
+			if (lowest <= 40 && WoW.CanCast("Renew") && WoW.IsMoving && !WoW.TargetHasBuff("Renew"))
             {
                 WoW.CastSpell("Renew");
                 return;
