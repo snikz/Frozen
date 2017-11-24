@@ -271,7 +271,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage"))
+				if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing"))
 				{
 					WoW.CastSpell("Raging Blow");
 					return;
