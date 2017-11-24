@@ -113,17 +113,15 @@ namespace Frozen.Rotation
         {
 			var TasteForBloodTime = WoW.PlayerBuffTimeRemaining("TasteForBlood");
 			var EnrageTime = WoW.PlayerBuffTimeRemaining("Enrage");
-			var FurjedaTime = WoW.PlayerBuffTimeRemaining("Furjeda");
+			var FujiedaTime = WoW.PlayerBuffTimeRemaining("Fujieda");
 			
 			validtargetmelee = WoW.HasTarget && WoW.TargetIsEnemy && WoW.IsSpellInRange("Bloodthirst") && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible;
 			Ragepoints = WoW.Rage;
 
-            if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted) return;
-            if (WoW.PlayerIsChanneling) return;
-			if (WoW.PlayerHasBuff("Bladestorm")) return;
+            if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted || WoW.PlayerIsChanneling || WoW.PlayerHasBuff("Bladestorm")) return;
 
 			// buff stuff
-            if (validtargetmelee)
+            if (validtargetmelee && UseCooldowns)
             {	
 				if (WoW.CanCast("DragonRoar") && UseCooldowns && level >= 100 && WoW.Talent(7) == 3)
 				{
@@ -146,71 +144,10 @@ namespace Frozen.Rotation
 			//Autokick
 			if (WoW.CanCast("Pummel") && WoW.TargetPercentCast >= 40 && WoW.TargetIsCasting && WoW.TargetIsCastingAndSpellIsInterruptible && 
 				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Autokick") && validtargetmelee)
-			    {
-					WoW.CastSpell("Pummel");
-					Log.Write("Pummel", Color.Blue);
-					return;
-                }
-
-			//AutoAoE
-			if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && validtargetmelee) 
-            {
-				Log.Write("AoE", Color.Green);
-
-				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
-				{
-					WoW.CastSpell("Bladestorm");
-					return;
-				}
-
-				if (WoW.CanCast("OdynsFury") && WoW.PlayerHasBuff("Frothing") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("BattleCryBuff"))
-                {
-                    WoW.CastSpell("OdynsFury");
-                    return;
-                }
-
-				if (WoW.CanCast("Whirlwind") && !WoW.PlayerHasBuff("Meat-Cleaver") && level >= 28)
-                {
-                    WoW.CastSpell("Whirlwind");
-                    return;
-                }
-
-                if (WoW.CanCast("Rampage") && Ragepoints == 100 && WoW.PlayerHasBuff("Meat-Cleaver") && level >= 18 || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
-					WoW.PlayerHasBuff("Meat-Cleaver"))
-                {
-                    WoW.CastSpell("Rampage");
-                    return;
-                }
-				if (WoW.CanCast("Bloodthirst") && Ragepoints < 90 && !WoW.PlayerHasBuff("Enrage") && level >= 10 && WoW.PlayerHasBuff("Meat-Cleaver"))
-                {
-                    WoW.CastSpell("Bloodthirst");
-                    return;
-                }
-
-				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.CountEnemyNPCsInRange < 4)
-				{
-					WoW.CastSpell("Execute");
-					return;
-				}
-
-                if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.CountEnemyNPCsInRange < 4 && level >= 13)
-                {
-                    WoW.CastSpell("Raging Blow");
-                    return;
-                }
-
-                if (WoW.CanCast("Bloodthirst"))
-                {
-                    WoW.CastSpell("Bloodthirst");
-                    return;
-                }
-
-				if (WoW.CanCast("Whirlwind"))
-				{
-					WoW.CastSpell("Whirlwind");
-					return;
-				}
-
+			{
+				WoW.CastSpell("Pummel");
+				Log.Write("Pummel", Color.Green);
+				return;
             }
 
 			//Anti Fear
@@ -241,17 +178,73 @@ namespace Frozen.Rotation
                     return;
                 }
 
-                if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Bloodthirst"))
+                if (WoW.CanCast("Furious-Slash") && WoW.IsSpellOnCooldown("Bloodthirst"))
                 {
-                    WoW.CastSpell("Furious Slash");
+                    WoW.CastSpell("Furious-Slash");
                     return;
                 }
 
-                if (WoW.CanCast("Raging Blow") && WoW.IsSpellOnCooldown("Bloodthirst") && WoW.IsSpellOnCooldown("Furious Slash"))
+                if (WoW.CanCast("Raging-Blow") && WoW.IsSpellOnCooldown("Bloodthirst") && WoW.IsSpellOnCooldown("Furious-Slash"))
                 {
-                    WoW.CastSpell("Raging Blow");
+                    WoW.CastSpell("Raging-Blow");
                     return;
                 }
+
+				Log.Write("Heal", Color.Green);
+				return;
+            }
+
+			//AutoAoE
+			if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && validtargetmelee) 
+			{	
+                
+				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
+				{
+					WoW.CastSpell("Bladestorm");
+					return;
+				}
+
+				if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000)
+				{
+					WoW.CastSpell("Bloodthirst");
+					Log.Write("Fujieda", Color.Green);
+					return;
+				}
+				
+				if (WoW.CanCast("Rampage") && Ragepoints == 100 && level >= 18 && WoW.PlayerHasBuff("Meat-Cleaver") || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
+					WoW.PlayerHasBuff("Meat-Cleaver"))
+				{
+					WoW.CastSpell("Rampage");
+					return;
+				}
+
+				if (WoW.CanCast("Raging-Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100 && WoW.CountEnemyNPCsInRange < 4)
+				{
+					WoW.CastSpell("Raging-Blow");
+					return;
+				}
+
+				if (WoW.CanCast("Bloodthirst") && Ragepoints < 90 && !WoW.PlayerHasBuff("Enrage") && level >= 10 && WoW.PlayerHasBuff("Meat-Cleaver"))
+                {
+                    WoW.CastSpell("Bloodthirst");
+                    return;
+                }
+
+				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking-Ball") && WoW.Talent(3) == 1 && WoW.PlayerHasBuff("Enrage") || WoW.CanCast("Whirlwind") &&
+					!WoW.PlayerHasBuff("Meat-Cleaver") && WoW.SpellCooldownTimeRemaining("Bloodthirst") <= 1000)
+				{
+					WoW.CastSpell("Whirlwind");
+					return;
+				}
+
+				if (WoW.CanCast("Whirlwind"))
+				{
+					WoW.CastSpell("Whirlwind");
+					return;
+				}
+				
+				Log.Write("AoE", Color.Green);
+				return;
 
             }
 
@@ -267,26 +260,27 @@ namespace Frozen.Rotation
 				!WoW.IsMounted && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget")) 
             {
                 WoW.TargetNextEnemy();
-				Log.Write("Next Enemy", Color.Blue);
+				Log.Write("Retarget", Color.Blue);
                 return;
             }
 
 			// Do Single Target Unbuffed Stuff here
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee) 
 			{
-				if (WoW.CanCast("Bloodthirst") && WoW.PlayerHasBuff("Furjeda") && FurjedaTime < 2000)
+				if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000)
 				{
 					WoW.CastSpell("Bloodthirst");
+					Log.Write("Fujieda", Color.Green);
 					return;
 				}
-
-				if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100)
+				
+				if (WoW.CanCast("Raging-Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100)
 				{
-					WoW.CastSpell("Raging Blow");
+					WoW.CastSpell("Raging-Blow");
 					return;
 				}
 
-				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.SpellCooldownTimeRemaining("Raging Blow") > 1000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") &&
+				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.SpellCooldownTimeRemaining("Raging-Blow") > 1000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") &&
 					WoW.PlayerHasBuff("Massacre"))
 				{
 					WoW.CastSpell("Execute");
@@ -305,21 +299,21 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Raging Blow") && level >= 13)
+				if (WoW.CanCast("Raging-Blow") && level >= 13)
 				{
-					WoW.CastSpell("Raging Blow");
+					WoW.CastSpell("Raging-Blow");
 					return;
 				}
 
-				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball") && WoW.Talent(3) == 1 && WoW.PlayerHasBuff("Enrage"))
+				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking-Ball") && WoW.Talent(3) == 1 && WoW.PlayerHasBuff("Enrage"))
 				{
 					WoW.CastSpell("Whirlwind");
 					return;
 				}
 
-				if (WoW.CanCast("Furious Slash"))
+				if (WoW.CanCast("Furious-Slash"))
 				{
-					WoW.CastSpell("Furious Slash");
+					WoW.CastSpell("Furious-Slash");
 					return;
 				}
 
@@ -328,22 +322,28 @@ namespace Frozen.Rotation
 			// Do Single Target Buffed Stuff here
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee)
 			{
+				if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000)
+				{
+					WoW.CastSpell("Bloodthirst");
+					Log.Write("Fujieda", Color.Green);
+					return;
+				}
 				if (WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") && EnrageTime <= 1000)
 				{
 					WoW.CastSpell("Rampage");
 					return;
 				}
 
-				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.SpellCooldownTimeRemaining("Raging Blow") > 1000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") &&
+				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.SpellCooldownTimeRemaining("Raging-Blow") > 1000 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") &&
 					WoW.PlayerHasBuff("Massacre"))
 				{
 					WoW.CastSpell("Execute");
 					return;
 				}
 
-				if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100)
+				if (WoW.CanCast("Raging-Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100)
 				{
-					WoW.CastSpell("Raging Blow");
+					WoW.CastSpell("Raging-Blow");
 					return;
 				}
 
@@ -353,7 +353,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing"))
+				if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.IsSpellOnCooldown("Raging-Blow") && !WoW.IsSpellOnGCD("Raging-Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing"))
                 {
                     WoW.CastSpell("OdynsFury");
                     return;
@@ -365,15 +365,15 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking Ball"))
+				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking-Ball"))
 				{
 					WoW.CastSpell("Whirlwind");
 					return;
 				}
 
-				if (WoW.CanCast("Raging Blow"))
+				if (WoW.CanCast("Raging-Blow"))
 				{
-					WoW.CastSpell("Raging Blow");
+					WoW.CastSpell("Raging-Blow");
 					return;
 				}
 
@@ -383,9 +383,9 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Furious Slash"))
+				if (WoW.CanCast("Furious-Slash"))
 				{
-					WoW.CastSpell("Furious Slash");
+					WoW.CastSpell("Furious-Slash");
 					return;
 				}
 
@@ -394,17 +394,18 @@ namespace Frozen.Rotation
 			// Do Single Target Execute Stuff here
             if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && validtargetmelee)
             {
+				if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000)
+				{
+					WoW.CastSpell("Bloodthirst");
+					Log.Write("Fujieda", Color.Green);
+					return;
+				}
+				
 				if (WoW.CanCast("OdynsFury") && WoW.PlayerHasBuff("Frothing") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("BattleCryBuff"))
                 {
                     WoW.CastSpell("OdynsFury");
                     return;
                 }
-
-				if (WoW.CanCast("Bloodthirst") && WoW.PlayerHasBuff("Furjeda") && FurjedaTime < 2000)
-				{
-					WoW.CastSpell("Bloodthirst");
-					return;
-				}
 
 				if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") && Ragepoints >= 25 || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2000 && Ragepoints >= 25 
 					|| WoW.CanCast("Execute") && WoW.SpellCooldownTimeRemaining("BattleCry") < 5000 && Ragepoints >= 25 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala")
@@ -432,21 +433,21 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Furious Slash") && SetBoniListT20 >= 2)
+				if (WoW.CanCast("Furious-Slash") && SetBoniListT20 >= 2)
 				{
-					WoW.CastSpell("Furious Slash");
+					WoW.CastSpell("Furious-Slash");
 					return;
 				}
 
-				if (WoW.CanCast("Raging Blow"))
+				if (WoW.CanCast("Raging-Blow"))
 				{
-					WoW.CastSpell("Raging Blow");
+					WoW.CastSpell("Raging-Blow");
 					return;
 				}
 
-				if (WoW.CanCast("Furious Slash"))
+				if (WoW.CanCast("Furious-Slash"))
 				{
-					WoW.CastSpell("Furious Slash");
+					WoW.CastSpell("Furious-Slash");
 					return;
 				}
 
@@ -467,16 +468,16 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Raging Blow") && Ragepoints < 25 && WoW.IsSpellOnCooldown("Bloodthirst") && level >= 13)
+				if (WoW.CanCast("Raging-Blow") && Ragepoints < 25 && WoW.IsSpellOnCooldown("Bloodthirst") && level >= 13)
 				{
-					WoW.CastSpell("Raging Blow");
+					WoW.CastSpell("Raging-Blow");
 					return;
 				}
 
-				if (WoW.CanCast("Furious Slash") && WoW.IsSpellOnCooldown("Raging Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging Blow") &&
+				if (WoW.CanCast("Furious-Slash") && WoW.IsSpellOnCooldown("Raging-Blow") && !WoW.IsSpellOnGCD("Bloodthirst") && level >= 10 && !WoW.IsSpellOnGCD("Raging-Blow") &&
 					TasteForBloodTime <= 4000)
 				{
-					WoW.CastSpell("Furious Slash");
+					WoW.CastSpell("Furious-Slash");
 					return;
 				}
 
@@ -501,62 +502,53 @@ namespace Frozen.Rotation
 			// Aoe stuff
             if (combatRoutine.Type == RotationType.AOE && validtargetmelee && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")) 
 			{	
-                Log.Write("AoE", Color.Green);
-
 				if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
 				{
 					WoW.CastSpell("Bladestorm");
 					return;
 				}
 
-				if (WoW.CanCast("Whirlwind") && !WoW.PlayerHasBuff("Meat-Cleaver") && level >= 28)
-                {
-                    WoW.CastSpell("Whirlwind");
-                    return;
-                }
-
-                if (WoW.CanCast("Rampage") && Ragepoints == 100 && WoW.PlayerHasBuff("Meat-Cleaver") && level >= 18 || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
+				if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000)
+				{
+					WoW.CastSpell("Bloodthirst");
+					Log.Write("Fujieda", Color.Green);
+					return;
+				}
+				
+				if (WoW.CanCast("Rampage") && Ragepoints == 100 && level >= 18 && WoW.PlayerHasBuff("Meat-Cleaver") || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
 					WoW.PlayerHasBuff("Meat-Cleaver"))
-                {
-                    WoW.CastSpell("Rampage");
-                    return;
-                }
+				{
+					WoW.CastSpell("Rampage");
+					return;
+				}
+
+				if (WoW.CanCast("Raging-Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100 && WoW.CountEnemyNPCsInRange < 4)
+				{
+					WoW.CastSpell("Raging-Blow");
+					return;
+				}
+
 				if (WoW.CanCast("Bloodthirst") && Ragepoints < 90 && !WoW.PlayerHasBuff("Enrage") && level >= 10 && WoW.PlayerHasBuff("Meat-Cleaver"))
                 {
                     WoW.CastSpell("Bloodthirst");
                     return;
                 }
 
-				if (WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala") && WoW.CountEnemyNPCsInRange < 4)
+				if (WoW.CanCast("Whirlwind") && WoW.PlayerHasBuff("Wrecking-Ball") && WoW.Talent(3) == 1 && WoW.PlayerHasBuff("Enrage") || WoW.CanCast("Whirlwind") &&
+					!WoW.PlayerHasBuff("Meat-Cleaver") && WoW.SpellCooldownTimeRemaining("Bloodthirst") <= 1000)
 				{
-					WoW.CastSpell("Execute");
+					WoW.CastSpell("Whirlwind");
 					return;
 				}
-
-				if (WoW.CanCast("OdynsFury") && level >= 101 && WoW.PlayerHasBuff("BattleCryBuff") && WoW.PlayerHasBuff("Frothing") && Ragepoints <= 100)
-				{
-					WoW.CastSpell("OdynsFury");
-					return;
-				}
-
-                if (WoW.CanCast("Raging Blow") && WoW.PlayerHasBuff("Enrage") && WoW.CountEnemyNPCsInRange < 4 && level >= 13)
-                {
-                    WoW.CastSpell("Raging Blow");
-                    return;
-                }
-
-                if (WoW.CanCast("Bloodthirst"))
-                {
-                    WoW.CastSpell("Bloodthirst");
-                    return;
-                }
 
 				if (WoW.CanCast("Whirlwind"))
 				{
 					WoW.CastSpell("Whirlwind");
 					return;
 				}
-
+				
+				Log.Write("AoE", Color.Green);
+				return;
             }
 
             if (combatRoutine.Type == RotationType.Cleave) //
@@ -574,11 +566,12 @@ AddonName=Frozen
 WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,23881,Bloodthirst,
+Spell,100,Charge,
 Spell,6552,Pummel,
 Spell,1464,Slam,
 Spell,12294,Mortal Strike,
-Spell,85288,Raging Blow,
-Spell,100130,Furious Slash,
+Spell,85288,Raging-Blow,
+Spell,100130,Furious-Slash,
 Spell,5308,Execute,
 Spell,184367,Rampage,
 Spell,190411,Whirlwind,
@@ -600,11 +593,11 @@ Aura,184362,Enrage
 Aura,201009,Juggernaut
 Aura,206316,Massacre
 Aura,85739,Meat-Cleaver
-Aura,215570,Wrecking Ball
+Aura,215570,Wrecking-Ball
 Aura,215572,Frothing
 Aura,251341,Fear
 Aura,107574,AvatarBuff
-Aura,207776,Furjeda
+Aura,207776,Fujieda
 Aura,225947,Ayala
 Aura,46924,Bladestorm
 Item,147187,TO Breastplate
