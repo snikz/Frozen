@@ -126,6 +126,8 @@ namespace Frozen.Rotation
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 			Log.Write("Update: added shitty GUI.", Color.Blue);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
+			Log.Write("You may have to bind Arcane Torrent if used", Color.Blue);
+			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 			Log.Write("If you want anything added message me in the Frozen Discord.", Color.Red);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 
