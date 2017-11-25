@@ -198,6 +198,13 @@ namespace Frozen.Rotation
                 return;
             }
 			
+			// Renew Logic
+			if (lowest >= Renew && WoW.CanCast("Renew") && !WoW.TargetHasBuff("Renew"))
+            {
+                WoW.CastSpell("Renew");
+                return;
+            }
+			
 			// Flash Heal Logic
             if (lowest <= FlashHeal && WoW.CanCast("Flash Heal") && !WoW.IsMoving)
             {
@@ -219,12 +226,6 @@ namespace Frozen.Rotation
                 return;
             }
 			
-			// Renew Logic
-			if (lowest <= Renew && WoW.CanCast("Renew") && WoW.IsMoving && !WoW.TargetHasBuff("Renew"))
-            {
-                WoW.CastSpell("Renew");
-                return;
-            }
 			
 			// Prayer of Mending Logic
 			if (lowest <= PrayerofMending && WoW.CanCast("Prayer of Mending") && !WoW.IsSpellOnCooldown("Prayer of Mending") && !WoW.TargetHasBuff("Prayer of Mending"))
