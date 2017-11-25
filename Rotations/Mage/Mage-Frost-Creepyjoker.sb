@@ -2,10 +2,11 @@
 [AddonDetails.db]
 AddonAuthor=CreepyJoker
 AddonName=Sucstobeyou
-WoWVersion=Legion - 70300
+WoWVersion=Legion - 70100
 [SpellBook.db]
 Spell,116,Frostbolt,D1
 Spell,84714,Frozen Orb,X
+Spell,2139,Counterspell,None
 Spell,30455,Ice Lance,D2
 Spell,44614,Flurry,D4
 Spell,199786,Glacial Spike,D3
