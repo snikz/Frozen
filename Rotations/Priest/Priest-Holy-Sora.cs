@@ -124,7 +124,7 @@ namespace Frozen.Rotation
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 			Log.Write("In Proving grounds the tank ID is 5", Color.Magenta);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
-			Log.Write("Update: added shitty GUI.", Color.Blue);
+			Log.Write("Update: added GUI.", Color.Blue);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 			Log.Write("You may have to bind Arcane Torrent if used", Color.Blue);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
