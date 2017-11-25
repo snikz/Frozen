@@ -318,7 +318,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Furious-Slash"))
+				if (WoW.CanCast("Furious-Slash") && EnrageTime < 1000 && WoW.SpellCooldownTimeRemaining("Bloodthirst") > 1000 && Ragepoints < 90)
 				{
 					WoW.CastSpell("Furious-Slash");
 					return;
@@ -391,12 +391,11 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Furious-Slash"))
+				if (WoW.CanCast("Furious-Slash") && EnrageTime < 1000 && WoW.SpellCooldownTimeRemaining("Bloodthirst") > 1000 && Ragepoints < 90)
 				{
 					WoW.CastSpell("Furious-Slash");
 					return;
 				}
-
             }
 
 			// Do Single Target Execute Stuff here
@@ -454,12 +453,11 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Furious-Slash"))
+				if (WoW.CanCast("Furious-Slash") && EnrageTime < 1000 && WoW.SpellCooldownTimeRemaining("Bloodthirst") > 1000 && Ragepoints < 90)
 				{
 					WoW.CastSpell("Furious-Slash");
 					return;
 				}
-
             }
 
 			//leveling
