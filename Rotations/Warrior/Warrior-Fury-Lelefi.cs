@@ -211,7 +211,7 @@ namespace Frozen.Rotation
 					return;
 				}
 				
-				if (WoW.CanCast("Rampage") && Ragepoints == 100 && level >= 18 && WoW.PlayerHasBuff("Meat-Cleaver") || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
+				if (WoW.CanCast("Rampage") && Ragepoints >= 100 && level >= 18 && WoW.PlayerHasBuff("Meat-Cleaver") || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
 					WoW.PlayerHasBuff("Meat-Cleaver"))
 				{
 					WoW.CastSpell("Rampage");
@@ -354,7 +354,7 @@ namespace Frozen.Rotation
 					return;
 				}
 
-				if (WoW.CanCast("Rampage") && Ragepoints == 100)
+				if (WoW.CanCast("Rampage") && Ragepoints >= 100)
 				{
 					WoW.CastSpell("Rampage");
 					return;
@@ -522,7 +522,7 @@ namespace Frozen.Rotation
 					return;
 				}
 				
-				if (WoW.CanCast("Rampage") && Ragepoints == 100 && level >= 18 && WoW.PlayerHasBuff("Meat-Cleaver") || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
+				if (WoW.CanCast("Rampage") && Ragepoints >= 100 && level >= 18 && WoW.PlayerHasBuff("Meat-Cleaver") || WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") &&
 					WoW.PlayerHasBuff("Meat-Cleaver"))
 				{
 					WoW.CastSpell("Rampage");
