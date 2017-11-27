@@ -23,7 +23,9 @@ Spell,106785,Swipe,16
 Spell,61336,SurvivalInstinct,17
 Spell,106830,Thrash,18
 Spell,783,TravelForm,19
+Spell,768,CatForm,
 Spell,5215,Prowl,20
+Spell,49376,WildCharge,
 Aura,163505,EmpoweredRakeAura
 Aura,252071,JungleStalkerAura
 Aura,5215,ProwlAura
@@ -40,6 +42,7 @@ Aura,1079,RipAura
 Aura,155722,RakeAura
 Aura,155625,MoonfireAura
 Aura,783,TravelFormAura
+Aura,768,CatFormAura
 Item,144259,BurningWish
 Item,137056,Luffa
 */
