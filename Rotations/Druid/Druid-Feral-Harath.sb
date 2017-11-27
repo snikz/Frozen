@@ -1,30 +1,29 @@
-﻿/*
+/*
 [AddonDetails.db]
 AddonAuthor=Hara
-AddonName=HASHTAGPWNAGE
+AddonName=Frozen
 WoWVersion=Legion - 70200
 [SpellBook.db]
-Spell,210722,Ashmane,D0
-Spell,106951,Berserk,F2
-Spell,26297,Berserking,F3
-Spell,202028,BrutalSlash,D8
-Spell,202060,Elune,F11
-Spell,22568,FerociousBite,D7
-Spell,102543,Incarnation,F2
-Spell,5217,TigersFury,D1
-Spell,155625,Moonfire,D2
-Spell,1822,Rake, D4
-Spell,8936,Regrowth,D3
-Spell,108238,Renewal,OemMinus
-Spell,1079,Rip, D6
-Spell,52610,SavageRoar,D9
-Spell,5221,Shred, D5
-Spell,106785,Swipe, D8
-Spell,61336,SurvivalInstinct,F5
-Spell,106830,Thrash,D0
-Item,144259,BurningWish,F10
-Item,137056,Luffa
-Range,1822,Rake
+Spell,210722,Ashmane,1
+Spell,106951,Berserk,2
+Spell,26297,Berserking,3
+Spell,202028,BrutalSlash,4
+Spell,202060,Elune,5
+Spell,22568,FerociousBite,6
+Spell,102543,Incarnation,7
+Spell,5217,TigersFury,8
+Spell,155625,Moonfire,9
+Spell,1822,Rake,10
+Spell,8936,Regrowth,11
+Spell,108238,Renewal,12
+Spell,1079,Rip,13
+Spell,52610,SavageRoar,14
+Spell,5221,Shred,15
+Spell,106785,Swipe,16
+Spell,61336,SurvivalInstinct,17
+Spell,106830,Thrash,18
+Spell,783,TravelForm,19
+Spell,5215,Prowl,20
 Aura,163505,EmpoweredRakeAura
 Aura,252071,JungleStalkerAura
 Aura,5215,ProwlAura
@@ -40,4 +39,7 @@ Aura,106830,ThrashAura
 Aura,1079,RipAura
 Aura,155722,RakeAura
 Aura,155625,MoonfireAura
+Aura,783,TravelFormAura
+Item,144259,BurningWish
+Item,137056,Luffa
 */
