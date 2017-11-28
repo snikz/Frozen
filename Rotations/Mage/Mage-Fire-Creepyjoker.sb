@@ -6,6 +6,7 @@ WoWVersion=Legion - 70300
 [SpellBook.db]
 Spell,108853,Fire Blast,D1
 Spell,194466,Phoenix,D2
+Spell,2139,Counterspell,None
 Spell,133,Fireball,D3
 Spell,11366,Pyroblast,D4
 Spell,116011,Rune of Power,D5
