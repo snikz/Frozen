@@ -177,12 +177,15 @@ namespace Frozen.Rotation
             if (WoW.PlayerHealthPercent == 0 || WoW.IsMounted || WoW.PlayerIsChanneling || WoW.PlayerHasBuff("Bladestorm") || !WoW.IsInCombat) return;
 
             // Retarget stuff
-			if ((!WoW.HasTarget || !WoW.TargetIsEnemy || WoW.TargetHealthPercent <= 0 || WoW.RangeToTarget >=5 || !WoW.TargetIsVisible) && WoW.IsInCombat &&
-				WoW.CountEnemyNPCsInRange >= 1 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget"))
+			if (WoW.TargetHealthPercent == 0 && WoW.IsInCombat && WoW.RangeToTarget >= 5 && WoW.CountEnemyNPCsInRange >= 1 && !WoW.IsMounted &&
+				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget") || !WoW.HasTarget && WoW.IsInCombat && WoW.CountEnemyNPCsInRange >= 1 && WoW.RangeToTarget >=1 &&
+				!WoW.IsMounted && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRetarget")) 
             {
                 WoW.TargetNextEnemy();
+				Log.Write("Retarget", Color.Blue);
                 return;
             }
+
 
 			//Fujeda Upkeep
 			/*if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000 && validtargetmelee)
