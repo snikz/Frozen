@@ -16,8 +16,8 @@ namespace Frozen.Rotation
         private int level = 0;
 		private int Ragepoints = 0;
 		private Settings settingsForm;
-		private bool validtargetmelee;
-		private bool validtargetaoe;
+		//private bool validtargetmelee;
+		//private bool validtargetaoe;
 		public int rampcount2 = 0;
 		public int battlecrycount = 0;
 		
@@ -169,8 +169,8 @@ namespace Frozen.Rotation
 			var FujiedaTime = WoW.PlayerBuffTimeRemaining("Fujieda");
 			var Bloodbathtime = WoW.PlayerBuffTimeRemaining("Bloodbath");
 			
-			validtargetmelee = WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible;
-			validtargetaoe = WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.CountEnemyNPCsInRange >=1;			
+			//validtargetmelee = WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible;
+			//validtargetaoe = WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.CountEnemyNPCsInRange >=2;			
 
 			Ragepoints = WoW.Rage;
 
@@ -188,7 +188,7 @@ namespace Frozen.Rotation
 
 
 			//Fujeda Upkeep
-			/*if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000 && validtargetmelee)
+			/*if (WoW.CanCast("Bloodthirst") && FujiedaTime < 2000 && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible)
 			{
 				WoW.CastSpell("Bloodthirst");
 				Log.Write("Fujieda", Color.Green);
@@ -196,7 +196,7 @@ namespace Frozen.Rotation
 			}*/
 			
 			// buff stuff
-            if (UseCooldowns && (validtargetmelee || validtargetaoe))
+            if (UseCooldowns && WoW.HasTarget && WoW.RangeToTarget <=5 )
             {	
 				if (WoW.CanCast("DragonRoar") && level >= 100 && WoW.Talent(7) == 3)
 				{
@@ -208,7 +208,7 @@ namespace Frozen.Rotation
                 //    WoW.CastSpell("BattleCry");
                 //}
 
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.CanCast("BattleCry") /*&& SetBoniListT21 >= 4*/ && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && 
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.CanCast("BattleCry") /*&& SetBoniListT21 >= 4*/ && WoW.CountEnemyNPCsInRange <=1 && 
 					(WoW.IsSpellOnCooldown("Rampage") && WoW.Rage < 50 && battlecrycount >= 1 || battlecrycount == 0))
 				{
 					WoW.CastSpell("BattleCry");
@@ -216,7 +216,7 @@ namespace Frozen.Rotation
 				}
 
 				if (WoW.CanCast("BattleCry") /*&& SetBoniListT21 >= 4*/ && WoW.PlayerHasBuff("Meat-Cleaver") && (combatRoutine.Type == RotationType.AOE ||
-					combatRoutine.Type == RotationType.SingleTarget && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")))
+					combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >=2 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")))
 				{
 					WoW.CastSpell("BattleCry");
 				}
@@ -235,7 +235,8 @@ namespace Frozen.Rotation
 
 			//Autokick
 			if (WoW.CanCast("Pummel") && WoW.TargetPercentCast >= Random.Next(50, 70) && WoW.TargetIsCastingAndSpellIsInterruptible && 
-				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Autokick") && validtargetmelee)
+				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "Autokick") && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling &&
+				WoW.TargetIsVisible)
 			{
 				WoW.CastSpell("Pummel");
 				Log.Write("Pummel", Color.Green);
@@ -243,7 +244,8 @@ namespace Frozen.Rotation
             }
 
 			//Heal stuff
-            if (validtargetmelee && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRegeneration") && level >= 36 && WoW.PlayerHealthPercent <= 20) 
+            if (WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible &&
+				ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoRegeneration") && level >= 36 && WoW.PlayerHealthPercent <= 20) 
             {	
 				if (WoW.CanCast("Enraged Regeneration"))
                 {
@@ -281,8 +283,10 @@ namespace Frozen.Rotation
 			if (ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "T21Rotation") && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "T20Rotation"))
 			{
 				// Aoe stuff T21 Unbuffed + auto
-				if (combatRoutine.Type == RotationType.AOE && validtargetaoe && !WoW.PlayerHasBuff("BattleCryBuff") && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") ||
-					combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && validtargetaoe &&
+				if (combatRoutine.Type == RotationType.AOE && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling &&
+					WoW.TargetIsVisible && WoW.CountEnemyNPCsInRange >=2 && !WoW.PlayerHasBuff("BattleCryBuff") && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") ||
+					combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") &&
+					WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.CountEnemyNPCsInRange >=2 &&
 					!WoW.PlayerHasBuff("BattleCryBuff"))
 				{	
 					if (WoW.CanCast("Bloodthirst") && Ragepoints < 100 && WoW.PlayerHasBuff("Meat-Cleaver"))
@@ -306,8 +310,10 @@ namespace Frozen.Rotation
 				}
 
 				// Aoe stuff T21 Buffed + auto
-				if (combatRoutine.Type == RotationType.AOE && validtargetaoe && WoW.PlayerHasBuff("BattleCryBuff") && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") ||
-					combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && validtargetaoe &&
+				if (combatRoutine.Type == RotationType.AOE && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling &&
+					WoW.TargetIsVisible && WoW.CountEnemyNPCsInRange >=2 && WoW.PlayerHasBuff("BattleCryBuff") && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") ||
+					combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") &&
+					WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.CountEnemyNPCsInRange >=2 &&
 					WoW.PlayerHasBuff("BattleCryBuff"))
 				{	
 					if (WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Meat-Cleaver") && Ragepoints >= 85)
@@ -339,7 +345,8 @@ namespace Frozen.Rotation
 
 				//T21
 				// Do Single Target Unbuffed Stuff here T21
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee)
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
+					WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible)
 				{
 					if (WoW.CanCast("Rampage") && (Ragepoints >= 100 || WoW.SpellCooldownTimeRemaining("BattleCry") < 1000 && Ragepoints >= 85 && UseCooldowns)) 
 					{
@@ -380,7 +387,8 @@ namespace Frozen.Rotation
 				}
 
 				// Do Single Target Buffed Stuff here T21
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee)
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
+					WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible)
 				{
 					if (WoW.CanCast("Rampage") && (WoW.PlayerHasBuff("Massacre") || Ragepoints >= 85))
 					{
@@ -416,7 +424,8 @@ namespace Frozen.Rotation
 				}
 
 				// Do Single Target Unbuffed Execute Stuff here T21
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && validtargetmelee && !WoW.PlayerHasBuff("BattleCryBuff") &&
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 &&
+					WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && !WoW.PlayerHasBuff("BattleCryBuff") &&
 					!WoW.IsEquippedItem("SouloftheBattlelord"))
 				{
 					if (WoW.CanCast("Bloodthirst") && Ragepoints < 25)
@@ -446,7 +455,8 @@ namespace Frozen.Rotation
 				}
 
 				// Do Single Target Buffed Execute Stuff here T21
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && validtargetmelee && WoW.PlayerHasBuff("BattleCryBuff") &&
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 &&
+					WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.PlayerHasBuff("BattleCryBuff") &&
 					!WoW.IsEquippedItem("SouloftheBattlelord"))
 				{
 					if (WoW.CanCast("Execute") && (WoW.PlayerHasBuff("Ayala") || (Ragepoints >= 25 || (!WoW.PlayerHasBuff("Juggernaut") && Ragepoints >= 25 ||
@@ -470,7 +480,8 @@ namespace Frozen.Rotation
 				}
 
 				// Do Single Target Buffed Execute Stuff here T21 SouloftheBattlelord
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && validtargetmelee && !WoW.PlayerHasBuff("BattleCryBuff") &&
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 &&
+					WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && !WoW.PlayerHasBuff("BattleCryBuff") &&
 					WoW.IsEquippedItem("SouloftheBattlelord"))
 				{
 					if (WoW.CanCast("Execute") && (WoW.PlayerHasBuff("Ayala") || (Ragepoints >= 25 || (!WoW.PlayerHasBuff("Juggernaut") && Ragepoints >= 25 ||
@@ -498,7 +509,8 @@ namespace Frozen.Rotation
 			if (!ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "T21Rotation") && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "T20Rotation"))
 			{
 				//AutoAoET20
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && validtargetmelee &&
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.CountEnemyNPCsInRange >= 3 && ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE") && WoW.HasTarget &&
+					WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible &&
 					SetBoniListT21 <= 0) 
 				{	
 					if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
@@ -558,7 +570,8 @@ namespace Frozen.Rotation
 				}
 
 				// Do Single Target Unbuffed Stuff here T20
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee) 
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && !WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
+					WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible) 
 				{
 					if (WoW.CanCast("Raging-Blow") && WoW.PlayerHasBuff("Enrage") && WoW.PlayerHasBuff("Frothing") && Ragepoints < 100)
 					{
@@ -605,7 +618,8 @@ namespace Frozen.Rotation
 				}
 
 				// Do Single Target Buffed Stuff here T20
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && validtargetmelee && WoW.Talent(6) == 3)
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent >= 21 && WoW.PlayerHasBuff("BattleCryBuff") && WoW.HasTarget && WoW.TargetIsEnemy &&
+					WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible && WoW.Talent(6) == 3)
 				{
 					if (WoW.CanCast("Rampage") && WoW.PlayerHasBuff("Massacre") && EnrageTime <= 1000)
 					{
@@ -672,7 +686,8 @@ namespace Frozen.Rotation
 
 				// Do Single Target Execute Stuff here T20
 
-				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && validtargetmelee)
+				if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level >= 60 && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 &&
+					WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible)
 				{
 					if (WoW.CanCast("Execute") && !WoW.PlayerHasBuff("Juggernaut") && Ragepoints >= 25 || WoW.CanCast("Execute") && WoW.PlayerBuffTimeRemaining("Juggernaut") < 2000 && Ragepoints >= 25 
 						|| WoW.CanCast("Execute") && WoW.SpellCooldownTimeRemaining("BattleCry") < 5000 && Ragepoints >= 25 || WoW.CanCast("Execute") && WoW.PlayerHasBuff("Ayala")
@@ -727,7 +742,8 @@ namespace Frozen.Rotation
 				}
 
 				// Aoe stuff
-				if (combatRoutine.Type == RotationType.AOE && validtargetmelee && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")) 
+				if (combatRoutine.Type == RotationType.AOE && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling &&
+					WoW.TargetIsVisible && !ConfigFile.ReadValue<bool>("Fury-Warrior-Lelefi", "AutoAoE")) 
 				{	
 					if (WoW.CanCast("Bladestorm") && WoW.Talent(7) == 1 && EnrageTime > 2000)
 					{
@@ -794,7 +810,7 @@ namespace Frozen.Rotation
 			//}
 
 			//leveling
-            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59 && validtargetmelee) 
+            if (combatRoutine.Type == RotationType.SingleTarget && WoW.TargetHealthPercent <= 20 && level <= 59 && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible) 
             {
 				if (WoW.CanCast("Execute") && Ragepoints >= 25 && level >= 8)
 				{
@@ -822,7 +838,7 @@ namespace Frozen.Rotation
 				}
             }
 
-            if (combatRoutine.Type == RotationType.SingleTarget && level <= 9 && WoW.PlayerClassSpec == "Warrior-Arms" && validtargetmelee)
+            if (combatRoutine.Type == RotationType.SingleTarget && level <= 9 && WoW.PlayerClassSpec == "Warrior-Arms" && WoW.HasTarget && WoW.TargetIsEnemy && WoW.RangeToTarget <=5 && WoW.IsInCombat && !WoW.PlayerIsChanneling && WoW.TargetIsVisible)
             {
                 if (WoW.CanCast("Slam") && WoW.IsSpellOnCooldown("Mortal Strike") && Ragepoints >= 20)
                 {
