@@ -21,6 +21,7 @@ Spell,61336,SurvivalInstinct,14
 Spell,18562,Swiftmend,15
 Spell,213771,Swipe,16
 Spell,77758,Thrash,17
+Spell,49376,WildCharge,18
 Aura,5487,BearFormAura
 Aura,213708,GalacticGuardianAura
 Aura,192081,IronfurAura
@@ -32,5 +33,4 @@ Aura,93622,GoreAura
 Aura,158792,PulverizeAura
 Aura,192090,ThrashAura
 Aura,164812,MoonfireAura
-Item,144259,BurningWish
 */
