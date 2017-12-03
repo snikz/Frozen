@@ -1,10 +1,8 @@
 using System.Drawing;
 using System.Windows.Forms;
-using Frozen.Helpers;
-using Frozen.GUI;
 using System.Diagnostics;
-namespace Frozen.Rotation
 
+namespace FrozenNamespace
 {
     public class Marksman : CombatRoutine
     {

@@ -1,9 +1,8 @@
 ﻿using System.Drawing;
 using System.Threading;
 using System.Windows.Forms;
-using Frozen.Helpers;
 
-namespace Frozen.Rotation
+namespace FrozenNamespace
 {
     public class WarlockAffliction : CombatRoutine
     {

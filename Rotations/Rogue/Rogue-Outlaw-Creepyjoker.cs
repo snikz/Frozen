@@ -3,9 +3,8 @@ using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using Frozen.Helpers;
 
-namespace Frozen.Rotation
+namespace FrozenNamespace
 {
     public class Outlaw : CombatRoutine
     {

@@ -4,7 +4,6 @@
 // Original Rotation by Lesion
 // Reccomended Talent Build 2223131
 
-using Frozen.Helpers;
 using System;
 using System.Diagnostics;
 using System.Drawing;
@@ -14,9 +13,8 @@ using System.Data;
 using System.Diagnostics.CodeAnalysis;
 using System.Linq;
 using System.Runtime.InteropServices;
-using Frozen.GUI;
 
-namespace Frozen.Rotation
+namespace FrozenNamespace
 {
     public class ArcaneMage : CombatRoutine
     {

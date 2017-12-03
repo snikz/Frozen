@@ -1,10 +1,7 @@
 ﻿using System.Drawing;
 using System.Windows.Forms;
-using Frozen.GUI;
-using Frozen.Helpers;
 
-
-namespace Frozen.Rotation
+namespace FrozenNamespace
 {
     public class Monk_Mistweaver : CombatRoutine
     {
