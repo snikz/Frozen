@@ -1,13 +1,7 @@
-﻿// winifix@gmail.com
-// ReSharper disable UnusedMember.Global
-
-
-using System.Drawing;
+﻿using System.Drawing;
 using System.Windows.Forms;
-using Frozen.GUI;
-using Frozen.Helpers;
 
-namespace Frozen.Rotation
+namespace FrozenNamespace
 {
     public class Paladin_Holy : CombatRoutine
     {
@@ -17,7 +11,6 @@ namespace Frozen.Rotation
 
             set { }
         }
-
 
         const string supportedTalents = "2311321";
 
