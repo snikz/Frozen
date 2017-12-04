@@ -114,19 +114,15 @@ namespace FrozenNamespace
 			// Instructions for user.                                                                   
 			Log.Write("Holy Priest by Sora", Color.Blue);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
+			Log.Write("AUTOMATIC TARGETING HAS BEEN REMOVED YOU WILL NEED TO TARGET YOUR OWN PARTY MEMBERS", Color.Blue);
+			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);			
 			Log.Write("This routine supports 3131312", Color.Magenta);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 			Log.Write("Make sure to set up your healing keybinds", Color.Blue);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 			Log.Write("Select your settings", Color.Red);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
-			Log.Write("In Proving grounds the tank ID is 5", Color.Magenta);
-			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
-			Log.Write("Update: added GUI.", Color.Blue);
-			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
-			Log.Write("You may have to bind Arcane Torrent if used", Color.Blue);
-			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
-			Log.Write("If you want anything added message me in the Frozen Discord.", Color.Red);
+			Log.Write("If you want anything added message me in the Frozen Discord.", Color.Blue);
 			Log.Write("-----------------------------------------------------------------------", Color.DarkGray);
 
 			
@@ -143,23 +139,16 @@ namespace FrozenNamespace
 			if (WoW.IsMounted || WoW.PlayerIsCasting || WoW.PlayerIsChanneling)
 				return;
 			//set variables
-            var lowest = WoW.PartyLowestHealthPercent;
-			
 			var averageHp = WoW.PartyAverageHealthPercent;
-
-            var currentTargetId = WoW.PartyMemberIdWithLowestHealthPercent;
 			
-			WoW.TargetMember(currentTargetId);
+			var target = WoW.HasTarget;
+			var friend = WoW.TargetIsFriend;
+			var hp = WoW.TargetHealthPercent;
 			
-			//Dispell Logic
-            if (WoW.PartyMemberIsNeedingADispel != 0)
-            {
-                currentTargetId = WoW.PartyMemberIsNeedingADispel;
-            }
-			
-			if (currentTargetId == 0) return;
-            if (lowest == 100) return;
-			
+			if (target && hp >= 100)
+			{
+				return;
+			}
 			
 			// Divine Hymn Logic
 			if (averageHp <= DivineHymn && WoW.CanCast("Divine Hymn") && !WoW.IsSpellOnCooldown("Divine Hymn"))
@@ -169,7 +158,7 @@ namespace FrozenNamespace
 			}
 			
 			// Guardian Spirit Logic
-			if (lowest <= GuardianSpirit && WoW.CanCast("Guardian Spirit") && !WoW.IsSpellOnCooldown("Guardian Spirit"))
+			if (hp <= GuardianSpirit && target && friend && WoW.CanCast("Guardian Spirit") && !WoW.IsSpellOnCooldown("Guardian Spirit"))
             {
                 WoW.CastSpell("Guardian Spirit");
                 return;
@@ -183,52 +172,51 @@ namespace FrozenNamespace
 			}
 			
 			//Purify Logic
-			if (WoW.PartyMemberIsNeedingADispel != 0 && WoW.CanCast("Purify"))
+			if (target && friend && WoW.PartyMemberIsNeedingADispel != 0 && WoW.CanCast("Purify"))
             {
                 WoW.CastSpell("Purify");
                 return;
             }
 			
-			// Holy Word: Serenity Logic
-			if (lowest <= HolyWordSerenity && WoW.CanCast("Holy Word Serenity") && !WoW.IsSpellOnCooldown("Holy Word Serenity"))
-            { 
-                WoW.CastSpell("Holy Word Serenity");
+			// Prayer of Mending Logic
+			if (hp <= PrayerofMending && target && friend && WoW.CanCast("Prayer of Mending") && !WoW.IsSpellOnCooldown("Prayer of Mending") && !WoW.TargetHasBuff("Prayer of Mending"))
+            {
+                WoW.CastSpell("Prayer of Mending");
                 return;
             }
 			
 			// Renew Logic
-			if (lowest >= Renew && WoW.CanCast("Renew") && !WoW.TargetHasBuff("Renew"))
+			if (hp >= Renew && target && friend && WoW.CanCast("Renew") && !WoW.TargetHasBuff("Renew"))
             {
                 WoW.CastSpell("Renew");
                 return;
             }
 			
+			// Holy Word: Serenity Logic
+			if (hp <= HolyWordSerenity && WoW.CanCast("Holy Word Serenity") && !WoW.IsSpellOnCooldown("Holy Word Serenity"))
+            { 
+                WoW.CastSpell("Holy Word Serenity");
+                return;
+            }
+			
 			// Flash Heal Logic
-            if (lowest <= FlashHeal && WoW.CanCast("Flash Heal") && !WoW.IsMoving)
+            if (hp <= FlashHeal && target && friend && WoW.CanCast("Flash Heal") && !WoW.IsMoving)
             {
                 WoW.CastSpell("Flash Heal");
                 return;
             }
 			
 			// Heal Logic
-            if (lowest <= Heal && WoW.CanCast("Heal") && !WoW.IsMoving)
+            if (hp <= Heal && target && friend && WoW.CanCast("Heal") && !WoW.IsMoving)
             {
                 WoW.CastSpell("Heal");
                 return;
             }
 			 
 			//Light of Tuure Logic
-			if (lowest <= LightofTuure && WoW.CanCast("Light of Tuure") && WoW.Level == 110 &&  !WoW.IsSpellOnCooldown("Light of Tuure") && !WoW.TargetHasBuff("Light of Tuure"))  
+			if (hp <= LightofTuure && target && friend && WoW.CanCast("Light of Tuure") && WoW.Level == 110 &&  !WoW.IsSpellOnCooldown("Light of Tuure") && !WoW.TargetHasBuff("Light of Tuure"))  
             { 
                 WoW.CastSpell("Light of Tuure");
-                return;
-            }
-			
-			
-			// Prayer of Mending Logic
-			if (lowest <= PrayerofMending && WoW.CanCast("Prayer of Mending") && !WoW.IsSpellOnCooldown("Prayer of Mending") && !WoW.TargetHasBuff("Prayer of Mending"))
-            {
-                WoW.CastSpell("Prayer of Mending");
                 return;
             }
 			
