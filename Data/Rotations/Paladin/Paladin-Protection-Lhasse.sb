@@ -1,0 +1,26 @@
+/*
+[AddonDetails.db]
+AddonAuthor=Lhasse
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,20271,Judgment,None
+Spell,26573,Consecration,None
+Spell,31935,AvengersShield,None
+Spell,204019,BlessedHammer,None
+Spell,53600,ShieldOfTheRighteous,None
+Spell,31884,AvengingWrath,None
+Spell,213652,HandOfTheProtector,None
+Spell,184092,LightoftheProtector,None
+Spell,633,LayOnHands,None
+Spell,31850,ArdentDefender,None
+Spell,86659,GuardianOfAncientKings,None
+Spell,209202,EyeOfTyr,None
+Spell,642,DivineShield,None
+Spell,96231,Rebuke,None
+Spell,152262,Seraphim,None
+Aura,188370,Consecration
+Aura,132403,ShieldOfTheRighteous
+Aura,25771,Forbearance
+Aura,31850,ArdentDefender
+*/

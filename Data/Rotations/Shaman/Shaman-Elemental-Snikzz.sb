@@ -1,0 +1,41 @@
+﻿/*
+[AddonDetails.db]
+AddonAuthor=Snikzz
+AddonName=Snikzz
+WoWVersion=Legion - 70300
+[SpellBook.db]  
+Spell,188389,Flame Shock,D3
+Spell,108271,Astral Shift,D6
+Spell,198067,Fire Elemental,F7
+Spell,114074,Lava Beam,E
+Spell,188196,Lightning Bolt,D1
+Spell,51505,Lava Burst,D2
+Spell,198103,Earth Elemental,F8
+Spell,188443,Chain Lightning,E
+Spell,16166,Elemental Mastery,D4
+Spell,114050,Ascendance,D8
+Spell,61882,Earthquake,F2
+Spell,108281,Ancestral Guidance,D7
+Spell,205495,Stormkeeper,D0
+Spell,210643,Totem Mastery,F
+Spell,8042,Earth Shock,Q
+Spell,51490,Thunderstorm,D5
+Spell,117014,Elemental Blast
+Spell,210714,Icefury
+Spell,196840,Frost Shock
+Spell,57994,Wind Shear
+Spell,8004,Healing Surge
+Spell,2645,Ghost Wolf
+Spell,192249,Storm Elemental
+Aura,188389,Flame Shock
+Aura,210659,Totem Mastery
+Aura;16166,Elemental Mastery
+Aura,114050,Ascendance
+Aura,16164,Elemental Focus
+Aura,77762,Lava Surge
+Aura,205495,Stormkeeper
+Aura,210714,Icefury
+Aura,191861,Power of the Maelstrom
+Aura,2645,Ghost Wolf
+Item,151647,Soul of the Farseer
+*/

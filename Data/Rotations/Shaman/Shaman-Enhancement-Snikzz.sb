@@ -1,0 +1,72 @@
+﻿/*
+[AddonDetails.db]
+AddonAuthor=Snikzz
+AddonName=Frozen
+WoWVersion=Legion - 70300
+[SpellBook.db]
+Spell,2008,AncestralSpirit
+Spell,246035,Boulderfist
+Spell,210853,Hailstorm
+Spell,192106,LightningShield
+Spell,210727,Overcharge
+Spell,370,Purge
+Spell,58875,SpiritWalk
+Spell,197211,Fury of Air,
+Spell,57994,Wind Shear,1
+Spell,196884,Feral Lunge,2
+Spell,51533,Feral Spirit,3
+Spell,196834,Frostbrand,4
+Spell,204945,Doom Winds,5
+Spell,187874,Crash Lightning,6
+Spell,193796,Flametongue,7
+Spell,108271,Astral Shift,8
+Spell,193786,Rockbiter,9
+Spell,60103,Lava Lash,10
+Spell,17364,Stormstrike,11
+Spell,115356,Windstrike,12
+Spell,187837,Lightning Bolt,13
+Spell,188070,Healing Surge,14
+Spell,215864,Rainfall,15
+Spell,188089,Earthen Spike,16
+Spell,201898,Windsong,17
+Spell,197214,Sundering,18
+Spell,114051,Ascendance,19
+Spell,2645,Ghost Wolf,20
+Spell,142173,Collapsing Futures,21
+Spell,33697,Blood Fury,22
+Spell,59547,GiftOfTheNaaru
+Spell,26297,Berserking
+Spell,151190,Specter of Betrayal,23
+Spell,214265,StormTempests
+Spell,192246,CrashingStorm
+Aura,192246,CrashingStorm
+Aura,214265,StormTempests
+Aura,194084,Flametongue
+Aura,196834,Frostbrand
+Aura,187878,Crashing Storm
+Aura,187874,Crash Lightning
+Aura,201846,Stormbringer
+Aura,202004,Landslide
+Aura,204945,Doom Winds
+Aura,215864,Rainfall
+Aura,114051,Ascendance
+Aura,201898,Windsong
+Aura,201900,Hot Hand
+Aura,2645,Ghost Wolf
+Aura,240842,Legionfall
+Aura,234143,Temptation
+Aura,242284,Lightning Crash
+Aura,188089,Earthen Spike
+Aura,197211,Fury of Air
+Item,147175,Harness of the Skybreaker
+Item,147176,Drape of the Skybreaker
+Item,147177,Grips of the Skybreaker
+Item,147178,Helmet of the Skybreaker
+Item,147179,Legguards of the Skybreaker
+Item,147180,Pauldrons of the Skybreaker
+Item,137050,Eye of the Twisting Nether
+Item,151819,Smoldering Heart
+Item,151820,PrimalAscendantsStormcallers
+Item,137103,Storm Tempests
+Item,137084,AkainusAbsoluteJustice
+*/
