@@ -349,7 +349,7 @@ if IsSpellOverlayed(MvWxr)then
 _gGmBBE[MvWxr].t:SetColorTexture(1,0,0,Dn1Xi)_gGmBBE[MvWxr].t:SetAllPoints(false)else
 _gGmBBE[MvWxr].t:SetColorTexture(1,1,1,Dn1Xi)_gGmBBE[MvWxr].t:SetAllPoints(false)end end end
 local function lAG(HgY6)
-for Wc,eQ5 in pairs(dispel)do local kvR=GetSpellInfo(eQ5)if kvR==nil then return 0 end;local So,Wc,Wc,Wi,Wc,X1WM,OVBAVy,Wc,Wc,Wc,eQ5,Wc,Wc,Wc,Wc,Wc=UnitDebuff(HgY6,kvR,
+for Wc,eQ5 in pairs(DispelThese)do local kvR=GetSpellInfo(eQ5)if kvR==nil then return 0 end;local So,Wc,Wc,Wi,Wc,X1WM,OVBAVy,Wc,Wc,Wc,eQ5,Wc,Wc,Wc,Wc,Wc=UnitDebuff(HgY6,kvR,
 nil,"HARMFUL")if
 (So==kvR)then return 1 end end;return 0 end;local AvEtR8Y=""
 local function rl3MMqfm()if IsHealer()==false then return end
